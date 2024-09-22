@@ -1,0 +1,1 @@
+# plugins-email-template-customizer-for-woo
