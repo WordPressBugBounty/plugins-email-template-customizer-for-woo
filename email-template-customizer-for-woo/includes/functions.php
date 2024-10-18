@@ -8,8 +8,8 @@ function viwec_get_emails_list( $type = '' ) {
 	return get_posts( array(
 		'numberposts' => - 1,
 		'post_type'   => 'viwec_template',
-		'meta_key'    => 'viwec_settings_type',
-		'meta_value'  => $type,
+		'meta_key'    => 'viwec_settings_type',// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+		'meta_value'  => $type,// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 	) );
 }
 

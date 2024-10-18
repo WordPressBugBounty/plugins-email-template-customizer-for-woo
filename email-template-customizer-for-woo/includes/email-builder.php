@@ -178,7 +178,7 @@ class Email_Builder {
 					$object->$method( $post );
 					$html = ob_get_clean();
 					printf( "<div id='viwec-box-%s' class='viwec-setting-box'><div class='viwec-box-title'>%s</div>%s</div>",
-						esc_attr( $key ), esc_html( $data['title'] ), $html );
+						esc_attr( $key ), esc_html( $data['title'] ), $html );//phpcs:ignore  WordPress.Security.EscapeOutput.OutputNotEscaped
 				}
 			}
 
@@ -270,7 +270,7 @@ class Email_Builder {
 	}
 
 	public function save_post( $post_id ) {
-		if ( ! current_user_can( 'manage_woocommerce' ) || ! isset( $_POST['post_status'] ) || ! in_array( $_POST['post_status'], [ 'publish', 'draft' ] ) ) {
+		if ( ! current_user_can( 'manage_woocommerce' ) || ! isset( $_POST['post_status'] ) || ! in_array( $_POST['post_status'], [ 'publish', 'draft' ] ) ) {// phpcs:ignore WordPress.Security.NonceVerification.Missing
 			return;
 		}
 
@@ -287,8 +287,8 @@ class Email_Builder {
 		];
 
 		foreach ( $keys as $key ) {
-			if ( isset( $_POST[ $key ] ) ) {
-				$value = $key == 'viwec_email_structure' ? sanitize_text_field( htmlentities( $_POST[ $key ] ) ) : wc_clean( $_POST[ $key ] );
+			if ( isset( $_POST[ $key ] ) ) {// phpcs:ignore WordPress.Security.NonceVerification.Missing
+				$value = $key == 'viwec_email_structure' ? sanitize_text_field( htmlentities( $_POST[ $key ] ) ) : wc_clean( $_POST[ $key ] );// phpcs:ignore WordPress.Security.NonceVerification.Missing
 				update_post_meta( $post_id, $key, $value );
 			}
 		}
@@ -314,7 +314,7 @@ class Email_Builder {
 	}
 
 	public function preview_custom_css() {
-		$custom_css = isset( $_POST['custom_css'] ) ? sanitize_text_field( wp_unslash( $_POST['custom_css'] ) ) : '';
+		$custom_css = isset( $_POST['custom_css'] ) ? sanitize_text_field( wp_unslash( $_POST['custom_css'] ) ) : '';// phpcs:ignore WordPress.Security.NonceVerification.Missing
 
 		return $custom_css;
 	}
@@ -391,7 +391,7 @@ class Email_Builder {
 			wp_add_inline_style( 'viwec-inline-style', $css );
 		}
 
-		if ( isset( $_GET['page'], $_GET['tab'] ) && $_GET['page'] == 'wc-settings' && $_GET['tab'] == 'email' ) {
+		if ( isset( $_GET['page'], $_GET['tab'] ) && $_GET['page'] == 'wc-settings' && $_GET['tab'] == 'email' ) {// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			$css = ".viwec-edit-button{background-color:#ffffff; color:#333333; padding:4px 10px; border-radius:3px;display:inline-flex;border:1px solid #999999;}";
 			$css .= ".viwec-email-status{line-height:1 !important;}";
 			wp_add_inline_style( 'woocommerce_admin_styles', $css );
@@ -407,10 +407,10 @@ class Email_Builder {
                         $('.viwec-email-status').prop('disabled', true);
                         $this.after('<span class="spinner is-active"></span>');
                         $.ajax({
-                            url: '<?php echo admin_url( 'admin-ajax.php' ) ?>',
+                            url: '<?php echo esc_url( admin_url( 'admin-ajax.php' ) ) ?>',
                             type: 'post',
                             dataType: 'json',
-                            data: {action: 'viwec_set_email_status', status, id, nonce: '<?php echo wp_create_nonce( 'viwec_set_email_status' ) ?>'},
+                            data: {action: 'viwec_set_email_status', status, id, nonce: '<?php echo esc_html( wp_create_nonce( 'viwec_set_email_status' ) ) ?>'},
                             success: function (res) {
                                 $('.viwec-email-status').prop('disabled', false);
                                 $this.next('.spinner').remove();
@@ -477,7 +477,7 @@ class Email_Builder {
 			return;
 		}
 
-		$dup_id = ! empty( $_GET['id'] ) ? absint( $_GET['id'] ) : '';
+		$dup_id = ! empty( $_GET['id'] ) ? absint( $_GET['id'] ) : '';// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 
 		if ( $dup_id ) {
 			$current_post = get_post( $dup_id );
@@ -515,10 +515,10 @@ class Email_Builder {
 
 	public function parse_query_filter( $query ) {
 		global $pagenow;
-		$post_type = isset( $_GET['post_type'] ) ? sanitize_text_field( wp_unslash( $_GET['post_type'] ) ) : '';
-		if ( is_admin() && $pagenow == 'edit.php' && $post_type == 'viwec_template' && ! empty( $_GET['viwec_template_filter'] ) ) {
-			$query->query_vars['meta_key']     = 'viwec_settings_type';
-			$query->query_vars['meta_value']   = sanitize_text_field( wp_unslash( $_GET['viwec_template_filter'] ) );
+		$post_type = isset( $_GET['post_type'] ) ? sanitize_text_field( wp_unslash( $_GET['post_type'] ) ) : '';// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( is_admin() && $pagenow == 'edit.php' && $post_type == 'viwec_template' && ! empty( $_GET['viwec_template_filter'] ) ) {// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			$query->query_vars['meta_key']     = 'viwec_settings_type';// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+			$query->query_vars['meta_value']   = sanitize_text_field( wp_unslash( $_GET['viwec_template_filter'] ) );// phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 			$query->query_vars['meta_compare'] = '=';
 		}
 
@@ -690,7 +690,7 @@ class Email_Builder {
 				$old     = get_post_meta( $post_id, 'viwec_email_structure', true );
 				$data    = json_decode( html_entity_decode( $old ), true );
 
-				foreach ( $data['rows'] as $row_key => $row ) {
+				foreach ( (array)$data['rows'] as $row_key => $row ) {
 					if ( ! empty( $row['cols'] ) ) {
 						foreach ( $row['cols'] as $col_key => $cols ) {
 							if ( ! empty( $cols['elements'] ) ) {

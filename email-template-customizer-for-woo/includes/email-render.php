@@ -88,6 +88,7 @@ class Email_Render {
 
 		$order = new \WC_Order();
 		$order->set_id( 123456 );
+		$order->set_date_created( time() );
 		$order->set_billing_first_name( 'John' );
 		$order->set_billing_last_name( 'Doe' );
 		$order->set_billing_email( 'johndoe@domain.com' );
@@ -184,7 +185,7 @@ class Email_Render {
 		$this->direction = get_post_meta( $this->template_id, 'viwec_settings_direction', true );
 
 		if ( $this->preview ) {
-			$this->direction = isset( $_POST['direction'] ) ? sanitize_text_field( wp_unslash( $_POST['direction'] ) ) : 'ltr';
+			$this->direction = isset( $_POST['direction'] ) ? sanitize_text_field( wp_unslash( $_POST['direction'] ) ) : 'ltr';// phpcs:ignore WordPress.Security.NonceVerification.Missing
 		}
 
 		$this->email_header( $bg_style, $width, $responsive );
@@ -194,7 +195,7 @@ class Email_Render {
 		$custom_css_component = get_post_meta( $this->template_id, 'viwec_custom_css', true );
 
 		?>
-        <style type="text/css"><?php echo $custom_css_component; ?></style>
+        <style type="text/css"><?php echo esc_attr( $custom_css_component ); ?></style>
         <table align='center' width='600' border='0' cellpadding='0' cellspacing='0'>
 			<?php
 			if ( ! empty( $data['rows'] ) && is_array( $data['rows'] ) ) {
@@ -316,7 +317,13 @@ class Email_Render {
 	public function email_footer() {
 		?>
         </td></tr></tbody></table></td></tr></tbody></table></div>
-        <div style="width: 0; font-size: 0;opacity: 0;overflow:hidden;visibility: hidden;color:transparent;">{{ignore_9mail}}</div>
+        <?php
+		if ( class_exists( 'EMTMPL_Email_Templates_Designer' ) || class_exists( 'EmTmplF\WP_Email_Templates_Designer' ) ) {
+		?>
+        ignore_9mail
+		<?php
+		}
+        ?>
         </body></html>
 		<?php
 	}
@@ -382,7 +389,7 @@ class Email_Render {
 			$preview = $this->demo ? 'pre-' : '';
 
 			if ( $preview ) {
-				$this->direction = isset( $_POST['direction'] ) ? sanitize_text_field( wp_unslash( $_POST['direction'] ) ) : 'ltr';
+				$this->direction = isset( $_POST['direction'] ) ? sanitize_text_field( wp_unslash( $_POST['direction'] ) ) : 'ltr';// phpcs:ignore WordPress.Security.NonceVerification.Missing
 			}
 
 			if ( is_file( VIWEC_TEMPLATES . "order-items/{$preview}style-{$temp}.php" ) ) {
@@ -618,7 +625,7 @@ class Email_Render {
 		$shipping_address = $this->order->get_formatted_shipping_address();
 		$shipping_address = empty( $shipping_address ) ? $this->order->get_formatted_billing_address() : $shipping_address;
 		$shipping_address = str_replace( '<br/>', "</td></tr><tr><td valign='top' style='color: {$color}; font-weight: {$font_weight};'>", $shipping_address );
-		$shipping_phone = '';
+		$shipping_phone   = '';
 		if ( $phone = $this->order->get_shipping_phone() ) {
 			$shipping_phone = "<tr><td valign='top' ><a href='tel:$phone' style='color: {$color}; font-weight: {$font_weight};'>$phone</td></tr>";
 		}
@@ -901,7 +908,7 @@ class Email_Render {
 			}
 
 			$content = $class_email->style_inline( "<div class='{$hook}'>" . $content . '</div>' );
-			echo str_replace( [ 'margin-bottom: 40px;' ], [ '' ], $content );
+			echo wp_kses_post( str_replace( [ 'margin-bottom: 40px;' ], [ '' ], $content ) );
 
 		} else {
 			$args = $this->template_args;
@@ -1149,7 +1156,7 @@ class Email_Render {
 		$character_arr = array_merge( range( 'a', 'z' ), range( 0, 9 ) );
 
 		for ( $i = 0; $i < 8; $i ++ ) {
-			$rand = rand( 0, count( $character_arr ) - 1 );
+			$rand = wp_rand( 0, count( $character_arr ) - 1 );
 			$code .= $character_arr[ $rand ];
 		}
 

@@ -31,7 +31,7 @@ class Utils {
 			$path   = $libs ? VIWEC_JS . 'libs/' : VIWEC_JS;
 			$suffix = $libs ? '.min' : '';
 			foreach ( $enqueue_list as $script ) {
-				wp_enqueue_script( VIWEC_SLUG . '-' . $script, $path . $script . $suffix . '.js', $depend, VIWEC_VER );
+				wp_enqueue_script( VIWEC_SLUG . '-' . $script, $path . $script . $suffix . '.js', $depend, VIWEC_VER,false );
 			}
 			/*Compatible plugin revolution slider*/
 			if ( class_exists( 'RevSliderGlobals' ) ) {

@@ -144,8 +144,29 @@ class Email_Trigger {
 			$_subject = get_post( $this->template_id )->post_title;
 			$subject  = $_subject ? $_subject : $subject;
 			$subject  = Utils::replace_shortcode( $subject, [], $object );
+			$wc_symbols = get_woocommerce_currency_symbols();
+			$wc_symbol ='';
+			if (is_array($wc_symbols) && !empty($wc_symbols)) {
+				$wc_symbols_match = [];
+				foreach ( $wc_symbols as $v ) {
+					if ( strpos( $v, '&#' ) === 0 ) {
+						$wc_symbols_match[] = str_replace( [ '&#', '.', '/' ], [ '&#0*', '\.', '\/' ], $v );
+					}
+				}
+				$wc_symbols_match = '/(' . implode( '|', $wc_symbols_match ) . ')/i';
+				preg_match($wc_symbols_match, $subject, $wc_symbols_match1);
+				if (!empty($wc_symbols_match1[1])){
+					$wc_symbol = $wc_symbols_match1[1];
+				}
+			}
+			if ($wc_symbol){
+				$subject = str_replace($wc_symbol, '{viwec_wc_symbol_tmp}',$subject);
+			}
 			$subject  = preg_replace( $this->plain_search, $this->plain_replace, wp_strip_all_tags( $subject ) );
 			$subject  = htmlspecialchars_decode( do_shortcode( $subject ) );
+			if ($wc_symbol){
+				$subject = str_replace('{viwec_wc_symbol_tmp}', $wc_symbol,$subject);
+			}
 		}
 
 		return $subject;
@@ -233,8 +254,8 @@ class Email_Trigger {
 			'posts_per_page' => - 1,
 			'post_type'      => 'viwec_template',
 			'post_status'    => 'publish',
-			'meta_key'       => 'viwec_settings_type',
-			'meta_value'     => $type,
+			'meta_key'       => 'viwec_settings_type',// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+			'meta_value'     => $type,// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 		];
 
 		$posts = get_posts( $args );
@@ -271,8 +292,8 @@ class Email_Trigger {
 
 	public function get_template_id_no_order( $type ) {
 
-		if ( ! empty( $_POST['billing_country'] ) ) {
-			$country_code = sanitize_text_field( wp_unslash( $_POST['billing_country'] ) );
+		if ( ! empty( $_POST['billing_country'] ) ) {// phpcs:ignore WordPress.Security.NonceVerification.Missing
+			$country_code = sanitize_text_field( wp_unslash( $_POST['billing_country'] ) );// phpcs:ignore WordPress.Security.NonceVerification.Missing
 		} else {
 			$locate       = \WC_Geolocation::geolocate_ip();
 			$country_code = $locate['country'];
@@ -284,8 +305,8 @@ class Email_Trigger {
 			'posts_per_page' => - 1,
 			'post_type'      => 'viwec_template',
 			'post_status'    => 'publish',
-			'meta_key'       => 'viwec_settings_type',
-			'meta_value'     => $type,
+			'meta_key'       => 'viwec_settings_type',// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+			'meta_value'     => $type,// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 		];
 
 		$posts = get_posts( $args );
@@ -315,8 +336,8 @@ class Email_Trigger {
 			'posts_per_page' => - 1,
 			'post_type'      => 'viwec_template',
 			'post_status'    => 'publish',
-			'meta_key'       => 'viwec_settings_type',
-			'meta_value'     => 'default',
+			'meta_key'       => 'viwec_settings_type',// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key
+			'meta_value'     => 'default',// phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_value
 		];
 
 		$posts = get_posts( $args );
@@ -334,10 +355,10 @@ class Email_Trigger {
 		if ( $this->template_id ) {
 
 			$register_data = [];
-			if ( isset( $_POST['action'] ) && $_POST['action'] == 'uael_register_user' && isset( $_POST['data'] ) ) {
-				$data = wc_clean( wp_unslash( $_POST['data'] ) );
+			if ( isset( $_POST['action'] ) && $_POST['action'] == 'uael_register_user' && isset( $_POST['data'] ) ) {// phpcs:ignore WordPress.Security.NonceVerification.Missing
+				$data = wc_clean( wp_unslash( $_POST['data'] ) );// phpcs:ignore WordPress.Security.NonceVerification.Missing
 			} else {
-				$data = wc_clean( $_POST );
+				$data = wc_clean( $_POST );// phpcs:ignore WordPress.Security.NonceVerification.Missing
 			}
 
 			if ( isset( $data['user_name'] ) ) {

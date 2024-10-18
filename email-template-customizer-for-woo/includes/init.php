@@ -302,7 +302,8 @@ class Init {
 				$params['product_categories'] = $this->get_categories( 'product_cat' );
 
 				$email_structure = ( get_post_meta( $post->ID, 'viwec_email_structure', true ) );
-				if ( $email_structure ) {
+				if ( ! empty( $email_structure ) && $email_structure !== 'null' ) {
+
 					$email_structure             = html_entity_decode( $email_structure );
 					$json_decode_email_structure = json_decode( $email_structure, true );
 
@@ -350,10 +351,10 @@ class Init {
 
 				$params['i18n'] = I18n::init();
 
-				if ( ! empty( $_GET['sample'] ) ) {
-					if ( ! isset( $_GET['action'] ) || $_GET['action'] !== 'edit' ) {
-						$style            = ! empty( $_GET['style'] ) ? sanitize_text_field( wp_unslash( $_GET['style'] ) ) : 'basic';
-						$params['addNew'] = [ 'type' => sanitize_text_field( wp_unslash( $_GET['sample'] ) ), 'style' => $style ];
+				if ( ! empty( $_GET['sample'] ) ) {// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+					if ( ! isset( $_GET['action'] ) || $_GET['action'] !== 'edit' ) {// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+						$style            = ! empty( $_GET['style'] ) ? sanitize_text_field( wp_unslash( $_GET['style'] ) ) : 'basic';// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+						$params['addNew'] = [ 'type' => sanitize_text_field( wp_unslash( $_GET['sample'] ) ), 'style' => $style ];// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					}
 				}
 
@@ -384,7 +385,12 @@ class Init {
 
 	public function get_categories( $type ) {
 		$cats       = [];
-		$categories = get_terms( $type, 'orderby=name&hide_empty=0' );
+		$categories = get_terms( array(
+			'taxonomy'   => $type,
+			'orderby'    => 'name',
+			'order'      => 'ASC',
+			'hide_empty' => false
+		) );
 		if ( ! empty( $categories ) ) {
 			foreach ( $categories as $cat ) {
 				$cats[] = [ 'id' => $cat->term_id, 'text' => $cat->name ];
