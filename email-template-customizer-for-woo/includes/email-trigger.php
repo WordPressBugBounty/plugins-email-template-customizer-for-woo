@@ -55,7 +55,7 @@ class Email_Trigger {
 		add_action( 'woocommerce_order_item_meta_end', [ $this, 'item_thumbnail_end' ], PHP_INT_MAX );
 
 		add_filter( 'woocommerce_mail_callback_params', array( $this, 'use_default_template_email' ), 999, 2 );
-		add_filter( 'woocommerce_mail_callback_params', array( $this, 'reset_template_id' ), 99999 );
+		add_filter( 'woocommerce_mail_callback_params', array( $this, 'reset_template_id' ), PHP_INT_MAX );
 
 //		Email with wc_mail
 		add_action( 'woocommerce_email_header', array( $this, 'send_email_via_wc_mailer' ), 1 );
@@ -96,13 +96,12 @@ class Email_Trigger {
 
 	public function trigger_recipient( $recipient, $object, $class_email ) {
 		$this->template_id = '';
-
 		if ( ! $object ) {
 			return $recipient;
 		}
 
 		$status_options = get_option( 'viwec_emails_status', [] );
-		if ( ! empty( $status_options[ $class_email->id ] ) && $status_options[ $class_email->id ] == 'disable' ) {
+		if ( ! empty( $status_options[ $class_email->id ] ) && $status_options[ $class_email->id ] === 'disable' ) {
 			$this->disable_email_template = true;
 
 			return $recipient;
@@ -421,7 +420,6 @@ class Email_Trigger {
 	}
 
 	public function use_default_template_email( $args, $class_email ) {
-
 		if ( $this->use_default_temp && ! $this->template_id ) {
 			$email_render = Email_Render::init();
 			if ( ! $email_render->check_rendered ) {
@@ -464,17 +462,22 @@ class Email_Trigger {
 	}
 
 	public function reset_template_id( $wp_mail ) {
+		if ( $this->use_default_temp || $this->template_id ) {
+			$email_render                 = Email_Render::init();
+			$email_render->check_rendered = false;
+		}
 		$this->use_default_temp       = '';
 		$this->template_id            = '';
 		$this->disable_email_template = '';
 		$this->unique                 = [];
-		$email_render                 = Email_Render::init();
-		$email_render->check_rendered = false;
 
 		return $wp_mail;
 	}
 
 	public function send_email_via_wc_mailer( $heading ) {
+		if (!empty($_REQUEST['preview_woocommerce_mail'])){
+			$this->disable_email_template = true;
+		}
 		if ( $this->disable_email_template ) {
 			return;
 		}
