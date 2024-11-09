@@ -231,6 +231,9 @@ In addition, Email Template Customizer for WooCommerce is integrated with some a
 == Screenshots ==
 
 == Changelog ==
+/**1.2.8 - 2024.11.09***/
+- Fixed: Errors from customers' feedback
+
 /**1.2.7 - 2024.11.01***/
 - Fixed: Errors from customers' feedback
 

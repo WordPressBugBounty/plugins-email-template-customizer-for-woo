@@ -53,7 +53,7 @@ for ( $i = 0; $i < 2; $i ++ ) {
                         <tr>
                             <td class="viwec-mobile-hidden" style="padding: 0;width: 15px;"></td>
                             <td class="viwec-responsive-center">
-                                <p style="<?php echo esc_attr( $price_size ) ?>"><?php echo wp_kses_post( wc_price( 25 ) ) ?></p>
+                                <p style="<?php echo esc_attr( $price_size ) ?>"><?php echo wp_kses( wc_price( 25 ) , viwec_allowed_html()); ?></p>
                             </td>
                         </tr>
                     </table>

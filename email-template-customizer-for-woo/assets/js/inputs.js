@@ -375,11 +375,17 @@ jQuery(document).ready(function ($) {
         ],
 
         setValue: function (value) {
+            value = ViWec.viWecPreventXSS(value);
             $('textarea', this.element).val(value);
         },
 
         onChange: function (event, node) {
             if (event.data && event.data.element) {
+                let value = $(this).val();
+                let new_value = ViWec.viWecPreventXSS(value);
+                if (new_value != value){
+                    $(this).val(new_value);
+                }
                 event.data.element.trigger('propertyChange', [$(this).val(), this]);
             }
         },
@@ -441,6 +447,12 @@ jQuery(document).ready(function ($) {
                         values: viWecSocialIcons,
                     });
                     editor.on('keyup mouseup change', function (e) {
+                        let value = editor.getContent();
+                        let new_value = ViWec.viWecPreventXSS(value);
+                        if (new_value != value){
+                            new_value = new_value.replaceAll('"','\\"');
+                            editor.setContent(new_value)
+                        }
                         $('#viwec-text-editor').val(editor.getContent()).change();
                     });
                 }
@@ -448,7 +460,7 @@ jQuery(document).ready(function ($) {
 
             let textEl = element;
             textEl.on('keyup', function () {
-                $('iframe').contents().find('#tinymce[data-id="viwec-text-editor"]').html($(this).html());
+                $('iframe').contents().find('#tinymce[data-id="viwec-text-editor"]').html(ViWec.viWecPreventXSS($(this).html()));
             });
             // textEl.attr('contenteditable', true).focus();
         }

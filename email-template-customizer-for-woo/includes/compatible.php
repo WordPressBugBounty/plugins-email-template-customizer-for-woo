@@ -38,7 +38,7 @@ class Compatible {
 	public function register_email_type( $emails ) {
 		if ( class_exists( 'WC_Correios' ) ) {
 			$emails['correios_tracking'] = [
-				'name' => __( 'Correios Tracking Code', 'woo-abandoned-cart-recovery' ),
+				'name' => __( 'Correios Tracking Code', 'viwec-email-template-customizer' ),
 			];
 		}
 

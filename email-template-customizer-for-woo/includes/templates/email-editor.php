@@ -76,14 +76,14 @@ $arrow = $admin_bar_stt ? 'left' : 'right';
 								<?php
 								if ( ! in_array( $post->post_status, array( 'publish', 'future', 'private' ) ) || 0 == $post->ID ) {
 									?>
-                                    <input name="original_publish" type="hidden" id="original_publish" value="<?php esc_attr_e( 'Publish' ); ?>"/>
+                                    <input name="original_publish" type="hidden" id="original_publish" value="<?php esc_attr_e( 'Publish','viwec-email-template-customizer' ); ?>"/>
                                     <button type="submit" name="publish" id="publish" value="Publish"
-                                            class=""><?php esc_attr_e( 'Publish' ); ?></button>
+                                            class=""><?php esc_attr_e( 'Publish','viwec-email-template-customizer' ); ?></button>
 									<?php
 								} else {
 									?>
-                                    <input name="original_publish" type="hidden" id="original_publish" value="<?php esc_attr_e( 'Update' ); ?>"/>
-                                    <button type="submit" name="save" id="publish" value="Update" class=""><?php esc_attr_e( 'Update' ); ?></button>
+                                    <input name="original_publish" type="hidden" id="original_publish" value="<?php esc_attr_e( 'Update','viwec-email-template-customizer' ); ?>"/>
+                                    <button type="submit" name="save" id="publish" value="Update" class=""><?php esc_attr_e( 'Update','viwec-email-template-customizer' ); ?></button>
 									<?php
 								}
 								?>
@@ -95,7 +95,7 @@ $arrow = $admin_bar_stt ? 'left' : 'right';
 
                         <div class="viwec-actions-back">
                             <button type="submit" name="save" id="save-post" class="viwec-save-draft"
-                                    value="save_draft"><?php esc_attr_e( 'Save Draft' ); ?></button>
+                                    value="save_draft"><?php esc_attr_e( 'Save Draft','viwec-email-template-customizer' ); ?></button>
                         </div>
                         <input type="hidden" name="post_status" value="publish">
                     </div>
@@ -376,7 +376,7 @@ $arrow = $admin_bar_stt ? 'left' : 'right';
                     <td class="viwec-p-name" style=" border:1px solid #dddddd; text-align: left; padding: 10px">Sample product</td>
                     <td class="" style=" border:1px solid #dddddd; text-align: center; padding: 10px">1</td>
                     <td class="viwec-p-price" style=" border:1px solid #dddddd; text-align: right;padding: 10px;">
-                        <?php echo wc_price( 25 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?>
+                        <?php echo wp_kses(wc_price( 25 ), viwec_allowed_html()); ?>
                     </td>
                 </tr>
 				<?php
@@ -399,7 +399,7 @@ $arrow = $admin_bar_stt ? 'left' : 'right';
                         <td class="" style="vertical-align: middle; padding-left: 15px;padding-top: 5px;">
                             <p class="viwec-product-name">Product name</p>
                             <p class="viwec-product-quantity"><span class="viwec-text-quantity">x</span> 1</p>
-                            <p class="viwec-product-price"><?php echo wc_price( 25 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?></p>
+                            <p class="viwec-product-price"><?php echo wp_kses(wc_price( 25 ), viwec_allowed_html()); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped?></p>
                         </td>
                     </tr>
                 </table>
@@ -431,7 +431,7 @@ $arrow = $admin_bar_stt ? 'left' : 'right';
                         </td>
                         <td style="text-align: right;">
                             <p style="white-space: nowrap;" class="viwec-product-price">
-								<?php echo wc_price( 25 );// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+								<?php echo wp_kses(wc_price( 25 ), viwec_allowed_html());// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                             </p>
                         </td>
                     </tr>
@@ -483,7 +483,7 @@ $arrow = $admin_bar_stt ? 'left' : 'right';
                     <div class="viwec-text-total">Total</div>
                 </td>
                 <td class="viwec-td-right viwec-order-total-style" style="text-align: right;border-style: solid; border-width: 0; width: 30%;">
-					<?php echo wc_price( 55 ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					<?php echo wp_kses(wc_price( 55 ), viwec_allowed_html()) ?>
                 </td>
             </tr>
         </table>
@@ -562,7 +562,7 @@ $arrow = $admin_bar_stt ? 'left' : 'right';
                     <td class="body td">1</td>
                     <td class="body td">
 						<?php
-						echo wc_price( 20 );// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo wp_kses(wc_price( 20 ),viwec_allowed_html());
 						?>
                     </td>
                 </tr>
@@ -573,7 +573,7 @@ $arrow = $admin_bar_stt ? 'left' : 'right';
                     <th class="body td" colspan="2"><?php esc_html_e( 'Subtotal:', 'viwec-email-template-customizer' ); ?></th>
                     <td class="body td">
 						<?php
-						echo wc_price( 20 );// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo wp_kses(wc_price( 20 ), viwec_allowed_html());
 						?>
                     </td>
                 </tr>
@@ -589,7 +589,7 @@ $arrow = $admin_bar_stt ? 'left' : 'right';
                     <th class="body td" colspan="2"><?php esc_html_e( 'Total:', 'viwec-email-template-customizer' ); ?></th>
                     <td class="body td">
 						<?php
-						echo wc_price( 20 );// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+						echo wp_kses(wc_price( 20 ),viwec_allowed_html());
 						?>
                     </td>
                 </tr>

@@ -288,7 +288,7 @@ class Email_Builder {
 
 		foreach ( $keys as $key ) {
 			if ( isset( $_POST[ $key ] ) ) {// phpcs:ignore WordPress.Security.NonceVerification.Missing
-				$value = $key == 'viwec_email_structure' ? sanitize_text_field( htmlentities( $_POST[ $key ] ) ) : wc_clean( $_POST[ $key ] );// phpcs:ignore WordPress.Security.NonceVerification.Missing
+				$value = $key == 'viwec_email_structure' ? sanitize_text_field( htmlentities( wp_unslash($_POST[ $key ] )) ) : wc_clean( wp_unslash($_POST[ $key ]) );// phpcs:ignore WordPress.Security.NonceVerification.Missing
 				update_post_meta( $post_id, $key, $value );
 			}
 		}
@@ -298,7 +298,7 @@ class Email_Builder {
 		if ( ! ( isset( $_POST['nonce'] ) && wp_verify_nonce( sanitize_key( $_POST['nonce'] ), 'viwec_nonce' ) ) ) {
 			return;
 		}
-		$data         = isset( $_POST['data'] ) ? json_decode( stripslashes( html_entity_decode( sanitize_text_field( htmlentities( $_POST['data'] ) ) ) ), true ) : '';
+		$data         = isset( $_POST['data'] ) ? json_decode( stripslashes( html_entity_decode( sanitize_text_field( htmlentities( wp_unslash($_POST['data'] )) ) ) ), true ) : '';
 		$order_id     = isset( $_POST['order_id'] ) ? absint( $_POST['order_id'] ) : '';
 		$email_render = Email_Render::init();
 
@@ -328,7 +328,7 @@ class Email_Builder {
 			return;
 		}
 
-		$data     = isset( $_POST['data'] ) ? json_decode( stripslashes( html_entity_decode( sanitize_text_field( htmlentities( $_POST['data'] ) ) ) ), true ) : '';
+		$data     = isset( $_POST['data'] ) ? json_decode( stripslashes( html_entity_decode( sanitize_text_field( htmlentities( wp_unslash($_POST['data']) ) ) ) ), true ) : '';
 		$order_id = isset( $_POST['order_id'] ) ? sanitize_text_field( wp_unslash( $_POST['order_id'] ) ) : '';
 
 		$email_render          = Email_Render::init();

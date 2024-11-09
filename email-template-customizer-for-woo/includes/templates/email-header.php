@@ -198,7 +198,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 </head>
 
-<body vlink="#FFFFFF" <?php echo $direction == 'rtl' ? 'rightmargin' : 'leftmargin'; ?>="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
+<body vlink="#FFFFFF" <?php echo esc_attr($direction == 'rtl' ? 'rightmargin' : 'leftmargin'); ?>="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
 
 <div id="wrapper" style="box-sizing:border-box;padding:0;margin:0;<?php echo esc_attr( $bg_style ); ?>">
     <table border="0" cellpadding="0" cellspacing="0" height="100%" align="center" width="100%" style="margin: 0;">

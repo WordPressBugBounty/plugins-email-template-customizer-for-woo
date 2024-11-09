@@ -60,11 +60,9 @@ foreach ( $items as $item_id => $item ) {
 										ob_start();
 										do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order, false );
 										$img = ob_get_clean();
-										$img = str_replace( [ 'border: 1px solid #ccc; float: left; margin-right: 5px; margin-bottom: 5px; max-width: 30%;' ], '', trim( $img ) );
-										echo wp_kses( $img, viwec_allowed_html() );
-									} else {
-										echo apply_filters( 'viwec_order_item_thumbnail', $image, $item );// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+										$image = str_replace( [ 'border: 1px solid #ccc; float: left; margin-right: 5px; margin-bottom: 5px; max-width: 30%;' ], '', trim( $img ) );
 									}
+									echo wp_kses(apply_filters( 'viwec_order_item_thumbnail', $image, $item ), viwec_allowed_html() );
 									?>
                                 </a>
                             </td>
