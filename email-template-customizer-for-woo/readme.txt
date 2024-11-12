@@ -231,6 +231,12 @@ In addition, Email Template Customizer for WooCommerce is integrated with some a
 == Screenshots ==
 
 == Changelog ==
+/**1.2.9.1 - 2024.11.12***/
+– Fixed: Compatible with PHP 8.3
+
+/**1.2.9 - 2024.11.12***/
+– Updated: Compatible with PHP 8.3
+
 /**1.2.8 - 2024.11.09***/
 - Fixed: Errors from customers' feedback
 

@@ -306,18 +306,19 @@ class Init {
 
 					$email_structure             = html_entity_decode( $email_structure );
 					$json_decode_email_structure = json_decode( $email_structure, true );
+                    if (is_array($json_decode_email_structure)) {
+	                    array_walk_recursive( $json_decode_email_structure, function ( $value, $key ) {
+		                    if ( in_array( $key, [ 'data-coupon-include-product', 'data-coupon-exclude-product' ], true ) ) {
+			                    $value                = explode( ',', $value );
+			                    $this->cache_products = array_merge( $this->cache_products, $value );
+		                    }
 
-					array_walk_recursive( $json_decode_email_structure, function ( $value, $key ) {
-						if ( in_array( $key, [ 'data-coupon-include-product', 'data-coupon-exclude-product' ], true ) ) {
-							$value                = explode( ',', $value );
-							$this->cache_products = array_merge( $this->cache_products, $value );
-						}
-
-						if ( in_array( $key, [ 'data-include-post-id', 'data-exclude-post-id' ], true ) ) {
-							$value             = explode( ',', $value );
-							$this->cache_posts = array_merge( $this->cache_posts, $value );
-						}
-					} );
+		                    if ( in_array( $key, [ 'data-include-post-id', 'data-exclude-post-id' ], true ) ) {
+			                    $value             = explode( ',', $value );
+			                    $this->cache_posts = array_merge( $this->cache_posts, $value );
+		                    }
+	                    } );
+                    }
 
 					$products_temp = [ [ 'id' => '', 'text' => '' ] ];
 					$posts_temp    = [];
