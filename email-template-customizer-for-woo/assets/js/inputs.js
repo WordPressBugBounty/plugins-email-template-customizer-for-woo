@@ -447,11 +447,13 @@ jQuery(document).ready(function ($) {
                         values: viWecSocialIcons,
                     });
                     editor.on('keyup mouseup change', function (e) {
-                        let value = editor.getContent();
-                        let new_value = ViWec.viWecPreventXSS(value);
-                        if (new_value != value || value.includes('"')){
-                            new_value = new_value.replaceAll('"',`'`);
-                            editor.setContent(new_value)
+                        if (viWecParams?.DISALLOW_UNFILTERED_HTML) {
+                            let value = editor.getContent();
+                            let new_value = ViWec.viWecPreventXSS(value);
+                            if (new_value != value || value.includes('"')) {
+                                new_value = new_value.replaceAll('"', `'`);
+                                editor.setContent(new_value)
+                            }
                         }
                         $('#viwec-text-editor').val(editor.getContent()).change();
                     });

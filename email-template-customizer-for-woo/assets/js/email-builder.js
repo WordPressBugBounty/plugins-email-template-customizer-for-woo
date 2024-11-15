@@ -209,6 +209,9 @@ jQuery(document).ready(function ($) {
     };
 
     ViWec.viWecPreventXSS = (text) => {
+        if (!viWecParams?.DISALLOW_UNFILTERED_HTML){
+            return text;
+        }
         let $reg, match;
         //removing <script> tags
         text.replace(/[<][^<]*script.*[>].*[<].*[\/].*script*[>]/i,"");

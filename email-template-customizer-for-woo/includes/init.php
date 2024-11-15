@@ -277,6 +277,7 @@ class Init {
 					'adminPhone'          => get_user_meta( get_current_user_id(), 'billing_phone', true ) ?? '202-000-0000',
 					'hide_rule'           => $hide_rule,
 					'accept_elements'     => $accept_elements,
+					'DISALLOW_UNFILTERED_HTML'     => defined('DISALLOW_UNFILTERED_HTML') && DISALLOW_UNFILTERED_HTML ? 1:'',
 				];
 
 				foreach ( self::$img_map['social_icons'] as $type => $data ) {

@@ -3,7 +3,7 @@
  * Plugin Name: Email Template Customizer for WooCommerce
  * Plugin URI: https://villatheme.com/extensions/woocommerce-email-template-customizer/
  * Description: Customize your WooCommerce emails effortlessly. Drag and drop elements, edit layouts, and match your store's design without coding knowledge.
- * Version: 1.2.9.1
+ * Version: 1.2.9.2
  * Author: VillaTheme
  * Author URI: https://villatheme.com
  * License:           GPL v2 or later
@@ -12,9 +12,9 @@
  * Domain Path: /languages
  * Copyright 2019-2024 VillaTheme.com. All rights reserved.
  * Requires at least: 5.0
- * Tested up to: 6.6
+ * Tested up to: 6.7
  * WC requires at least: 7.0.0
- * WC tested up to: 9.3
+ * WC tested up to: 9.4
  * Requires PHP: 7.0
  * Requires Plugins: woocommerce
  **/
@@ -34,7 +34,7 @@ add_action( 'before_woocommerce_init', function () {
 if ( is_plugin_active( 'woocommerce-email-template-customizer/woocommerce-email-template-customizer.php' ) ) {
 	return;
 }
-define( 'VIWEC_VER', '1.2.9.1' );
+define( 'VIWEC_VER', '1.2.9.2' );
 define( 'VIWEC_NAME', 'Email Template Customizer for WooCommerce' );
 
 $plugin_url = plugin_dir_url( __FILE__ );
@@ -69,11 +69,12 @@ if ( ! class_exists( 'Woo_Email_Template_Customizer' ) ) {
 						'plugin_name'     => VIWEC_NAME,
 						'php_version'     => $this->php_version_require,
 						'wp_version'      => $this->wp_version_require,
-						'wc_version'      => $this->wc_version_require,
 						'require_plugins' => [
 							[
 								'slug' => 'woocommerce',
 								'name' => 'WooCommerce',
+								'file' => 'woocommerce/woocommerce.php',
+								'version' => $this->wc_version_require,
 							],
 						]
 					]

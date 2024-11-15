@@ -357,7 +357,7 @@ class Email_Trigger {
 			if ( isset( $_POST['action'] ) && $_POST['action'] == 'uael_register_user' && isset( $_POST['data'] ) ) {// phpcs:ignore WordPress.Security.NonceVerification.Missing
 				$data = wc_clean( wp_unslash( $_POST['data'] ) );// phpcs:ignore WordPress.Security.NonceVerification.Missing
 			} else {
-				$data = wc_clean(  wp_unslash( $_POST) );// phpcs:ignore WordPress.Security.NonceVerification.Missing
+				$data = wc_clean(  $_POST );// phpcs:ignore WordPress.Security.NonceVerification.Missing
 			}
 
 			if ( isset( $data['user_name'] ) ) {
