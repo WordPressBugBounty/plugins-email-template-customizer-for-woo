@@ -5,7 +5,7 @@ Tags: woocommerce, email, email template, email customizer, woocommerce email
 Requires PHP: 7.0
 Requires at least: 5.0
 Tested up to: 6.7
-WC tested up to: 9.4
+WC tested up to: 9.5
 Stable tag: trunk
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -231,6 +231,9 @@ In addition, Email Template Customizer for WooCommerce is integrated with some a
 == Screenshots ==
 
 == Changelog ==
+/**1.2.11 - 2024.12.20***/
+- Updated: Compatible with WC 9.5
+
 /**1.2.10 - 2024.11.22***/
 – Updated: Compatible with WC 9.4 and WP 6.7
 
