@@ -318,10 +318,8 @@ class Email_Render {
 		?>
         </td></tr></tbody></table></td></tr></tbody></table></div>
         <?php
-		if ( class_exists( 'EMTMPL_Email_Templates_Designer' ) || class_exists( 'EmTmplF\WP_Email_Templates_Designer' ) ) {
-		?>
-        ignore_9mail
-		<?php
+		if ( class_exists( 'EmTmpl\EMTMPL_Email_Templates_Designer' ) || class_exists( 'EmTmplF\WP_Email_Templates_Designer' ) ) {
+            echo 'ignore_9mail';
 		}
         ?>
         </body></html>

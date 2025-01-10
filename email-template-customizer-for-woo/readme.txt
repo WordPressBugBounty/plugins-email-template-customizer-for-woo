@@ -218,7 +218,7 @@ In addition, Email Template Customizer for WooCommerce is integrated with some a
 
 &#9658; [Project Page](https://villatheme.com)
 &#9658; [Documentation](https://docs.villatheme.com/?item=woo-email-template-customizer)
-&#9658; [Report Bugs/Issues](https://villatheme.com/supports)
+&#9658; [Report Bugs/Issues](https://villatheme.com/knowledge-base/security-is-our-priority/)
 
 == Installation ==
 
@@ -231,6 +231,9 @@ In addition, Email Template Customizer for WooCommerce is integrated with some a
 == Screenshots ==
 
 == Changelog ==
+/**1.2.12 - 2025.01.10***/
+- Updated: VillaTheme support
+
 /**1.2.11 - 2024.12.20***/
 - Updated: Compatible with WC 9.5
 
