@@ -213,8 +213,8 @@ class Init {
 		if ( class_exists( 'VillaTheme_Support' ) ) {
 			new \VillaTheme_Support(
 				array(
-					'support'    => 'https://wordpress.org/support/plugin/',
-					'docs'       => 'http://docs.villatheme.com/?item=woocommerce-email-template-customizer',
+					'support'    => 'https://wordpress.org/support/plugin/email-template-customizer-for-woo/',
+					'docs'       => 'https://docs.villatheme.com/?item=woo-email-template-customizer',
 					'review'     => 'https://wordpress.org/support/plugin/email-template-customizer-for-woo/reviews/?rate=5#rate-response',
 					'pro_url'    => 'https://1.envato.market/BZZv1',
 					'css'        => VIWEC_CSS,

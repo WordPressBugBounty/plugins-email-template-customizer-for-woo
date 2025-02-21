@@ -152,6 +152,10 @@ class Email_Builder {
 					'title' => esc_html__( 'Rules', 'viwec-email-template-customizer' ),
 					'func'  => [ $this, 'email_rules_box' ]
 				],
+				'attachment'       => [
+					'title' => esc_html__( 'Attachment files', 'viwec-email-template-customizer' ),
+					'func'  => [ $this, 'email_attachment_box' ]
+				],
 				'testing'    => [
 					'title' => esc_html__( 'Testing', 'viwec-email-template-customizer' ),
 					'func'  => [ $this, 'email_testing_box' ]
@@ -216,6 +220,15 @@ class Email_Builder {
 			VIWEC_TEMPLATES );
 	}
 
+	public function email_attachment_box( $post ) {
+        ?>
+        <div>
+            <div class="viwec-setting-row" data-attr="attachment">
+				<?php viwec_get_pro_version() ?>
+            </div>
+        </div>
+        <?php
+	}
 	public function email_rules_box( $post ) {
 		$settings = get_post_meta( $post->ID, 'viwec_setting_rules', true );
 		$params   = [

@@ -1604,6 +1604,9 @@ input.form-control, select.form-control, .viwec-col-full.input {
     & .viwec-responsive-min-width > table {
       width: 300px;
     }
+    td.viwec-responsive {
+      display: inline-block !important;
+    }
 
     .viwec-responsive {
       width: 100% !important;
@@ -1623,6 +1626,10 @@ input.form-control, select.form-control, .viwec-col-full.input {
 
     .viwec-mobile-50 {
       width: 50% !important;
+      display: inline-block !important;
+      .woocommerce-Price-amount{
+        margin-right: 1px;
+      }
     }
 
     .viwec-center-on-mobile p {

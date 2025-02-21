@@ -17,34 +17,153 @@ if ( ! defined( 'ABSPATH' ) ) {
 
     <!--[if (mso 16)]>
     <style type="text/css">
-        a {
-            text-decoration: none;
-        }
-
         span {
             vertical-align: middle;
         }
     </style>
     <![endif]-->
+    <!--[if mso]>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:AllowPNG/>
+        </o:OfficeDocumentSettings>
+    </xml>
+    <![endif]-->
+
+    <!--[if mso | IE]>
+    <style type="text/css">
+        table {
+            font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
+        }
+    </style>
+    <![endif]-->
 
     <style type="text/css">
-        #outlook a {
-            padding: 0;
-        }
+        <?php echo wp_kses_post( apply_filters('viwec_after_render_style','') )?>
+        @media screen and (max-width: <?php echo esc_attr($responsive);?>px) {
+            img {
+                padding-bottom: 10px;
+            }
+            .viwec-responsive{
+                display: inline-block !important;
+            }
+            td.viwec-responsive.viwec-product-responsive *,
+            .viwec-responsive, .viwec-responsive table, .viwec-button-responsive {
+                width: 100% !important;
+                max-width: 100% !important;
+                min-width: 100% !important;
+            }
 
-        a {
-            text-decoration: none;
-            word-break: break-word;
-        }
+            table.viwec-no-full-width-on-mobile {
+                min-width: 0 !important;
+                width: auto !important;
+            }
+            td.viwec-responsive tbody,
+            td.viwec-responsive tbody  tr,
+            td.viwec-responsive tbody  tr td {
+                display: inline-block !important;
+                width: 100% !important;
+            }
+            td.viwec-responsive table.viwec-no-full-width-on-mobile td,
+            td.viwec-responsive table.viwec-no-full-width-on-mobile * td{
+                width: auto !important;
+            }
 
-        body {
+            td.viwec-responsive table.viwec-no-full-width-on-mobile,
+            td.viwec-responsive table.html_wc_hook .html_wc_hook_default table,
+            td.viwec-responsive table.html_wc_hook .html_wc_hook_default * table {
+                display: table !important;
+            }
+            td.viwec-responsive table.viwec-no-full-width-on-mobile tbody,
+            td.viwec-responsive table.viwec-no-full-width-on-mobile * tbody,
+            td.viwec-responsive table.html_wc_hook .html_wc_hook_default tbody,
+            td.viwec-responsive table.html_wc_hook .html_wc_hook_default * tbody {
+                display: table-row-group !important;
+            }
+            td.viwec-responsive table.viwec-no-full-width-on-mobile tr,
+            td.viwec-responsive table.viwec-no-full-width-on-mobile * tr,
+            td.viwec-responsive table.html_wc_hook .html_wc_hook_default tr,
+            td.viwec-responsive table.html_wc_hook .html_wc_hook_default * tr {
+                display: table-row !important;
+            }
+
+            td.viwec-responsive table.viwec-no-full-width-on-mobile td,
+            td.viwec-responsive table.viwec-no-full-width-on-mobile * td,
+            td.viwec-responsive table.html_wc_hook .html_wc_hook_default td,
+            td.viwec-responsive table.html_wc_hook .html_wc_hook_default * td {
+                display: table-cell !important;
+            }
+
+            .viwec-responsive-padding {
+                padding: 0 !important;
+            }
+
+            .viwec-mobile-hidden {
+                display: none !important;
+            }
+
+            .viwec-responsive-center, .viwec-responsive-center p, .viwec-center-on-mobile p {
+                text-align: center !important;
+            }
+
+            .viwec-mobile-50,
+            table.viwec-responsive tbody  tr td.viwec-mobile-50 {
+                width: 50% !important;
+                min-width: 50% !important;
+                max-width: 50% !important;
+            }
+            .viwec-mobile-50 .woocommerce-Price-amount {
+                margin-right: 1px;
+            }
+
+            #viwec-responsive-min-width {
+                min-width: 100% !important;
+            }
+        }
+        #viwec-responsive-wrap {
+            box-sizing:border-box;
             margin: 0;
             padding: 0;
             -webkit-text-size-adjust: 100%;
             -ms-text-size-adjust: 100%;
         }
+        #viwec-responsive-wrap *{
+            color:inherit;
+            box-sizing: border-box;
+        }
+        #viwec-responsive-min-width {
+            min-width: <?php echo esc_attr($width);?>px;
+        }
+        #viwec-responsive-wrap #body_content {
+            width: 100% !important;
+        }
+        #viwec-responsive-wrap #outlook a {
+            padding: 0;
+        }
 
-        img {
+        #viwec-responsive-wrap a {
+            text-decoration: none;
+            word-break: break-word;
+        }
+
+        #viwec-responsive-wrap td {
+            overflow: hidden;
+        }
+
+        td.viwec-row {
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: top;
+        }
+        td.viwec-responsive *{
+            max-width: 100% ;
+        }
+
+        div.viwec-responsive {
+            display: inline-block;
+        }
+
+        #viwec-responsive-wrap img {
             border: 0;
             height: auto;
             line-height: 100%;
@@ -55,19 +174,14 @@ if ( ! defined( 'ABSPATH' ) ) {
             background-color: transparent;
             max-width: 100%;
         }
-
-        p {
+        #viwec-responsive-wrap p {
             display: block;
             margin: 0;
             line-height: inherit;
             /*font-size: inherit;*/
         }
 
-        div.viwec-responsive {
-            display: inline-block;
-        }
-
-        small {
+        #viwec-responsive-wrap small {
             display: block;
             font-size: 13px;
         }
@@ -79,128 +193,22 @@ if ( ! defined( 'ABSPATH' ) ) {
         #viwec-transferred-content td {
             vertical-align: top;
         }
-
-        td.viwec-row {
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: top;
-        }
-    </style>
-
-    <!--[if mso]>
-    <xml>
-        <o:OfficeDocumentSettings>
-            <o:AllowPNG/>
-        </o:OfficeDocumentSettings>
-    </xml>
-    <![endif]-->
-
-
-    <!--[if mso | IE]>
-    <style type="text/css">
-        .viwec-responsive {
-            width: 100% !important;
+        a {
+            text-decoration: none;
+            word-break: break-word;
         }
 
-        small {
-            display: block;
-            font-size: 13px;
+        td {
+            overflow: hidden;
         }
 
-        table {
-            font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
-        }
-    </style>
-    <![endif]-->
-
-    <style type="text/css">
-        @import url(https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700);
-        @import url(https://fonts.googleapis.com/css?family=Oswald:300,400,500,700);
-    </style>
-
-    <style type="text/css">
-
-        @media only screen and (min-width: <?php echo esc_attr($responsive);?>px) {
-            a {
-                text-decoration: none;
-            }
-
-            td {
-                overflow: hidden;
-            }
-
-            table {
-                font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
-            }
-
-            div.viwec-responsive {
-                display: inline-block;
-            }
-
-            .viwec-responsive-min-width {
-                min-width: <?php echo esc_attr($width);?>px;
-            }
-        }
-
-        @media only screen and (max-width: <?php echo esc_attr($responsive);?>px) {
-            a {
-                text-decoration: none;
-            }
-
-            td {
-                overflow: hidden;
-            }
-
-            table {
-                font-family: Roboto, RobotoDraft, Helvetica, Arial, sans-serif;
-            }
-
-            img {
-                padding-bottom: 10px;
-            }
-
-            .viwec-responsive, .viwec-responsive table, .viwec-button-responsive {
-                width: 100% !important;
-                min-width: 100%;
-            }
-
-            #viwec-transferred-content img {
-                width: 100% !important;
-            }
-
-            .viwec-no-full-width-on-mobile {
-                min-width: auto !important;
-            }
-
-            .viwec-responsive-padding {
-                padding: 0 !important;
-            }
-
-            .viwec-mobile-hidden {
-                display: none !important;
-            }
-
-            .viwec-responsive-center, .viwec-responsive-center p {
-                text-align: center !important;
-            }
-
-            .viwec-mobile-50 {
-                width: 50% !important;
-            }
-
-            .viwec-center-on-mobile p {
-                text-align: center !important;
-            }
-        }
-
-        <?php echo wp_kses_post( apply_filters('viwec_after_render_style','') )?>
     </style>
 
 </head>
 
 <body vlink="#FFFFFF" <?php echo esc_attr($direction == 'rtl' ? 'rightmargin' : 'leftmargin'); ?>="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
 
-<div id="wrapper" style="box-sizing:border-box;padding:0;margin:0;<?php echo esc_attr( $bg_style ); ?>">
+<div id="viwec-responsive-wrap" style="<?php echo esc_attr( $bg_style ); ?>">
     <table border="0" cellpadding="0" cellspacing="0" height="100%" align="center" width="100%" style="margin: 0;">
         <tbody>
         <tr>

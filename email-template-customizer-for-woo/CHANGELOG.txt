@@ -1,3 +1,8 @@
+/**1.2.13 - 2025.02.21***/
+- Fixed: Display correctly the expiration date of the download order item
+- Updated: Responsive mobile
+- Updated: Use the default template for the changed password email and the email of the changed email if the 9MAIL is not activated
+
 /**1.2.12 - 2025.01.10***/
 - Updated: VillaTheme support
 

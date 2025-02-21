@@ -485,8 +485,12 @@ jQuery(document).ready(function ($) {
                     multiple: false
                 }).open().on('select', function (e) {
                     let uploadedImages = images.state().get('selection').first();
-                    let selectedImages = uploadedImages.toJSON();
-                    event.data.element.trigger('propertyChange', [`url(${selectedImages.url})`, this]);
+                    if (uploadedImages?.changed?.subtype === 'svg+xml'){
+                        alert('Unfortunately, most email clients do not support SVG. Kindly use a different image.');
+                    }else {
+                        let selectedImages = uploadedImages.toJSON();
+                        event.data.element.trigger('propertyChange', [`url(${selectedImages.url})`, this]);
+                    }
                 })
             }
         },
@@ -511,8 +515,12 @@ jQuery(document).ready(function ($) {
                     multiple: false
                 }).open().on('select', function (e) {
                     let uploadedImages = images.state().get('selection').first();
-                    let selectedImages = uploadedImages.toJSON();
-                    event.data.element.trigger('propertyChange', [selectedImages.url, this]);
+                    if (uploadedImages?.changed?.subtype === 'svg+xml'){
+                        alert('Unfortunately, most email clients do not support SVG. Kindly use a different image.');
+                    }else {
+                        let selectedImages = uploadedImages.toJSON();
+                        event.data.element.trigger('propertyChange', [selectedImages.url, this]);
+                    }
                 });
             }
         },

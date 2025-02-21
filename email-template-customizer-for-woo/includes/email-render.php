@@ -657,7 +657,7 @@ class Email_Render {
 			$html .= '</tr>';
 		}
 
-		$html = "<table align='{$align}' border='0' cellpadding='0' cellspacing='0' >$html</table>";
+		$html = "<table  class='viwec-no-full-width-on-mobile' align='{$align}' border='0' cellpadding='0' cellspacing='0' >$html</table>";
 		echo wp_kses( $html, viwec_allowed_html() );
 	}
 
@@ -1189,15 +1189,15 @@ class Email_Render {
 		foreach ( $downloads as $download ) {
 			if ( $pid == $download['product_id'] ) {
 				$href    = esc_url( $download['download_url'] );
-				$display = esc_html( $download['download_name'] );
+				$display = wp_kses_post( $download['download_name'] );
 				$expires = '';
 				if ( ! empty( $download['access_expires'] ) ) {
 					$datetime     = esc_attr( date_i18n( 'Y-m-d', strtotime( $download['access_expires'] ) ) );
 					$title        = esc_attr( strtotime( $download['access_expires'] ) );
 					$display_time = esc_html( date_i18n( get_option( 'date_format' ), strtotime( $download['access_expires'] ) ) );
-					$expires      = "- <time datetime='$datetime' title='$title'>$display_time</time>";
+					$expires      = " <time datetime='$datetime' title='$title'>$display_time</time>";
 				}
-				printf( "<p><a href='%s'>%s</a> %s</p>", esc_url( $href ), esc_html( $display ), esc_html( $expires ) );
+				printf( "<p><a href='%s'>%s - %s</a></p>", esc_url( $href ), wp_kses_post( $display ), wp_kses_post( $expires ) );
 			}
 		}
 	}

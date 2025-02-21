@@ -1304,6 +1304,9 @@ input.form-control, select.form-control, .viwec-col-full.input {
 .viwec-mobile-preview #body_content .viwec-responsive-min-width > table {
   width: 300px;
 }
+.viwec-mobile-preview #body_content td.viwec-responsive {
+  display: inline-block !important;
+}
 .viwec-mobile-preview #body_content .viwec-responsive {
   width: 100% !important;
 }
@@ -1318,6 +1321,10 @@ input.form-control, select.form-control, .viwec-col-full.input {
 }
 .viwec-mobile-preview #body_content .viwec-mobile-50 {
   width: 50% !important;
+  display: inline-block !important;
+}
+.viwec-mobile-preview #body_content .viwec-mobile-50 .woocommerce-Price-amount {
+  margin-right: 1px;
 }
 .viwec-mobile-preview #body_content .viwec-center-on-mobile p {
   text-align: center !important;

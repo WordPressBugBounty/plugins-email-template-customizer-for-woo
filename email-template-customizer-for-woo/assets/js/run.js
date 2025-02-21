@@ -539,7 +539,16 @@ jQuery(document).ready(function ($) {
         },
 
         hideRules(type) {
-            // Pro
+            let rules = $('#viwec-box-rule');
+            rules.show();
+            rules.find('.viwec-setting-row').show();
+            let args = viWecParams.hide_rule || '';
+            let list = args[type] || '';
+            if (!list) return;
+            if (list.length === 8) rules.hide();
+            for (let el of list) {
+                rules.find(`.viwec-setting-row[data-attr=${el}]`).hide();
+            }
         },
 
         hideElements(type) {

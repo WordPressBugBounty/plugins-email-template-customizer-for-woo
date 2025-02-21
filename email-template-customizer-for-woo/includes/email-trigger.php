@@ -47,6 +47,17 @@ class Email_Trigger {
 		add_action( 'viwec_email_template', array( $this, 'load_template' ), 10 );
 		add_action( 'woocommerce_email', array( $this, 'get_email_ids' ) );
 		add_filter( 'wp_new_user_notification_email', array( $this, 'replace_wp_new_user_email' ), 1, 3 );
+		add_filter( 'retrieve_password_title', array( $this, 'replace_wp_reset_password_title' ), 1, 3 );
+		if ( !class_exists( 'EmTmpl\EMTMPL_Email_Templates_Designer' ) && !class_exists( 'EmTmplF\WP_Email_Templates_Designer' ) ) {
+			add_filter( 'password_change_email', array( $this, 'replace_default_to_wp_email' ), 1, 1);
+			add_filter( 'email_change_email', array( $this, 'replace_default_to_wp_email' ), 1, 1);
+		}
+		$priority_retrieve_password_message = 1;
+		/*Compatible with paid-memberships-pro */
+		if ( function_exists( 'pmpro_gateways' ) ) {
+			$priority_retrieve_password_message = 11;
+		}
+		add_filter( 'retrieve_password_message', array( $this, 'replace_wp_reset_password_email' ), $priority_retrieve_password_message, 4 );
 
 		add_filter( 'woocommerce_email_styles', array( $this, 'remove_style' ), 99 );
 		add_filter( 'woocommerce_email_styles', array( $this, 'custom_css' ), 99999 );
@@ -348,6 +359,23 @@ class Email_Trigger {
 		return $id;
 	}
 
+	public function replace_default_to_wp_email( $email) {
+		$this->template_id = $this->get_default_template();
+		if ( $this->template_id ) {
+			$email_render = Email_Render::init();
+			$email_render->other_message_content = wpautop($email['message']);
+			$email_render->recover_heading  = str_replace( '[%s]','', $email['subject'] );
+			$email_render->use_default_template  = true;
+			$data = get_post_meta( $this->template_id, 'viwec_email_structure', true );
+			$data = json_decode( html_entity_decode( $data ), true );
+			ob_start();
+			$email_render->render( $data );
+			$email['message'] = ob_get_clean();
+
+			$email['headers'] = [ "Content-Type: text/html" ];
+		}
+		return $email;
+	}
 	public function replace_wp_new_user_email( $wp_new_user_notification_email, $user, $blogname ) {
 		$this->template_id = $this->get_template_id_no_order( 'customer_new_account' );
 
@@ -405,7 +433,50 @@ class Email_Trigger {
 
 		return $wp_new_user_notification_email;
 	}
+	public function replace_wp_reset_password_title( $title, $user_login, $user_data ) {
+		$this->template_id = $this->get_template_id_no_order( 'customer_reset_password' );
+		if ( $this->template_id ) {
+			$subject = get_post( $this->template_id )->post_title;
+			if ( $subject ) {
+				$shortcodes                 = Utils::default_shortcode_for_replace();
+				$shortcodes['{user_login}'] = $user_login;
 
+				$title = str_replace( array_keys( $shortcodes ), array_values( $shortcodes ), $subject );
+			}
+		}
+
+		return $title;
+	}
+	public function replace_wp_reset_password_email( $message, $key, $user_login, $user_data ) {
+		if ( $this->template_id ) {
+			$locale    = get_user_locale( $user_data );
+			$reset_url = network_site_url( "wp-login.php?action=rp&key=$key&login=" . rawurlencode( $user_login ), 'login' ) . '&wp_lang=' . $locale;
+
+			$register_data             = [];
+			$register_data['password'] = $reset_url;
+
+			$user_data->register_data = $register_data;
+
+			$email_render = Email_Render::init();
+			$email_render->set_user( $user_data );
+
+			$data = get_post_meta( $this->template_id, 'viwec_email_structure', true );
+			$data = json_decode( html_entity_decode( $data ), true );
+			ob_start();
+			$email_render->render( $data );
+			$email_body = ob_get_clean();
+
+			if ( $email_body ) {
+				$message = $email_body;
+				add_filter( 'wp_mail_content_type', [ $this, 'replace_wp_email_type_to_html' ] );
+			}
+		}
+
+		return $message;
+	}
+	public function replace_wp_email_type_to_html() {
+		return 'text/html';
+	}
 	public function remove_style( $style ) {
 		return $this->clear_css ? '' : $style;
 	}

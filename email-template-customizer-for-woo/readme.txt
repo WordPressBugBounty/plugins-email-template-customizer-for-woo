@@ -5,7 +5,7 @@ Tags: woocommerce, email, email template, email customizer, woocommerce email
 Requires PHP: 7.0
 Requires at least: 5.0
 Tested up to: 6.7
-WC tested up to: 9.5
+WC tested up to: 9.6
 Stable tag: trunk
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -35,17 +35,11 @@ customize WooCommerce emails. The plugin provides sufficient basic elements and 
 
 - Drag and drop to change the position of elements on the template
 
-- Set rules to apply to each template. You have 2 templates for Processing order, make one of them send when the customer orders products of a certain category, and the other will be sent when the customer’s subtotal reaches the value of the maximum or minimum you set.
-
-- Send emails with files attached
-
 - Send a test email before the real sending.
 
 - Preview email before sending with Desktop and Mobile version
 
 - Choose direction. This feature is helpful when you switch between languages with directions from LTR or RTL
-
-- The responsive point helps to display the template as designed on any device
 
 - Import and export template to another site in which the plugin is also installed and activated.
 
@@ -93,6 +87,12 @@ With Advanced options, the admin can not only set the rules, but also can select
 - Create customizable blocks and add them to any template
 
 - Show report of how many times customers click and order the suggested products
+
+- The responsive point helps to display the template as designed on any device
+
+- Send emails with files attached
+
+- Set rules to apply to each template. You can create multiple email templates for orders based on different conditions, such as payment methods, billing countries, minimum/maximum order price, order item products, or the order language if you use WPML, Polylang, or TranslatePress.
 
 &#9658; Advanced elements
 
@@ -231,6 +231,11 @@ In addition, Email Template Customizer for WooCommerce is integrated with some a
 == Screenshots ==
 
 == Changelog ==
+/**1.2.13 - 2025.02.21***/
+- Fixed: Display correctly the expiration date of the download order item
+- Updated: Responsive mobile
+- Updated: Use the default template for the changed password email and the email of the changed email if the 9MAIL is not activated
+
 /**1.2.12 - 2025.01.10***/
 - Updated: VillaTheme support
 

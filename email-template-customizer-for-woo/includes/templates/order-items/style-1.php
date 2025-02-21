@@ -19,7 +19,7 @@ $th_style_left   = "border:1px solid #dddddd; text-align:{$left_align}; padding:
 $th_style_center = 'border:1px solid #dddddd; text-align:center; padding: 10px;';
 $th_style_right  = 'border:1px solid #dddddd; text-align:right; padding: 10px;';
 
-$html = "<table width='100%' border='0' cellpadding='0' cellspacing='0' align='center' style='{$item_style}; border-collapse:collapse;line-height: 1'>";
+$html = "<table class='viwec-no-full-width-on-mobile' width='100%' border='0' cellpadding='0' cellspacing='0' align='center' style='{$item_style}; border-collapse:collapse;line-height: 1'>";
 $html .= "<tr><th style='{$th_style_left}'>{$trans_product}</th><th style='{$th_style_center}'>{$trans_quantity}</th><th style='{$th_style_right}{$col_width}'>{$trans_price}</th></tr>";
 
 ob_start();

@@ -329,7 +329,7 @@ class Utils {
 		$r = [
 			'default'                 => [ 'min_order', 'max_order', 'category', 'country' ],
 			'customer_new_account'    => [ 'min_order', 'max_order', 'category' ],
-			'customer_reset_password' => [ 'min_order', 'max_order', 'category' ]
+			'customer_reset_password' => [ 'min_order', 'max_order', 'category', 'country' ]
 		];
 
 		$register_email_type = self::register_3rd_email_type();
