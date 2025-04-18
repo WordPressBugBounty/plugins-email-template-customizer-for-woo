@@ -379,7 +379,7 @@ class Email_Builder {
 
 	public function background_image_style() {
 		if ( get_current_screen()->id == 'viwec_template' ) {
-			$img_map = Init::$img_map;
+			$img_map = Init::get_img_map();
 			$css     = '';
 
 			foreach ( $img_map['social_icons'] as $type => $data ) {

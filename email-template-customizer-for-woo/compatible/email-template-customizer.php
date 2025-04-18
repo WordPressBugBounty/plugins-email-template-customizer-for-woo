@@ -41,7 +41,7 @@ if ( ! class_exists( 'VIWEC_Render_Email_Template' ) ) {
 			$email_template        = Email_Render::init( [ 'template_id' => $this->temp_id ] );
 			$email_template->order = $this->order;
 			$data                  = get_post_meta( $this->temp_id, 'viwec_email_structure', true );
-			$data                  = json_decode( html_entity_decode( $data ), true );
+			$data                  = json_decode( VIWEC\INC\Init::html_entity_decode( $data ), true );
 			$email_template->render( $data );
 		}
 

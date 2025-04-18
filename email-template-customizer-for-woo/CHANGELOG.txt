@@ -1,3 +1,10 @@
+/**1.2.14 - 2025.04.18***/
+- Updated: Added ALT text to product images and social media images
+- Updated: Only show the shipping address information when it's needed for the order
+- Updated: New social icon of X
+- Added: Social icon of Pinterest, Discord
+- Added: Shortcode {order_date_time} to display both the date and time created of the order
+
 /**1.2.13 - 2025.02.21***/
 - Fixed: Display correctly the expiration date of the download order item
 - Updated: Responsive mobile

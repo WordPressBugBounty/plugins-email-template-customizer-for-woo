@@ -97,7 +97,7 @@ class Compatible {
 		$email_render->other_message_content = $message;
 		$email_render->use_default_template  = true;
 		$data                                = get_post_meta( $default_temp_id, 'viwec_email_structure', true );
-		$data                                = json_decode( html_entity_decode( $data ), true );
+		$data                                = json_decode( Init::html_entity_decode( $data ), true );
 
 
 		ob_start();

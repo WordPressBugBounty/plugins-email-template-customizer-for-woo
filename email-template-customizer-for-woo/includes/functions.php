@@ -16,7 +16,7 @@ function viwec_get_emails_list( $type = '' ) {
 function viwec_render_email_template( $id ) {
 	$email_template = VIWEC\INC\Email_Render::init([ 'template_id' => $id ]);
 	$data           = get_post_meta( $id, 'viwec_email_structure', true );
-	$data           = json_decode( html_entity_decode( $data ), true );
+	$data           = json_decode(VIWEC\INC\Init::html_entity_decode( $data ), true );
 	$email_template->render( $data );
 }
 

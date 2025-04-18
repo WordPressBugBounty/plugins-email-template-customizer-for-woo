@@ -39,7 +39,7 @@ class Init {
 	protected $cache_posts = [];
 
 	private function __construct() {
-		$this->define_params();
+//		$this->define_params();
 		$this->class_init();
 
 		add_action( 'init', array( $this, 'plugin_textdomain' ) );
@@ -47,6 +47,7 @@ class Init {
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_run_file' ), 9999 );
 		add_action( 'admin_footer', array( $this, 'admin_footer' ) );
 		add_filter( 'admin_body_class', array( $this, 'admin_body_class' ) );
+		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
 	}
 
 	public static function init() {
@@ -119,6 +120,15 @@ class Init {
 					'twi-cyan-white'   => esc_html__( 'Color - White', 'viwec-email-template-customizer' ),
 					'twi-white-black'  => esc_html__( 'Black - White', 'viwec-email-template-customizer' ),
 					'twi-white-cyan'   => esc_html__( 'White - Color', 'viwec-email-template-customizer' ),
+					'twi-black-new'        => esc_html__( 'Black New', 'viwec-email-template-customize' ),
+					'twi-white-new'        => esc_html__( 'White New', 'viwec-email-template-customize' ),
+					'twi-cyan-new'         => esc_html__( 'Color New', 'viwec-email-template-customize' ),
+					'twi-white-border-new' => esc_html__( 'White border New', 'viwec-email-template-customize' ),
+					'twi-black-border-new' => esc_html__( 'Black border New', 'viwec-email-template-customize' ),
+					'twi-cyan-border-new'  => esc_html__( 'Color border New', 'viwec-email-template-customize' ),
+					'twi-cyan-white-new'   => esc_html__( 'Color - White New', 'viwec-email-template-customize' ),
+					'twi-white-black-new'  => esc_html__( 'Black - White New', 'viwec-email-template-customize' ),
+					'twi-white-cyan-new'   => esc_html__( 'White - Color New', 'viwec-email-template-customize' ),
 				],
 
 				'instagram' => [
@@ -197,8 +207,218 @@ class Init {
 					'tiktok-white-black'  => esc_html__( 'Black - White', 'viwec-email-template-customizer' ),
 					'tiktok-white-color'  => esc_html__( 'White - Color', 'viwec-email-template-customizer' ),
 				],
+
+				'pinterest' => [
+					''                 => esc_html__( 'Disable', 'viwec-email-template-customizer' ),
+					'pin-black'        => esc_html__( 'Black', 'viwec-email-template-customizer' ),
+					'pin-white'        => esc_html__( 'White', 'viwec-email-template-customizer' ),
+					'pin-color'        => esc_html__( 'Color', 'viwec-email-template-customizer' ),
+					'pin-white-border' => esc_html__( 'White border', 'viwec-email-template-customizer' ),
+					'pin-black-border' => esc_html__( 'Black border', 'viwec-email-template-customizer' ),
+					'pin-color-border' => esc_html__( 'Color border', 'viwec-email-template-customizer' ),
+					'pin-color-white'  => esc_html__( 'Color - White', 'viwec-email-template-customizer' ),
+					'pin-white-black'  => esc_html__( 'Black - White', 'viwec-email-template-customizer' ),
+					'pin-white-color'  => esc_html__( 'White - Color', 'viwec-email-template-customizer' ),
+				],
+
+				'discord' => [
+					''                 => esc_html__( 'Disable', 'viwec-email-template-customizer' ),
+					'discord-black'        => esc_html__( 'Black', 'viwec-email-template-customizer' ),
+					'discord-white'        => esc_html__( 'White', 'viwec-email-template-customizer' ),
+					'discord-color'        => esc_html__( 'Color', 'viwec-email-template-customizer' ),
+					'discord-white-border' => esc_html__( 'White border', 'viwec-email-template-customizer' ),
+					'discord-black-border' => esc_html__( 'Black border', 'viwec-email-template-customizer' ),
+					'discord-color-border' => esc_html__( 'Color border', 'viwec-email-template-customizer' ),
+					'discord-color-white'  => esc_html__( 'Color - White', 'viwec-email-template-customizer' ),
+					'discord-white-black'  => esc_html__( 'Black - White', 'viwec-email-template-customizer' ),
+					'discord-white-color'  => esc_html__( 'White - Color', 'viwec-email-template-customizer' ),
+				],
 			]
 		] );
+	}
+	public static function get_img_map($type=''){
+		if (!self::$img_map){
+			self::$img_map = apply_filters( 'viwec_image_map', [
+				'infor_icons' => [
+					'home'     => [
+						'home-black'        => esc_html__( 'Black', 'viwec-email-template-customizer' ),
+						'home-white'        => esc_html__( 'White', 'viwec-email-template-customizer' ),
+						'home-white-border' => esc_html__( 'White/Border', 'viwec-email-template-customizer' ),
+						'home-black-border' => esc_html__( 'Black/Border', 'viwec-email-template-customizer' ),
+						'home-black-white'  => esc_html__( 'Black/White', 'viwec-email-template-customizer' ),
+						'home-white-black'  => esc_html__( 'White/Black', 'viwec-email-template-customizer' ),
+					],
+					'email'    => [
+						'email-black'        => esc_html__( 'Black', 'viwec-email-template-customizer' ),
+						'email-white'        => esc_html__( 'White', 'viwec-email-template-customizer' ),
+						'email-white-border' => esc_html__( 'White/Border', 'viwec-email-template-customizer' ),
+						'email-black-border' => esc_html__( 'Black/Border', 'viwec-email-template-customizer' ),
+						'email-black-white'  => esc_html__( 'Black/White', 'viwec-email-template-customizer' ),
+						'email-white-black'  => esc_html__( 'White/Black', 'viwec-email-template-customizer' ),
+					],
+					'phone'    => [
+						'phone-black'        => esc_html__( 'Black', 'viwec-email-template-customizer' ),
+						'phone-white'        => esc_html__( 'White', 'viwec-email-template-customizer' ),
+						'phone-white-border' => esc_html__( 'White/Border', 'viwec-email-template-customizer' ),
+						'phone-black-border' => esc_html__( 'Black/Border', 'viwec-email-template-customizer' ),
+						'phone-black-white'  => esc_html__( 'Black/White', 'viwec-email-template-customizer' ),
+						'phone-white-black'  => esc_html__( 'White/Black', 'viwec-email-template-customizer' ),
+					],
+					'location' => [
+						'location-white'        => esc_html__( 'Black', 'viwec-email-template-customizer' ),
+						'location-black'        => esc_html__( 'White', 'viwec-email-template-customizer' ),
+						'location-white-border' => esc_html__( 'White/Border', 'viwec-email-template-customizer' ),
+						'location-black-border' => esc_html__( 'Black/Border', 'viwec-email-template-customizer' ),
+						'location-black-white'  => esc_html__( 'Black/White', 'viwec-email-template-customizer' ),
+						'location-white-black'  => esc_html__( 'White/Black', 'viwec-email-template-customizer' ),
+					],
+				],
+
+				'social_icons' => [
+					'facebook' => [
+						''                => esc_html__( 'Disable', 'viwec-email-template-customizer' ),
+						'fb-black'        => esc_html__( 'Black', 'viwec-email-template-customizer' ),
+						'fb-white'        => esc_html__( 'White', 'viwec-email-template-customizer' ),
+						'fb-blue'         => esc_html__( 'Color', 'viwec-email-template-customizer' ),
+						'fb-white-border' => esc_html__( 'White border', 'viwec-email-template-customizer' ),
+						'fb-black-border' => esc_html__( 'Black border', 'viwec-email-template-customizer' ),
+						'fb-blue-border'  => esc_html__( 'Color border', 'viwec-email-template-customizer' ),
+						'fb-blue-white'   => esc_html__( 'Color - White', 'viwec-email-template-customizer' ),
+						'fb-white-black'  => esc_html__( 'Black - White', 'viwec-email-template-customizer' ),
+						'fb-white-blue'   => esc_html__( 'White - Color', 'viwec-email-template-customizer' ),
+					],
+
+					'twitter' => [
+						''                 => esc_html__( 'Disable', 'viwec-email-template-customizer' ),
+						'twi-black'        => esc_html__( 'Black', 'viwec-email-template-customizer' ),
+						'twi-white'        => esc_html__( 'White', 'viwec-email-template-customizer' ),
+						'twi-cyan'         => esc_html__( 'Color', 'viwec-email-template-customizer' ),
+						'twi-white-border' => esc_html__( 'White border', 'viwec-email-template-customizer' ),
+						'twi-black-border' => esc_html__( 'Black border', 'viwec-email-template-customizer' ),
+						'twi-cyan-border'  => esc_html__( 'Color border', 'viwec-email-template-customizer' ),
+						'twi-cyan-white'   => esc_html__( 'Color - White', 'viwec-email-template-customizer' ),
+						'twi-white-black'  => esc_html__( 'Black - White', 'viwec-email-template-customizer' ),
+						'twi-white-cyan'   => esc_html__( 'White - Color', 'viwec-email-template-customizer' ),
+						'twi-black-new'        => esc_html__( 'Black New', 'viwec-email-template-customize' ),
+						'twi-white-new'        => esc_html__( 'White New', 'viwec-email-template-customize' ),
+						'twi-cyan-new'         => esc_html__( 'Color New', 'viwec-email-template-customize' ),
+						'twi-white-border-new' => esc_html__( 'White border New', 'viwec-email-template-customize' ),
+						'twi-black-border-new' => esc_html__( 'Black border New', 'viwec-email-template-customize' ),
+						'twi-cyan-border-new'  => esc_html__( 'Color border New', 'viwec-email-template-customize' ),
+						'twi-cyan-white-new'   => esc_html__( 'Color - White New', 'viwec-email-template-customize' ),
+						'twi-white-black-new'  => esc_html__( 'Black - White New', 'viwec-email-template-customize' ),
+						'twi-white-cyan-new'   => esc_html__( 'White - Color New', 'viwec-email-template-customize' ),
+					],
+
+					'instagram' => [
+						''                 => esc_html__( 'Disable', 'viwec-email-template-customizer' ),
+						'ins-black'        => esc_html__( 'Black', 'viwec-email-template-customizer' ),
+						'ins-white'        => esc_html__( 'White', 'viwec-email-template-customizer' ),
+						'ins-color'        => esc_html__( 'Color', 'viwec-email-template-customizer' ),
+						'ins-white-border' => esc_html__( 'White border', 'viwec-email-template-customizer' ),
+						'ins-black-border' => esc_html__( 'Black border', 'viwec-email-template-customizer' ),
+						'ins-color-border' => esc_html__( 'Color border', 'viwec-email-template-customizer' ),
+						'ins-color-white'  => esc_html__( 'Color - White', 'viwec-email-template-customizer' ),
+						'ins-white-black'  => esc_html__( 'Black - White', 'viwec-email-template-customizer' ),
+						'ins-white-color'  => esc_html__( 'White - Color', 'viwec-email-template-customizer' ),
+					],
+
+					'youtube' => [
+						''                => esc_html__( 'Disable', 'viwec-email-template-customizer' ),
+						'yt-black'        => esc_html__( 'Black', 'viwec-email-template-customizer' ),
+						'yt-white'        => esc_html__( 'White', 'viwec-email-template-customizer' ),
+						'yt-color'        => esc_html__( 'Color', 'viwec-email-template-customizer' ),
+						'yt-white-border' => esc_html__( 'White border', 'viwec-email-template-customizer' ),
+						'yt-black-border' => esc_html__( 'Black border', 'viwec-email-template-customizer' ),
+						'yt-color-border' => esc_html__( 'Color border', 'viwec-email-template-customizer' ),
+						'yt-color-white'  => esc_html__( 'Color - White', 'viwec-email-template-customizer' ),
+						'yt-white-black'  => esc_html__( 'Black - White', 'viwec-email-template-customizer' ),
+						'yt-white-color'  => esc_html__( 'White - Color', 'viwec-email-template-customizer' ),
+					],
+
+					'linkedin' => [
+						''                => esc_html__( 'Disable', 'viwec-email-template-customizer' ),
+						'li-black'        => esc_html__( 'Black', 'viwec-email-template-customizer' ),
+						'li-white'        => esc_html__( 'White', 'viwec-email-template-customizer' ),
+						'li-color'        => esc_html__( 'Color', 'viwec-email-template-customizer' ),
+						'li-white-border' => esc_html__( 'White border', 'viwec-email-template-customizer' ),
+						'li-black-border' => esc_html__( 'Black border', 'viwec-email-template-customizer' ),
+						'li-color-border' => esc_html__( 'Color border', 'viwec-email-template-customizer' ),
+						'li-color-white'  => esc_html__( 'Color - White', 'viwec-email-template-customizer' ),
+						'li-white-black'  => esc_html__( 'Black - White', 'viwec-email-template-customizer' ),
+						'li-white-color'  => esc_html__( 'White - Color', 'viwec-email-template-customizer' ),
+					],
+
+					'whatsapp' => [
+						''                => esc_html__( 'Disable', 'viwec-email-template-customizer' ),
+						'wa-black'        => esc_html__( 'Black', 'viwec-email-template-customizer' ),
+						'wa-white'        => esc_html__( 'White', 'viwec-email-template-customizer' ),
+						'wa-color'        => esc_html__( 'Color', 'viwec-email-template-customizer' ),
+						'wa-white-border' => esc_html__( 'White border', 'viwec-email-template-customizer' ),
+						'wa-black-border' => esc_html__( 'Black border', 'viwec-email-template-customizer' ),
+						'wa-color-border' => esc_html__( 'Color border', 'viwec-email-template-customizer' ),
+						'wa-color-white'  => esc_html__( 'Color - White', 'viwec-email-template-customizer' ),
+						'wa-white-black'  => esc_html__( 'Black - White', 'viwec-email-template-customizer' ),
+						'wa-white-color'  => esc_html__( 'White - Color', 'viwec-email-template-customizer' ),
+					],
+					'telegram' => [
+						''                  => esc_html__( 'Disable', 'viwec-email-template-customizer' ),
+						'tele-black'        => esc_html__( 'Black', 'viwec-email-template-customizer' ),
+						'tele-white'        => esc_html__( 'White', 'viwec-email-template-customizer' ),
+						'tele-color'        => esc_html__( 'Color', 'viwec-email-template-customizer' ),
+						'tele-white-border' => esc_html__( 'White border', 'viwec-email-template-customizer' ),
+						'tele-black-border' => esc_html__( 'Black border', 'viwec-email-template-customizer' ),
+						'tele-color-border' => esc_html__( 'Color border', 'viwec-email-template-customizer' ),
+						'tele-color-white'  => esc_html__( 'Color - White', 'viwec-email-template-customizer' ),
+						'tele-white-black'  => esc_html__( 'Black - White', 'viwec-email-template-customizer' ),
+						'tele-white-color'  => esc_html__( 'White - Color', 'viwec-email-template-customizer' ),
+					],
+
+					'tiktok' => [
+						''                    => esc_html__( 'Disable', 'viwec-email-template-customizer' ),
+						'tiktok-black'        => esc_html__( 'Black', 'viwec-email-template-customizer' ),
+						'tiktok-white'        => esc_html__( 'White', 'viwec-email-template-customizer' ),
+						'tiktok-color'        => esc_html__( 'Color', 'viwec-email-template-customizer' ),
+						'tiktok-white-border' => esc_html__( 'White border', 'viwec-email-template-customizer' ),
+						'tiktok-black-border' => esc_html__( 'Black border', 'viwec-email-template-customizer' ),
+						'tiktok-color-border' => esc_html__( 'Color border', 'viwec-email-template-customizer' ),
+						'tiktok-color-white'  => esc_html__( 'Color - White', 'viwec-email-template-customizer' ),
+						'tiktok-white-black'  => esc_html__( 'Black - White', 'viwec-email-template-customizer' ),
+						'tiktok-white-color'  => esc_html__( 'White - Color', 'viwec-email-template-customizer' ),
+					],
+
+					'pinterest' => [
+						''                 => esc_html__( 'Disable', 'viwec-email-template-customizer' ),
+						'pin-black'        => esc_html__( 'Black', 'viwec-email-template-customizer' ),
+						'pin-white'        => esc_html__( 'White', 'viwec-email-template-customizer' ),
+						'pin-color'        => esc_html__( 'Color', 'viwec-email-template-customizer' ),
+						'pin-white-border' => esc_html__( 'White border', 'viwec-email-template-customizer' ),
+						'pin-black-border' => esc_html__( 'Black border', 'viwec-email-template-customizer' ),
+						'pin-color-border' => esc_html__( 'Color border', 'viwec-email-template-customizer' ),
+						'pin-color-white'  => esc_html__( 'Color - White', 'viwec-email-template-customizer' ),
+						'pin-white-black'  => esc_html__( 'Black - White', 'viwec-email-template-customizer' ),
+						'pin-white-color'  => esc_html__( 'White - Color', 'viwec-email-template-customizer' ),
+					],
+
+					'discord' => [
+						''                 => esc_html__( 'Disable', 'viwec-email-template-customizer' ),
+						'discord-black'        => esc_html__( 'Black', 'viwec-email-template-customizer' ),
+						'discord-white'        => esc_html__( 'White', 'viwec-email-template-customizer' ),
+						'discord-color'        => esc_html__( 'Color', 'viwec-email-template-customizer' ),
+						'discord-white-border' => esc_html__( 'White border', 'viwec-email-template-customizer' ),
+						'discord-black-border' => esc_html__( 'Black border', 'viwec-email-template-customizer' ),
+						'discord-color-border' => esc_html__( 'Color border', 'viwec-email-template-customizer' ),
+						'discord-color-white'  => esc_html__( 'Color - White', 'viwec-email-template-customizer' ),
+						'discord-white-black'  => esc_html__( 'Black - White', 'viwec-email-template-customizer' ),
+						'discord-white-color'  => esc_html__( 'White - Color', 'viwec-email-template-customizer' ),
+					],
+				]
+			] );
+		}
+		if (!$type){
+			return self::$img_map;
+		}
+		return self::$img_map[$type]??null;
 	}
 
 	public function class_init() {
@@ -214,7 +434,7 @@ class Init {
 			new \VillaTheme_Support(
 				array(
 					'support'    => 'https://wordpress.org/support/plugin/email-template-customizer-for-woo/',
-					'docs'       => 'https://docs.villatheme.com/?item=woo-email-template-customizer',
+					'docs'       => 'https://docs.villatheme.com/?item=woocommerce-email-template-customizer',
 					'review'     => 'https://wordpress.org/support/plugin/email-template-customizer-for-woo/reviews/?rate=5#rate-response',
 					'pro_url'    => 'https://1.envato.market/BZZv1',
 					'css'        => VIWEC_CSS,
@@ -279,19 +499,24 @@ class Init {
 					'accept_elements'     => $accept_elements,
 					'DISALLOW_UNFILTERED_HTML'     => defined('DISALLOW_UNFILTERED_HTML') && DISALLOW_UNFILTERED_HTML ? 1:'',
 				];
+                $social_icons = self::get_img_map('social_icons');
+                if (is_array($social_icons) && !empty($social_icons)){
+	                foreach ( $social_icons as $type => $data ) {
+		                foreach ( $data as $key => $text ) {
+			                $url = $key ? VIWEC_IMAGES . $key . '.png' : '';
 
-				foreach ( self::$img_map['social_icons'] as $type => $data ) {
-					foreach ( $data as $key => $text ) {
-						$url = $key ? VIWEC_IMAGES . $key . '.png' : '';
-
-						$params['social_icons'][ $type ][] = [ 'id' => $url, 'text' => $text, 'slug' => $key ];
-					}
-				}
-				foreach ( self::$img_map['infor_icons'] as $type => $data ) {
-					foreach ( $data as $key => $text ) {
-						$params['infor_icons'][ $type ][] = [ 'id' => VIWEC_IMAGES . $key . '.png', 'text' => $text, 'slug' => $key ];
-					}
-				}
+			                $params['social_icons'][ $type ][] = [ 'id' => $url, 'text' => $text, 'slug' => $key ];
+		                }
+	                }
+                }
+                $infor_icons = self::get_img_map('infor_icons');
+                if (is_array($infor_icons) && !empty($infor_icons)) {
+	                foreach ( $infor_icons as $type => $data ) {
+		                foreach ( $data as $key => $text ) {
+			                $params['infor_icons'][ $type ][] = [ 'id' => VIWEC_IMAGES . $key . '.png', 'text' => $text, 'slug' => $key ];
+		                }
+	                }
+                }
 
 				$params['shortcode']             = array_keys( Utils::shortcodes() );
 				$params['shortcode_for_replace'] = array_merge( Utils::shortcodes(), Utils::get_register_shortcode_for_replace() );
@@ -304,8 +529,7 @@ class Init {
 
 				$email_structure = ( get_post_meta( $post->ID, 'viwec_email_structure', true ) );
 				if ( ! empty( $email_structure ) && $email_structure !== 'null' ) {
-
-					$email_structure             = html_entity_decode( $email_structure );
+					$email_structure = $this->html_entity_decode($email_structure);
 					$json_decode_email_structure = json_decode( $email_structure, true );
                     if (is_array($json_decode_email_structure)) {
 	                    array_walk_recursive( $json_decode_email_structure, function ( $value, $key ) {
@@ -366,6 +590,16 @@ class Init {
 				wp_localize_script( VIWEC_SLUG . '-inputs', 'viWecParams', $params );
 				break;
 
+			case 'viwec_template_page_viwec_template_block':
+				$css = '.viwec-preview-pro-feature-wrap{position: relative;}';
+				$css .= '.viwec-preview-pro-feature-wrap img{max-width: 100%;}';
+				$css .= '.viwec-preview-pro-button a:hover{background: #fff;font-size: 40px;color: #69a580;opacity: .85;}';
+				$css .= '.viwec-preview-pro-feature-wrap a, .viwec-preview-pro-feature-wrap .viwec-preview-pro-button{position: absolute;width: 100%;height: 100%;left: 0;top: 0;border: none;z-index: 10;}';
+				$css .= '.viwec-preview-pro-feature-wrap a{text-decoration: none;display: flex;font-size: 0;background: transparent;justify-content: center;align-items: center;text-transform: uppercase;font-weight: bold;}';
+				wp_register_style('viwec_template_block', false);
+                wp_enqueue_style('viwec_template_block');
+                wp_add_inline_style('viwec_template_block', $css);
+				break;
 			case 'edit-viwec_template':
 				$styles     = [ 'manage-template' ];
 				$styles_lib = [ 'form', 'segment', 'button', 'icon' ];
@@ -383,6 +617,21 @@ class Init {
 				Utils::enqueue_admin_styles_libs( $styles_lib );
 				break;
 		}
+	}
+	public static function pre_html_entity_decode($email_structure){
+		if (strpos($email_structure,'=&quot;')){
+			$email_structure = preg_replace_callback('/=&quot;(.*?)&quot;/', function ($matches) {
+				$tmp = $matches[1];
+				return '=\&quot;' . $tmp. '\&quot;';
+			}, $email_structure);
+		}
+		return $email_structure;
+	}
+	public static function html_entity_decode($email_structure){
+		if (strpos($email_structure,'=&quot;')){
+			$email_structure = self::pre_html_entity_decode($email_structure);
+		}
+		return html_entity_decode( $email_structure );
 	}
 
 	public function get_categories( $type ) {
@@ -423,7 +672,30 @@ class Init {
             </div>
 		<?php }
 	}
-
+    public function admin_menu(){
+	    add_submenu_page(
+		    'edit.php?post_type=viwec_template',
+		    esc_html__( 'Blocks', 'viwec-email-template-customizer' ),
+		    esc_html__( 'Blocks', 'viwec-email-template-customizer' ),
+		    'manage_options',
+		    'viwec_template_block',
+		    [ $this, 'pro_page' ]
+	    );
+    }
+    public function pro_page(){
+	    $page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) :'';
+	    $img = 'preview-'.str_replace('viwec_template_','', $page);
+	    ?>
+        <div class="wrap">
+            <div class="viwec-preview-pro-feature-wrap">
+                <img src="<?php echo esc_url(VIWEC_IMAGES.$img.'.webp') ?>" alt="<?php echo esc_attr($img) ?>">
+                <div class="viwec-preview-pro-button">
+				    <?php viwec_get_pro_version(); ?>
+                </div>
+            </div>
+        </div>
+	    <?php
+    }
 }
 
 Init::init();

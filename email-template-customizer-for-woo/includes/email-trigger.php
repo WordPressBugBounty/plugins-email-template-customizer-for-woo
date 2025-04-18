@@ -240,7 +240,7 @@ class Email_Trigger {
 		$email_render->template_args = $args;
 
 		$data = get_post_meta( $this->template_id, 'viwec_email_structure', true );
-		$data = json_decode( html_entity_decode( $data ), true );
+		$data = json_decode( Init::html_entity_decode( $data ), true );
 		$email_render->render( $data );
 	}
 
@@ -367,7 +367,7 @@ class Email_Trigger {
 			$email_render->recover_heading  = str_replace( '[%s]','', $email['subject'] );
 			$email_render->use_default_template  = true;
 			$data = get_post_meta( $this->template_id, 'viwec_email_structure', true );
-			$data = json_decode( html_entity_decode( $data ), true );
+			$data = json_decode( Init::html_entity_decode( $data ), true );
 			ob_start();
 			$email_render->render( $data );
 			$email['message'] = ob_get_clean();
@@ -419,7 +419,7 @@ class Email_Trigger {
 			$email_render->set_user( $user );
 
 			$data = get_post_meta( $this->template_id, 'viwec_email_structure', true );
-			$data = json_decode( html_entity_decode( $data ), true );
+			$data = json_decode( Init::html_entity_decode( $data ), true );
 			ob_start();
 			$email_render->render( $data );
 			$email_body = ob_get_clean();
@@ -461,7 +461,7 @@ class Email_Trigger {
 			$email_render->set_user( $user_data );
 
 			$data = get_post_meta( $this->template_id, 'viwec_email_structure', true );
-			$data = json_decode( html_entity_decode( $data ), true );
+			$data = json_decode( Init::html_entity_decode( $data ), true );
 			ob_start();
 			$email_render->render( $data );
 			$email_body = ob_get_clean();
@@ -500,7 +500,7 @@ class Email_Trigger {
 				$email_render->use_default_template  = true;
 				$email_render->recover_heading       = $this->heading;
 				$data                                = get_post_meta( $this->use_default_temp, 'viwec_email_structure', true );
-				$data                                = json_decode( html_entity_decode( $data ), true );
+				$data                                = json_decode( Init::html_entity_decode( $data ), true );
 
 				ob_start();
 				$email_render->render( $data );

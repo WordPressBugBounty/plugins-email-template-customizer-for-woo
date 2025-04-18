@@ -220,6 +220,7 @@ class Utils {
 			'{home_url}'              => home_url(),
 			'{last_name}'             => esc_html__( 'Doe', 'viwec-email-template-customizer' ),
 			'{myaccount_url}'         => wc_get_page_permalink( 'myaccount' ),
+			'{order_date_time}'            => date_i18n( $date_format.' '.wc_time_format(), current_time( 'U' ) ),
 			'{order_date}'            => date_i18n( $date_format, current_time( 'U' ) ),
 			'{order_discount}'        => wc_price( 5 ),
 			'{order_fully_refund}'    => wc_price( 0 ),
@@ -473,6 +474,7 @@ class Utils {
 			'{customer_name}'        => '',
 			'{first_name}'           => '',
 			'{last_name}'            => '',
+			'{order_date_time}'           => '',
 			'{order_date}'           => '',
 			'{order_subtotal}'       => '',
 			'{order_total}'          => '',
@@ -505,7 +507,7 @@ class Utils {
 		if ( $object ) {
 			if ( is_a( $object, 'WC_Order' ) ) {
 
-				$date_fm     = get_option( 'date_format' );
+				$date_fm     = wc_date_format();
 				$refunds     = $object ? $object->get_refunds() : '';
 				$refund_html = '';
 
@@ -522,6 +524,7 @@ class Utils {
 				$shortcodes['{first_name}']           = $object->get_billing_first_name();
 				$shortcodes['{last_name}']            = $object->get_billing_last_name();
 				$shortcodes['{user_email}']           = $object->get_billing_email();
+				$shortcodes['{order_date_time}']           = $object->get_date_created()->date_i18n( $date_fm.' '.wc_time_format());
 				$shortcodes['{order_date}']           = $object->get_date_created()->date_i18n( $date_fm);
 				$shortcodes['{order_subtotal}']       = $object->get_subtotal_to_display();
 				$shortcodes['{order_total}']          = $object->get_formatted_order_total();

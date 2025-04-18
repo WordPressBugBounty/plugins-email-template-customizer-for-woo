@@ -617,6 +617,9 @@ class Email_Render {
 		if ( $props['type'] !== 'html/shipping_address' ) {
 			return;
 		}
+		if (wc_ship_to_billing_address_only() ||  ! $this->order->needs_shipping_address()){
+			return;
+		}
 		$color       = $props['style']['color'] ?? 'inherit';
 		$font_weight = $props['style']['font-weight'] ?? 'inherit';
 
@@ -632,8 +635,12 @@ class Email_Render {
 	}
 
 	public function render_html_social( $props ) {
+        $social_icons = Init::get_img_map('social_icons');
+		if ( empty($social_icons ) ) {
+			return;
+		}
+		$socials = array_keys( (array) $social_icons );
 		$align   = $props['style']['text-align'] ?? 'left';
-		$socials = [ 'facebook', 'twitter', 'instagram', 'youtube', 'linkedin', 'whatsapp', 'telegram', 'tiktok' ];
 		$html    = '';
 		$width   = ! empty( $props['attrs']['data-width'] ) ? $props['attrs']['data-width'] : 32;
 
@@ -642,7 +649,7 @@ class Email_Render {
 				$link = isset( $props['attrs'][ $social . '_url' ] ) ? esc_url( $props['attrs'][ $social . '_url' ] ) : '';
 				$img  = isset( $props['attrs'][ $social ] ) ? esc_url( $props['attrs'][ $social ] ) : '';
 				if ( ! empty( $img ) && ! empty( $link ) ) {
-					$html .= "<tr><td valign='top' ><a href='{$link}'><img style='vertical-align: middle' src='{$img}' width='{$width}'></a></td></tr>";
+					$html .= "<tr><td valign='top' ><a href='{$link}'><img style='vertical-align: middle' alt='{$social}' src='{$img}' width='{$width}'></a></td></tr>";
 				}
 			}
 		} else {
@@ -651,7 +658,7 @@ class Email_Render {
 				$link = isset( $props['attrs'][ $social . '_url' ] ) ? esc_url( $props['attrs'][ $social . '_url' ] ) : '';
 				$img  = isset( $props['attrs'][ $social ] ) ? esc_url( $props['attrs'][ $social ] ) : '';
 				if ( ! empty( $img ) && ! empty( $link ) ) {
-					$html .= "<td valign='top' style='padding: 0;'><a href='{$link}'><img src='{$img}' width='{$width}'></a></td>";
+					$html .= "<td valign='top' style='padding: 0;'><a href='{$link}'><img alt='{$social}' src='{$img}' width='{$width}'></a></td>";
 				}
 			}
 			$html .= '</tr>';
@@ -1194,7 +1201,7 @@ class Email_Render {
 				if ( ! empty( $download['access_expires'] ) ) {
 					$datetime     = esc_attr( date_i18n( 'Y-m-d', strtotime( $download['access_expires'] ) ) );
 					$title        = esc_attr( strtotime( $download['access_expires'] ) );
-					$display_time = esc_html( date_i18n( get_option( 'date_format' ), strtotime( $download['access_expires'] ) ) );
+					$display_time = esc_html( date_i18n( wc_date_format(), strtotime( $download['access_expires'] ) ) );
 					$expires      = " <time datetime='$datetime' title='$title'>$display_time</time>";
 				}
 				printf( "<p><a href='%s'>%s - %s</a></p>", esc_url( $href ), wp_kses_post( $display ), wp_kses_post( $expires ) );

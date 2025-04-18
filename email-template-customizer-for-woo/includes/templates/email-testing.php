@@ -38,6 +38,10 @@ if ( ! defined( 'ABSPATH' ) ) {
             </button>
         </div>
     </div>
+    <div>
+        <div class="viwec-option-label"><?php esc_html_e( 'Using the real title', 'viwec-email-template-customizer' ); ?></div>
+	    <?php viwec_get_pro_version() ?>
+    </div>
 
     <div>
         <div class="viwec-option-label"><?php esc_html_e( 'Send to', 'viwec-email-template-customizer' ); ?></div>
