@@ -626,11 +626,15 @@ class Email_Render {
 		$shipping_address = $this->order->get_formatted_shipping_address();
 		$shipping_address = empty( $shipping_address ) ? $this->order->get_formatted_billing_address() : $shipping_address;
 		$shipping_address = str_replace( '<br/>', "</td></tr><tr><td valign='top' style='color: {$color}; font-weight: {$font_weight};'>", $shipping_address );
-		$shipping_phone   = '';
+		$shipping_phone  = $shipping_title= '';
 		if ( $phone = $this->order->get_shipping_phone() ) {
 			$shipping_phone = "<tr><td valign='top' ><a href='tel:$phone' style='color: {$color}; font-weight: {$font_weight};'>$phone</td></tr>";
 		}
-		$html = "<tr><td valign='top' style='color: {$color}; font-weight: {$font_weight};'>{$shipping_address}</td></tr>{$shipping_phone}";
+        if (!empty($props['content']['data-shipping_address_title'])){
+            $shipping_title = $this->replace_shortcode($props['content']['data-shipping_address_title']);
+	        $shipping_title = "<tr><td valign='top' class='viwec-shipping-address-title-text' style='font-size:20px;padding-bottom:20px;color: {$color}; font-weight: {$font_weight};'>{$shipping_title}</td></tr>";
+        }
+		$html = "$shipping_title<tr><td valign='top' style='color: {$color}; font-weight: {$font_weight};'>{$shipping_address}</td></tr>{$shipping_phone}";
 		$this->table( $html );
 	}
 

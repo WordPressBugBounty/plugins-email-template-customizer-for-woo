@@ -5,7 +5,7 @@ Tags: woocommerce, email, email template, email customizer, woocommerce email
 Requires PHP: 7.0
 Requires at least: 5.0
 Tested up to: 6.8
-WC tested up to: 9.8
+WC tested up to: 9.9
 Stable tag: trunk
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -122,109 +122,111 @@ In addition, Email Template Customizer for WooCommerce is integrated with some a
 
 ### MAY BE YOU NEED
 
-[9MAIL - WordPress Email Templates Designer](hhtps://wordpress.org/plugins/9mail-wp-email-templates-designer/)
+[9MAIL - WordPress Email Templates Designer](https://wordpress.org/plugins/9mail-wp-email-templates-designer/)
 
-[9Map - Map Multi Locations](hhtps://wordpress.org/plugins/9map-map-multi-locations/)
+[9Map - Map Multi Locations](https://wordpress.org/plugins/9map-map-multi-locations/)
 
-[Abandoned Cart Recovery for WooCommerce](hhtps://wordpress.org/plugins/woo-abandoned-cart-recovery/)
+[Abandoned Cart Recovery for WooCommerce](https://wordpress.org/plugins/woo-abandoned-cart-recovery/)
 
-[Advanced Product Information for WooCommerce](hhtps://wordpress.org/plugins/woo-advanced-product-information/)
+[Advanced Product Information for WooCommerce](https://wordpress.org/plugins/woo-advanced-product-information/)
 
-[AFFI - Affiliate Marketing for WooCommerce](hhtps://wordpress.org/plugins/affi-affiliate-marketing-for-woo/)
+[AFFI - Affiliate Marketing for WooCommerce](https://wordpress.org/plugins/affi-affiliate-marketing-for-woo/)
 
-[ALD - Dropshipping and Fulfillment for AliExpress and WooCommerce](hhtps://wordpress.org/plugins/woo-alidropship/)
+[ALD - Dropshipping and Fulfillment for AliExpress and WooCommerce](https://wordpress.org/plugins/woo-alidropship/)
 
-[Boost Sales for WooCommerce - Set up Up-Sells & Cross-Sells Popups & Auto Apply Coupon](hhtps://wordpress.org/plugins/woo-boost-sales/)
+[Boost Sales for WooCommerce - Set up Up-Sells & Cross-Sells Popups & Auto Apply Coupon](https://wordpress.org/plugins/woo-boost-sales/)
 
-[Bopo - WooCommerce Product Bundle Builder](hhtps://wordpress.org/plugins/bopo-woo-product-bundle-builder/)
+[Bopo - WooCommerce Product Bundle Builder](https://wordpress.org/plugins/bopo-woo-product-bundle-builder/)
 
-[Bulky - Bulk Edit Products for WooCommerce](hhtps://wordpress.org/plugins/bulky-bulk-edit-products-for-woo/)
+[Bulky - Bulk Edit Products for WooCommerce](https://wordpress.org/plugins/bulky-bulk-edit-products-for-woo/)
 
-[Cart All In One For WooCommerce](hhtps://wordpress.org/plugins/woo-cart-all-in-one/)
+[Cart All In One For WooCommerce](https://wordpress.org/plugins/woo-cart-all-in-one/)
 
-[Catna - Woo Name Your Price and Offers](hhtps://wordpress.org/plugins/catna-woo-name-your-price-and-offers/)
+[Catna - Woo Name Your Price and Offers](https://wordpress.org/plugins/catna-woo-name-your-price-and-offers/)
 
-[Checkout Upsell Funnel for WooCommerce](hhtps://wordpress.org/plugins/checkout-upsell-funnel-for-woo/)
+[Checkout Upsell Funnel for WooCommerce](https://wordpress.org/plugins/checkout-upsell-funnel-for-woo/)
 
-[ChinaDS – Tmall-Taobao Dropshipping for WooCommerce](hhtps://wordpress.org/plugins/chinads-dropshipping-taobao-woocommerce/)
+[ChinaDS – Tmall-Taobao Dropshipping for WooCommerce](https://wordpress.org/plugins/chinads-dropshipping-taobao-woocommerce/)
 
-[Clear Autoptimize Cache Automatically](hhtps://wordpress.org/plugins/clear-autoptimize-cache-automatically/)
+[Clear Autoptimize Cache Automatically](https://wordpress.org/plugins/clear-autoptimize-cache-automatically/)
 
-[COMPE - WooCommerce Compare Products](hhtps://wordpress.org/plugins/compe-woo-compare-products/)
+[COMPE - WooCommerce Compare Products](https://wordpress.org/plugins/compe-woo-compare-products/)
 
-[Coreem - Coupon Reminder for WooCommerce](hhtps://wordpress.org/plugins/woo-coupon-reminder/)
+[Coreem - Coupon Reminder for WooCommerce](https://wordpress.org/plugins/woo-coupon-reminder/)
 
-[Coupon Box for WooCommerce](hhtps://wordpress.org/plugins/woo-coupon-box/)
+[Coupon Box for WooCommerce](https://wordpress.org/plugins/woo-coupon-box/)
 
-[CURCY - Multi Currency for WooCommerce - The best free currency exchange plugin - Run smoothly on WooCommerce 9.x](hhtps://wordpress.org/plugins/woo-multi-currency/)
+[CURCY - Multi Currency for WooCommerce - The best free currency exchange plugin - Run smoothly on WooCommerce 9.x](https://wordpress.org/plugins/woo-multi-currency/)
 
-[Customer Coupons for WooCommerce](hhtps://wordpress.org/plugins/woo-customer-coupons/)
+[Customer Coupons for WooCommerce](https://wordpress.org/plugins/woo-customer-coupons/)
 
-[DEPART - Deposit and Part payment for Woo](hhtps://wordpress.org/plugins/depart-deposit-and-part-payment-for-woo/)
+[DEPART - Deposit and Part payment for Woo](https://wordpress.org/plugins/depart-deposit-and-part-payment-for-woo/)
 
-[EPOI - WP Points and Rewards](hhtps://wordpress.org/plugins/epoi-wp-points-and-rewards/)
+[EPOI - WP Points and Rewards](https://wordpress.org/plugins/epoi-wp-points-and-rewards/)
 
-[EPOW - Custom Product Options for WooCommerce](hhtps://wordpress.org/plugins/epow-custom-product-options-for-woocommerce/)
+[EPOW - Custom Product Options for WooCommerce](https://wordpress.org/plugins/epow-custom-product-options-for-woocommerce/)
 
-[EU Cookies Bar for WordPress](hhtps://wordpress.org/plugins/eu-cookies-bar/)
+[EU Cookies Bar for WordPress](https://wordpress.org/plugins/eu-cookies-bar/)
 
-[EXMAGE - WordPress Image Links](hhtps://wordpress.org/plugins/exmage-wp-image-links/)
+[EXMAGE - WordPress Image Links](https://wordpress.org/plugins/exmage-wp-image-links/)
 
-[FEWC - Extra Checkout Fields For WooCommerce](hhtps://wordpress.org/plugins/fewc-extra-checkout-fields-for-woocommerce/)
+[FEWC - Extra Checkout Fields For WooCommerce](https://wordpress.org/plugins/fewc-extra-checkout-fields-for-woocommerce/)
 
-[Free Shipping Bar for WooCommerce](hhtps://wordpress.org/plugins/woo-free-shipping-bar/)
+[Free Shipping Bar for WooCommerce](https://wordpress.org/plugins/woo-free-shipping-bar/)
 
-[GIFT4U - Gift Cards All in One for Woo](hhtps://wordpress.org/plugins/gift4u-gift-cards-all-in-one-for-woo/)
+[GIFT4U - Gift Cards All in One for Woo](https://wordpress.org/plugins/gift4u-gift-cards-all-in-one-for-woo/)
 
-[HANDMADE - Dropshipping for Etsy and WooCommerce](hhtps://wordpress.org/plugins/handmade-dropshipping-for-etsy-and-woo/)
+[HANDMADE - Dropshipping for Etsy and WooCommerce](https://wordpress.org/plugins/handmade-dropshipping-for-etsy-and-woo/)
 
-[HAPPY - Helpdesk Support Ticket System](hhtps://wordpress.org/plugins/happy-helpdesk-support-ticket-system/)
+[HAPPY - Helpdesk Support Ticket System](https://wordpress.org/plugins/happy-helpdesk-support-ticket-system/)
 
-[Jagif - WooCommerce Free Gift](hhtps://wordpress.org/plugins/jagif-woo-free-gift/)
+[Jagif - WooCommerce Free Gift](https://wordpress.org/plugins/jagif-woo-free-gift/)
 
-[LookBook for WooCommerce - Shoppable with Product Tags](hhtps://wordpress.org/plugins/woo-lookbook/)
+[LookBook for WooCommerce - Shoppable with Product Tags](https://wordpress.org/plugins/woo-lookbook/)
 
-[Lucky Wheel for WooCommerce - Spin a Sale](hhtps://wordpress.org/plugins/woo-lucky-wheel/)
+[Lucky Wheel for WooCommerce - Spin a Sale](https://wordpress.org/plugins/woo-lucky-wheel/)
 
-[Notification for WooCommerce | Boost Your Sales - Recent Sales Popup - Live Feed Sales - Upsells](hhtps://wordpress.org/plugins/woo-notification/)
+[Notification for WooCommerce | Boost Your Sales - Recent Sales Popup - Live Feed Sales - Upsells](https://wordpress.org/plugins/woo-notification/)
 
-[Orders Tracking for WooCommerce](hhtps://wordpress.org/plugins/woo-orders-tracking/)
+[Orders Tracking for WooCommerce](https://wordpress.org/plugins/woo-orders-tracking/)
 
-[Photo Reviews for WooCommerce](hhtps://wordpress.org/plugins/woo-photo-reviews/)
+[Photo Reviews for WooCommerce](https://wordpress.org/plugins/woo-photo-reviews/)
 
-[Pofily - WooCommerce Product Filters](hhtps://wordpress.org/plugins/pofily-woo-product-filters/)
+[Pofily - WooCommerce Product Filters](https://wordpress.org/plugins/pofily-woo-product-filters/)
 
-[Product Builder for WooCommerce - Custom PC Builder](hhtps://wordpress.org/plugins/woo-product-builder/)
+[Product Builder for WooCommerce - Custom PC Builder](https://wordpress.org/plugins/woo-product-builder/)
 
-[Product Pre-Orders for WooCommerce](hhtps://wordpress.org/plugins/product-pre-orders-for-woo/)
+[Product Pre-Orders for WooCommerce](https://wordpress.org/plugins/product-pre-orders-for-woo/)
 
-[Product Size Chart For WooCommerce](hhtps://wordpress.org/plugins/product-size-chart-for-woo/)
+[Product Size Chart For WooCommerce](https://wordpress.org/plugins/product-size-chart-for-woo/)
 
-[Product Variations Swatches for WooCommerce](hhtps://wordpress.org/plugins/product-variations-swatches-for-woocommerce/)
+[Product Variations Swatches for WooCommerce](https://wordpress.org/plugins/product-variations-swatches-for-woocommerce/)
 
-[REDIS - WooCommerce Dynamic Pricing and Discounts](hhtps://wordpress.org/plugins/redis-woo-dynamic-pricing-and-discounts/)
+[REDIS - WooCommerce Dynamic Pricing and Discounts](https://wordpress.org/plugins/redis-woo-dynamic-pricing-and-discounts/)
 
-[REES - Real Estate for Woo](hhtps://wordpress.org/plugins/rees-real-estate-for-woo/)
+[REES - Real Estate for Woo](https://wordpress.org/plugins/rees-real-estate-for-woo/)
 
-[S2W - Import Shopify to WooCommerce](hhtps://wordpress.org/plugins/import-shopify-to-woocommerce/)
+[S2W - Import Shopify to WooCommerce](https://wordpress.org/plugins/import-shopify-to-woocommerce/)
 
-[Sales Countdown Timer](hhtps://wordpress.org/plugins/sales-countdown-timer/)
+[Sales Countdown Timer](https://wordpress.org/plugins/sales-countdown-timer/)
 
-[SUBRE – Product Subscription for WooCommerce - Recurring Payments](hhtps://wordpress.org/plugins/subre-product-subscription-for-woo/)
+[SUBRE – Product Subscription for WooCommerce - Recurring Payments](https://wordpress.org/plugins/subre-product-subscription-for-woo/)
 
-[Suggestion Engine for WooCommerce](hhtps://wordpress.org/plugins/woo-suggestion-engine/)
+[Suggestion Engine for WooCommerce](https://wordpress.org/plugins/woo-suggestion-engine/)
 
-[Thank You Page Customizer for WooCommerce - Increase Your Sales](hhtps://wordpress.org/plugins/woo-thank-you-page-customizer/)
+[Thank You Page Customizer for WooCommerce - Increase Your Sales](https://wordpress.org/plugins/woo-thank-you-page-customizer/)
 
-[TMDS - Dropshipping for TEMU and Woo](hhtps://wordpress.org/plugins/tmds-dropshipping-for-temu-and-woo/)
+[TMDS - Dropshipping for TEMU and Woo](https://wordpress.org/plugins/tmds-dropshipping-for-temu-and-woo/)
 
-[W2S - Migrate WooCommerce to Shopify](hhtps://wordpress.org/plugins/w2s-migrate-woo-to-shopify/)
+[VARGAL - Additional Variation Gallery for Woo](https://wordpress.org/plugins/vargal-additional-variation-gallery-for-woo/)
 
-[WebPOS – Point of Sale for WooCommerce](hhtps://wordpress.org/plugins/webpos-point-of-sale-for-woocommerce/)
+[W2S - Migrate WooCommerce to Shopify](https://wordpress.org/plugins/w2s-migrate-woo-to-shopify/)
 
-[WordPress Lucky Wheel - Spin a Sale](hhtps://wordpress.org/plugins/wp-lucky-wheel/)
+[WebPOS – Point of Sale for WooCommerce](https://wordpress.org/plugins/webpos-point-of-sale-for-woocommerce/)
 
-[WPBulky - WordPress Bulk Edit Post Types](hhtps://wordpress.org/plugins/wpbulky-wp-bulk-edit-post-types/)
+[WordPress Lucky Wheel - Spin a Sale](https://wordpress.org/plugins/wp-lucky-wheel/)
+
+[WPBulky - WordPress Bulk Edit Post Types](https://wordpress.org/plugins/wpbulky-wp-bulk-edit-post-types/)
 
 ### Documentation
 
@@ -245,8 +247,12 @@ In addition, Email Template Customizer for WooCommerce is integrated with some a
 == Frequently Asked Questions ==
 
 == Screenshots ==
+1. Edit email
 
 == Changelog ==
+/**1.2.15 - 2025.06.20***/
+- Fixed: Errors from customers' feedback
+
 /**1.2.14 - 2025.04.18***/
 - Updated: Added ALT text to product images and social media images
 - Updated: Only show the shipping address information when it's needed for the order
@@ -513,7 +519,7 @@ In addition, Email Template Customizer for WooCommerce is integrated with some a
 /**1.0.1.2 - 2020.10.05 **/
 - Fixed: shortcode {user_login}
 - VillaThemePlugins:[{"title":"9MAIL - WordPress Email Templates Designer","link":"https:\/\/1.envato.market\/kj3VaN","thumb":"https:\/\/s3.envato.com\/files\/496231601\/icon-80x80.jpg","image":"https:\/\/s3.envato.com\/files\/536147987\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/9mail-wp-email-templates-designer\/","slug":"9mail-wordpress-email-templates-designer","demo_url":"https:\/\/new2new.com\/?item=9mail"},{"title":"ALD - Aliexpress Dropshipping and Fulfillment for WooCommerce","link":"https:\/\/1.envato.market\/PeXrM","thumb":"https:\/\/s3.envato.com\/files\/496246096\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/506548872\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/woo-alidropship\/","slug":"aliexpress-dropshipping-and-fulfillment-for-woocommerce","demo_url":"https:\/\/new2new.com\/?item=aliexpress-dropshipping-and-fulfillment-for-woocommerce"},{"title":"Bopo - WooCommerce Product Bundle Builder - Build Your Own Box","link":"https:\/\/1.envato.market\/4eLB0L","thumb":"https:\/\/s3.envato.com\/files\/496244167\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/525989193\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/bopo-woo-product-bundle-builder\/","slug":"bopo-woo-product-bundle-builder","demo_url":"https:\/\/new2new.com\/?item=bopo"},{"title":"Bulky - WooCommerce Bulk Edit Products, Orders, Coupons","link":"https:\/\/1.envato.market\/vn4ZEA","thumb":"https:\/\/s3.envato.com\/files\/496245614\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/506901354\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/bulky-bulk-edit-products-for-woo\/","slug":"bulky-woocommerce-bulk-edit-products","demo_url":"https:\/\/new2new.com\/?item=bulky-woocommerce-bulk-edit-products"},{"title":"ChinaDS \u2013 WooCommerce Tmall-Taobao Dropshipping","link":"https:\/\/1.envato.market\/PyAWE6","thumb":"https:\/\/s3.envato.com\/files\/496239932\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/523333151\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/chinads-dropshipping-taobao-woocommerce\/","slug":"chinads-taobao-dropshipping-for-woocommerce","demo_url":"https:\/\/new2new.com\/?item=chinads"},{"title":"CURCY - WooCommerce Multi Currency - Currency Switcher","link":"https:\/\/1.envato.market\/jABDP","thumb":"https:\/\/s3.envato.com\/files\/496248550\/curcy-logo.jpg","image":"https:\/\/s3.envato.com\/files\/508354052\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/woo-multi-currency\/","slug":"woocommerce-multi-currency","demo_url":"http:\/\/new2new.com\/?item=woo-multi-currency"},{"title":"eCommerce Notification - Live Feed Recent Sales","link":"https:\/\/1.envato.market\/K3W9N","thumb":"https:\/\/s3.envato.com\/files\/497035723\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/536156460\/01_preview.jpg","description":"","free_url":"","slug":"ecommerce-notification","demo_url":"http:\/new2new.com\/?item=wordpress-ecommerce-notification"},{"title":"Pofily - WooCommerce Product Filters -  SEO Product Filter","link":"https:\/\/1.envato.market\/kj9ZJn","thumb":"https:\/\/s3.envato.com\/files\/496244629\/Pofily.jpg","image":"https:\/\/s3.envato.com\/files\/536149400\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/pofily-woo-product-filters\/","slug":"pofily-woocommerce-product-filters","demo_url":"https:\/\/new2new.com\/?item=pofily"},{"title":"S2W - Import Shopify to WooCommerce - Migrate from Shopify to WooCommerce","link":"https:\/\/1.envato.market\/9arQ5","thumb":"https:\/\/s3.envato.com\/files\/496247356\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/508720722\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/import-shopify-to-woocommerce\/","slug":"s2w-import-shopify-to-woocommerce","demo_url":"https:\/\/new2new.com\/?item=s2w"},{"title":"Sales Countdown Timer for WooCommerce and WordPress","link":"https:\/\/1.envato.market\/962d3","thumb":"https:\/\/s3.envato.com\/files\/496246971\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/530252664\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/sales-countdown-timer\/","slug":"sales-countdown-timer","demo_url":"http:\/\/new2new.com\/?item=sales-countdown-timer"},{"title":"W2S - Migrate WooCommerce to Shopify","link":"https:\/\/1.envato.market\/vnr5Nj","thumb":"https:\/\/s3.envato.com\/files\/496242887\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/516950987\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/w2s-migrate-woo-to-shopify\/","slug":"w2s-migrate-woocommerce-to-shopify","demo_url":"https:\/\/new2new.com\/?item=w2s"},{"title":"WebPOS - WooCommerce POS - Point of Sale - Restaurant - Grocery","link":"https:\/\/1.envato.market\/7m7Jmd","thumb":"https:\/\/s3.envato.com\/files\/496243736\/icon-80x80.jpg","image":"https:\/\/s3.envato.com\/files\/506550403\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/webpos-point-of-sale-for-woocommerce\/","slug":"webpos-point-of-sale-for-woocommerce","demo_url":"https:\/\/new2new.com\/?item=webpos"},{"title":"WooCommerce Abandoned Cart Recovery - Send Cart Recovery Email Plugin - SMS","link":"https:\/\/1.envato.market\/roBbv","thumb":"https:\/\/s3.envato.com\/files\/496247157\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/535415360\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/woo-abandoned-cart-recovery\/","slug":"woocommerce-abandoned-cart-recovery","demo_url":"http:\/\/new2new.com\/?item=woocommerce-abandoned-cart-recovery"},{"title":"WooCommerce Boost Sales - WooCommerce Cross sell and Upsell","link":"https:\/\/1.envato.market\/yQBL3","thumb":"https:\/\/s3.envato.com\/files\/496249068\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/535403572\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/woo-boost-sales\/","slug":"woocommerce-boost-sales","demo_url":"http:\/\/new2new.com\/?item=woocommerce-boost-sales"},{"title":"WooCommerce Cart All In One - One Click Checkout - Sticky|Side Cart","link":"https:\/\/1.envato.market\/bW20B","thumb":"https:\/\/s3.envato.com\/files\/496245921\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/536152841\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/woo-cart-all-in-one\/","slug":"woo-cart-all-in-one","demo_url":"https:\/\/new2new.com\/?item=woocommerce-cart-all-in-one"},{"title":"WooCommerce Checkout Upsell Funnel - Order Bump","link":"https:\/\/1.envato.market\/oeemke","thumb":"https:\/\/s3.envato.com\/files\/496245742\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/536151186\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/checkout-upsell-funnel-for-woo\/","slug":"woocommerce-checkout-upsell-funnel","demo_url":"https:\/\/new2new.com\/?item=woocommerce-checkout-upsell-funnel"},{"title":"WooCommerce Coupon Box","link":"https:\/\/1.envato.market\/DzJ12","thumb":"https:\/\/s3.envato.com\/files\/496247716\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/536154137\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/woo-coupon-box\/","slug":"woocommerce-coupon-box","demo_url":"http:\/\/new2new.com\/?item=woo-coupon-box"},{"title":"WooCommerce Email Template Customizer","link":"https:\/\/1.envato.market\/BZZv1","thumb":"https:\/\/s3.envato.com\/files\/496246285\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/508725307\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/email-template-customizer-for-woo\/","slug":"woocommerce-email-template-customizer","demo_url":"https:\/\/new2new.com\/?item=woocommerce-email-template-customizer"},{"title":"WooCommerce Free Shipping Bar - Increase Average Order Value","link":"https:\/\/1.envato.market\/N3mPV","thumb":"https:\/\/s3.envato.com\/files\/496252669\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/506902042\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/woo-free-shipping-bar\/","slug":"woocommerce-free-shipping-bar","demo_url":"http:\/\/new2new.com\/?item=woocommerce-free-shipping-bar"},{"title":"WooCommerce Lookbook - Shop by Instagram - Shoppable with Product Tags","link":"https:\/\/1.envato.market\/mV0bM","thumb":"https:\/\/s3.envato.com\/files\/496248348\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/536155220\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/woo-lookbook\/","slug":"woocommerce-lookbook","demo_url":"http:\/\/new2new.com\/?item=woocommerce-lookbook"},{"title":"WooCommerce Lucky Wheel - Spin to win","link":"https:\/\/1.envato.market\/qXBNY","thumb":"https:\/\/s3.envato.com\/files\/496248112\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/511511942\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/woo-lucky-wheel\/","slug":"woocommerce-lucky-wheel","demo_url":"http:\/\/new2new.com\/?item=woocommerce-lucky-wheel"},{"title":"WooCommerce Notification - Boost Your Sales","link":"https:\/\/1.envato.market\/djEZj","thumb":"https:\/\/s3.envato.com\/files\/496249627\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/522607060\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/woo-notification\/","slug":"woocommerce-notification","demo_url":"http:\/\/new2new.com\/?item=woocommerce-notification"},{"title":"WooCommerce Orders Tracking - SMS - PayPal Tracking Autopilot","link":"https:\/\/1.envato.market\/6ZPBE","thumb":"https:\/\/s3.envato.com\/files\/496289393\/Orders-tracking.jpg","image":"https:\/\/s3.envato.com\/files\/506549211\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/woo-orders-tracking\/","slug":"woocommerce-orders-tracking","demo_url":"http:\/\/new2new.com\/?item=woo-orders-tracking"},{"title":"WooCommerce Photo Reviews - Review Reminders - Review for Discounts","link":"https:\/\/1.envato.market\/L3WrM","thumb":"https:\/\/s3.envato.com\/files\/496248216\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/506549377\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/woo-photo-reviews\/","slug":"woocommerce-photo-reviews","demo_url":"http:\/\/new2new.com\/?item=woocommerce-photo-reviews"},{"title":"WooCommerce Product Builder - Custom PC Builder - Product Configurator","link":"https:\/\/1.envato.market\/M3Wjq","thumb":"https:\/\/s3.envato.com\/files\/496248811\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/506549883\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/woo-product-builder\/","slug":"woocommerce-product-builder","demo_url":"http:\/\/new2new.com\/?item=woocommerce-product-builder"},{"title":"WooCommerce Product Size Chart","link":"https:\/\/1.envato.market\/zN1kJe","thumb":"https:\/\/s3.envato.com\/files\/523274014\/icon-80x80.png","image":"https:\/\/s3.envato.com\/files\/523274015\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/product-size-chart-for-woo\/","slug":"woocommerce-product-size-chart","demo_url":"https:\/\/new2new.com\/?item=woocommerce-product-size-chart"},{"title":"WooCommerce Product Variations Swatches","link":"https:\/\/1.envato.market\/bd0ek","thumb":"https:\/\/s3.envato.com\/files\/496273605\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/524502662\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/product-variations-swatches-for-woocommerce\/","slug":"woocommerce-product-variations-swatches","demo_url":"http:\/\/new2new.com\/?item=woo-product-variations-swatches"},{"title":"WooCommerce Thank You Page Customizer - Increase Customer Retention Rate - Boost Sales","link":"https:\/\/1.envato.market\/Q3Weo","thumb":"https:\/\/s3.envato.com\/files\/496247553\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/536152982\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/woo-thank-you-page-customizer\/","slug":"woocommerce-thank-you-page-customizer","demo_url":"http:\/\/new2new.com\/?item=woo-thank-you-page-customizer"},{"title":"WordPress Lucky Wheel - Lucky Wheel Spin and Win","link":"https:\/\/1.envato.market\/xDRb1","thumb":"https:\/\/s3.envato.com\/files\/497038246\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/511511887\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/wp-lucky-wheel\/","slug":"wordpress-lucky-wheel","demo_url":"http:\/\/new2new.com\/?item=wordpress-lucky-wheel"},{"title":"WPBulky - WordPress Bulk Edit Post Types","link":"https:\/\/1.envato.market\/MXBDjK","thumb":"https:\/\/s3.envato.com\/files\/496245248\/logo.jpg","image":"https:\/\/s3.envato.com\/files\/506901744\/01_preview.jpg","description":"","free_url":"https:\/\/wordpress.org\/plugins\/wpbulky-wp-bulk-edit-post-types\/","slug":"wpbulky-wordpress-bulk-edit-post-types","demo_url":"https:\/\/new2new.com\/?item=wpbulky"}]
-- VillaThemeCampaign:{"heading":"HURRY UP! Only 2 Days Left to Grab the Deals!","description":"Discount 20% OFF (9MAIL \u2013 WordPress Email Templates Designer, ChinaDS \u2013 WooCommerce Tmall-Taobao Dropshipping, S2W - Import Shopify to WooCommerce - Migrate Your Store from Shopify to WooCommerce)","link":"https:\/\/1.envato.market\/qzAjmb","id":"feb2025","start":"","end":"2025-03-01","loop":""}
+- VillaThemeCampaign:{"heading":"\"Clock\u2019s Ticking \u2013 Grab 20% Off Before May 30!\"","description":"Discount 20% OFF (WooCommerce Orders Tracking, Bulky - WooCommerce Bulk Edit Products, WooCommerce Photo Reviews )","link":"https:\/\/1.envato.market\/K0g01N","id":"may2025","start":"","end":"2025-05-30","loop":"2,4,6"}
 ~ The first released.
 
 == Upgrade Notice ==

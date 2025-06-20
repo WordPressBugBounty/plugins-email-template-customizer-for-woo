@@ -156,6 +156,10 @@ class Email_Builder {
 					'title' => esc_html__( 'Attachment files', 'viwec-email-template-customizer' ),
 					'func'  => [ $this, 'email_attachment_box' ]
 				],
+				'class_id'       => [
+					'title' => esc_html__( 'Set class/id per layout/component', 'viwec-email-template-customizer' ),
+					'func'  => [ $this, 'email_attachment_box' ]
+				],
 				'testing'    => [
 					'title' => esc_html__( 'Testing', 'viwec-email-template-customizer' ),
 					'func'  => [ $this, 'email_testing_box' ]

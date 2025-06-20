@@ -429,6 +429,7 @@ class Init {
 		include_once VIWEC_DIR . 'compatible' . DIRECTORY_SEPARATOR . 'email-template-customizer.php';
 		include_once VIWEC_SUPPORT . 'support.php';
 		include_once VIWEC_INCLUDES . 'functions.php';
+		villtheme_include_folder( VIWEC_DIR . 'plugins' . DIRECTORY_SEPARATOR, 'VIWEC_Plugins_' );
 
 		if ( class_exists( 'VillaTheme_Support' ) ) {
 			new \VillaTheme_Support(

@@ -587,7 +587,7 @@ jQuery(document).ready(function ($) {
                 data: {min: 0, max: 600}
             },
 
-            ],
+        ],
         inheritProp: ['text', 'alignment', 'margin']//, 'background']
     });
 
@@ -1594,12 +1594,37 @@ jQuery(document).ready(function ($) {
         type: "html/shipping_address",
         name: i18n['shipping_address'],
         icon: 'shipping-address',
-        html: `<div>
+        html: `<div class="viwec-shipping-address-title viwec-toggle-display"><p class="viwec-shipping-address-title-text" style="font-size: 20px;margin-bottom: 20px"></p></div><div>
             John Doe</br>
             Ap #867-859 Sit Rd.</br>
             Azusa, NY 10001</br>
             United States (US)</br>
             </div>`,
+        // properties: [
+        //     {
+        //         key: "shipping",
+        //         inputType: SectionInput,
+        //         name: false,
+        //         section: contentSection,
+        //         data: {header: "Shipping address"},
+        //     },
+        //     {
+        //         name: "Title",
+        //         key: "data-shipping_address_title",
+        //         target: '.viwec-shipping-address-title-text',
+        //         htmlAttr: "innerHTML",
+        //         section: contentSection,
+        //         col: 32,
+        //         inputType: TextInput,
+        //         renderShortcode: true,
+        //         data: {shortcodeTool: true},
+        //         onChange: function (element, value, viewValue, input, component, property) {
+        //             element.find('.viwec-shipping-address-title-text').html(viewValue);
+        //             viWecFunctions.propertyOnChange(element, value);
+        //             return element;
+        //         }
+        //     }
+        // ],
         inheritProp: ['text', 'alignment', 'padding', 'background']//, 'alignment', 'border']
     });
 

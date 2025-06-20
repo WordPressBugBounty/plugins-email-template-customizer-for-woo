@@ -1,3 +1,6 @@
+/**1.2.15 - 2025.06.20***/
+- Fixed: Errors from customers' feedback
+
 /**1.2.14 - 2025.04.18***/
 - Updated: Added ALT text to product images and social media images
 - Updated: Only show the shipping address information when it's needed for the order

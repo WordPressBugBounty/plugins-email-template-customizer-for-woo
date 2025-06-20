@@ -12,31 +12,31 @@ $currency_label = esc_html__( 'Subtotal', 'viwec-email-template-customizer' ) . 
 	if ( function_exists( 'icl_get_languages' ) || class_exists( 'TRP_Translate_Press' ) ) {
 		?>
         <div class="viwec-setting-row" data-attr="country">
-            <label><?php esc_html_e( 'Apply to languages', 'viwec-email-template-customizer' ) ?></label>
+            <div class="viwec-option-label"><?php esc_html_e( 'Apply to languages', 'viwec-email-template-customizer' ) ?></div>
 			<?php viwec_get_pro_version() ?>
         </div>
 		<?php
 	}
 	?>
     <div class="viwec-setting-row" data-attr="country">
-        <label><?php esc_html_e( 'Apply to billing countries', 'viwec-email-template-customizer' ) ?></label>
+        <div class="viwec-option-label"><?php esc_html_e( 'Apply to billing countries', 'viwec-email-template-customizer' ) ?></div>
 		<?php viwec_get_pro_version() ?>
     </div>
 
     <div class="viwec-setting-row" data-attr="category">
-        <label><?php esc_html_e( 'Apply to categories', 'viwec-email-template-customizer' ) ?></label>
+        <div class="viwec-option-label"><?php esc_html_e( 'Apply to categories', 'viwec-email-template-customizer' ) ?></div>
 		<?php viwec_get_pro_version() ?>
 
     </div>
 
     <div class="viwec-setting-row" data-attr="min_order">
-        <label><?php esc_html_e( 'Apply to min order', 'viwec-email-template-customizer' ) ?></label>
+        <div class="viwec-option-label"><?php esc_html_e( 'Apply to min order', 'viwec-email-template-customizer' ) ?></div>
 		<?php viwec_get_pro_version() ?>
 
     </div>
 
     <div class="viwec-setting-row" data-attr="max_order">
-        <label><?php esc_html_e( 'Apply to max order', 'viwec-email-template-customizer' ) ?></label>
+        <div class="viwec-option-label"><?php esc_html_e( 'Apply to max order', 'viwec-email-template-customizer' ) ?></div>
 		<?php viwec_get_pro_version() ?>
     </div>
 </div>
