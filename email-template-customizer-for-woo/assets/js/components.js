@@ -1600,31 +1600,31 @@ jQuery(document).ready(function ($) {
             Azusa, NY 10001</br>
             United States (US)</br>
             </div>`,
-        // properties: [
-        //     {
-        //         key: "shipping",
-        //         inputType: SectionInput,
-        //         name: false,
-        //         section: contentSection,
-        //         data: {header: "Shipping address"},
-        //     },
-        //     {
-        //         name: "Title",
-        //         key: "data-shipping_address_title",
-        //         target: '.viwec-shipping-address-title-text',
-        //         htmlAttr: "innerHTML",
-        //         section: contentSection,
-        //         col: 32,
-        //         inputType: TextInput,
-        //         renderShortcode: true,
-        //         data: {shortcodeTool: true},
-        //         onChange: function (element, value, viewValue, input, component, property) {
-        //             element.find('.viwec-shipping-address-title-text').html(viewValue);
-        //             viWecFunctions.propertyOnChange(element, value);
-        //             return element;
-        //         }
-        //     }
-        // ],
+        properties: [
+            {
+                key: "shipping",
+                inputType: SectionInput,
+                name: false,
+                section: contentSection,
+                data: {header: "Shipping address"},
+            },
+            {
+                name: "Title",
+                key: "data-shipping_address_title",
+                target: '.viwec-shipping-address-title-text',
+                htmlAttr: "innerHTML",
+                section: contentSection,
+                col: 32,
+                inputType: TextInput,
+                renderShortcode: true,
+                data: {shortcodeTool: true},
+                onChange: function (element, value, viewValue, input, component, property) {
+                    element.find('.viwec-shipping-address-title-text').html(viewValue);
+                    viWecFunctions.propertyOnChange(element, value);
+                    return element;
+                }
+            }
+        ],
         inheritProp: ['text', 'alignment', 'padding', 'background']//, 'alignment', 'border']
     });
 

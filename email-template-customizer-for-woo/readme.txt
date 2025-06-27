@@ -250,6 +250,9 @@ In addition, Email Template Customizer for WooCommerce is integrated with some a
 1. Edit email
 
 == Changelog ==
+/**1.2.16 - 2025.06.27***/
+- Added: Title in the Shipping Address component
+
 /**1.2.15 - 2025.06.20***/
 - Fixed: Errors from customers' feedback
 
