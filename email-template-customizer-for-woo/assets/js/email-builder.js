@@ -209,36 +209,36 @@ jQuery(document).ready(function ($) {
     };
 
     ViWec.viWecPreventXSS = (text) => {
-        if (!viWecParams?.DISALLOW_UNFILTERED_HTML){
-            return text;
-        }
+        // if (!viWecParams?.DISALLOW_UNFILTERED_HTML){
+        //     return text;
+        // }
         let $reg, match;
         //removing <script> tags
         text.replace(/[<][^<]*script.*[>].*[<].*[\/].*script*[>]/i,"");
         $reg = /[<][^<]*script.*[>].*[<].*[\/].*script*[>]/i;
         match = $reg.exec(text);
         if (match && match?.input && typeof match[0] !== "undefined"){
-            text = match.input.replaceAll(match[0],'');
+            text = match.input.replace(match[0],'');
         }
         //removing inline js events
-        text.replace(/([ ]on[a-zA-Z0-9_-]{1,}=\".*\")|([ ]on[a-zA-Z0-9_-]{1,}='.*')|([ ]on[a-zA-Z0-9_-]{1,}=.*[.].*)/,"");
-        $reg = /([ ]on[a-zA-Z0-9_-]{1,}=\".*\")|([ ]on[a-zA-Z0-9_-]{1,}='.*')|([ ]on[a-zA-Z0-9_-]{1,}=.*[.].*)/;
+        text.replace(/([ ]on[a-zA-Z0-9_-]{1,}=\".*\")|([ ]on[a-zA-Z0-9_-]{1,}='.*')|([ ]on[a-zA-Z0-9_-]{1,}=.*[\)])|([ ]on[a-zA-Z0-9_-]{1,}=.*[.].*)/i," ");
+        $reg = /([ ]on[a-zA-Z0-9_-]{1,}=\".*\")|([ ]on[a-zA-Z0-9_-]{1,}='.*')|([ ]on[a-zA-Z0-9_-]{1,}=.*[\)])|([ ]on[a-zA-Z0-9_-]{1,}=.*[.].*)/;
         match = $reg.exec(text);
         if (match && match?.input && typeof match[0] !== "undefined"){
-            text = match.input.replaceAll(match[0],'');
+            text = match.input.replace(match[0],' ');
         }
         //removing inline js
         text.replace(/[ ]src.*=[\"](.*javascript:.*|'.*javascript:.*'|.*javascript:.*)[\"]/i,"");
         $reg = /[ ]src.*=[\"](.*javascript:.*|'.*javascript:.*'|.*javascript:.*)[\"]/i;
         match = $reg.exec(text);
         if (match && match?.input && typeof match[1] !== "undefined"){
-            text = match.input.replaceAll(match[1],'');
+            text = match.input.replace(match[1],'');
         }
         text.replace(/[ ]href.*=[\"](.*javascript:.*|'.*javascript:.*'|.*javascript:.*)[\"]/i,"");
         $reg = /[ ]href.*=[\"](.*javascript:.*|'.*javascript:.*'|.*javascript:.*)[\"]/i;
         match = $reg.exec(text);
         if (match && match?.input && typeof match[1] !== "undefined"){
-            text = match.input.replaceAll(match[1],'');
+            text = match.input.replace(match[1],'');
         }
         return text;
     }
