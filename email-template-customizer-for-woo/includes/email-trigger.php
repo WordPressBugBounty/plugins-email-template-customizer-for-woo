@@ -478,7 +478,7 @@ class Email_Trigger {
 		return 'text/html';
 	}
 	public function remove_style( $style ) {
-		return $this->clear_css ? '' : $style;
+		return $this->clear_css ? '#viwec{}' : $style;
 	}
 
 	public function custom_css( $style ) {
@@ -549,7 +549,7 @@ class Email_Trigger {
 		if (!empty($_REQUEST['preview_woocommerce_mail'])){
 			$this->disable_email_template = true;
 		}
-		if ( $this->disable_email_template ) {
+		if ( $this->disable_email_template || empty( $email ) ) {
 			return;
 		}
 		$this->heading          = $heading;

@@ -89,6 +89,9 @@ class Compatible {
 
 	/*Begin ---------------TrackShip for WooCommerce-----------------*/
 	public function trackship_mail_content( $message, $trackship_heading ) {
+		if ( is_customize_preview() || isset( $_REQUEST['shipment-email-customizer-preview'] ) ) {// phpcs:ignore WordPress.Security.NonceVerification.Recommended
+			return $message;
+		}
 		$default_temp_id = Email_Trigger::init()->get_default_template();
 		$email_render    = Email_Render::init();
 

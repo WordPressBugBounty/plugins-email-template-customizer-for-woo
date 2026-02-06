@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Email Template Customizer for WooCommerce\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-20 03:30+0000\n"
+"POT-Creation-Date: 2025-11-28 08:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -36,7 +36,7 @@ msgstr ""
 msgid "[Order #123]"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:547
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:562
 msgid "Add Email Subject"
 msgstr ""
 
@@ -52,11 +52,12 @@ msgstr ""
 msgid "Add New Email Template"
 msgstr ""
 
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:529
 #: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/templates/email-type.php:20
 msgid "Admin"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:168
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:156
 msgid "Admin's note for this template"
 msgstr ""
 
@@ -76,7 +77,7 @@ msgstr ""
 msgid "Apply to billing countries"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/templates/email-rules.php:27
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/templates/email-rules.php:29
 msgid "Apply to categories"
 msgstr ""
 
@@ -84,15 +85,23 @@ msgstr ""
 msgid "Apply to languages"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/templates/email-rules.php:39
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/templates/email-rules.php:55
 msgid "Apply to max order"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/templates/email-rules.php:33
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/templates/email-rules.php:49
 msgid "Apply to min order"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:156
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/templates/email-rules.php:43
+msgid "Apply to Payments methods"
+msgstr ""
+
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/templates/email-rules.php:36
+msgid "Apply to products"
+msgstr ""
+
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:164
 msgid "Attachment files"
 msgstr ""
 
@@ -104,12 +113,12 @@ msgstr ""
 msgid "Background"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-samples.php:50
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-samples.php:57
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-samples.php:64
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-samples.php:71
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-samples.php:78
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-samples.php:84
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-samples.php:51
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-samples.php:58
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-samples.php:65
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-samples.php:72
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-samples.php:79
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-samples.php:85
 #: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-samples.php:91
 #: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-samples.php:98
 #: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-samples.php:105
@@ -119,6 +128,7 @@ msgstr ""
 #: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-samples.php:133
 #: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-samples.php:140
 #: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-samples.php:147
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-samples.php:154
 #: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/i18n.php:12
 msgid "Basic"
 msgstr ""
@@ -382,13 +392,14 @@ msgstr ""
 msgid "Custom CSS"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:471
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:472
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:538
 #: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/templates/email-type.php:32
 msgid "Customer"
 msgstr ""
 
 #: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/i18n.php:103
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:217
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:218
 msgid "Customer note"
 msgstr ""
 
@@ -402,7 +413,7 @@ msgstr ""
 msgid "Data"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:453
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:454
 msgid "Date"
 msgstr ""
 
@@ -410,7 +421,7 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:199
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:200
 msgid "Default template"
 msgstr ""
 
@@ -422,7 +433,7 @@ msgstr ""
 msgid "Direction"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:582
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:597
 #: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/init.php:100
 #: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/init.php:113
 #: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/init.php:135
@@ -462,11 +473,11 @@ msgstr ""
 msgid "Do you want to change email template?"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:221
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:222
 msgid "Doe"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:486
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:487
 msgid "Duplicate"
 msgstr ""
 
@@ -482,11 +493,11 @@ msgstr ""
 msgid "Edit Email Templates"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:572
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:587
 msgid "Edit with WC Email Template Customizer"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:575
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:590
 msgid "Edit with WC Email Template Customizer - Default template"
 msgstr ""
 
@@ -494,11 +505,11 @@ msgstr ""
 msgid "Editor"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:449
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:450
 msgid "Email subject"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:601
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:616
 msgid "Email Template Customize"
 msgstr ""
 
@@ -515,11 +526,11 @@ msgstr ""
 msgid "Email type"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:379
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:380
 msgid "Email was sent successfully"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:581
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:596
 #: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/i18n.php:109
 msgid "Enable"
 msgstr ""
@@ -560,7 +571,7 @@ msgstr ""
 msgid "Featured"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:525
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:528
 msgid "Filter by type"
 msgstr ""
 
@@ -572,7 +583,7 @@ msgstr ""
 msgid "Fixed product discount"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:240
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:241
 msgid "Flat rate"
 msgstr ""
 
@@ -588,7 +599,7 @@ msgstr ""
 msgid "Free shipping"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:191
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:192
 msgid "full"
 msgstr ""
 
@@ -635,11 +646,11 @@ msgstr ""
 msgid "Individual use only"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:219
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:220
 msgid "John"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:216
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:217
 msgid "John Doe"
 msgstr ""
 
@@ -659,7 +670,7 @@ msgstr ""
 msgid "Limit usage to X items"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:373
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:374
 msgid "Mailing Error Found:"
 msgstr ""
 
@@ -687,6 +698,18 @@ msgstr ""
 msgid "Newest"
 msgstr ""
 
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/templates/email-rules.php:24
+msgid "Not apply to billing countries"
+msgstr ""
+
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/templates/email-rules.php:31
+msgid "Not apply to categories"
+msgstr ""
+
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/templates/email-rules.php:38
+msgid "Not apply to products"
+msgstr ""
+
 #: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:105
 msgid "Not Found"
 msgstr ""
@@ -695,8 +718,8 @@ msgstr ""
 msgid "Not found in Trash"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:452
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:687
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:453
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:702
 msgid "Note"
 msgstr ""
 
@@ -716,7 +739,7 @@ msgstr ""
 msgid "Order items"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:227
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:228
 msgid "Order note"
 msgstr ""
 
@@ -728,12 +751,12 @@ msgstr ""
 msgid "Order total"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-render.php:895
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-render.php:896
 #: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/templates/email-editor.php:642
 msgid "Other plugin information"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:193
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:194
 msgid "paid"
 msgstr ""
 
@@ -741,7 +764,7 @@ msgstr ""
 msgid "Parent Email"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:190
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:191
 msgid "partial"
 msgstr ""
 
@@ -749,7 +772,7 @@ msgstr ""
 msgid "Paste"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-render.php:552
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-render.php:553
 #: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/i18n.php:30
 msgid "Payment method"
 msgstr ""
@@ -762,11 +785,11 @@ msgstr ""
 msgid "PayPal"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:235
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:236
 msgid "Paypal"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:192
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/utils.php:193
 msgid "pending"
 msgstr ""
 
@@ -858,7 +881,7 @@ msgstr ""
 msgid "Quantity"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:451
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:452
 msgid "Recipient"
 msgstr ""
 
@@ -882,7 +905,7 @@ msgstr ""
 msgid "Right to left"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:152
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:160
 msgid "Rules"
 msgstr ""
 
@@ -931,11 +954,11 @@ msgstr ""
 msgid "Send to"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:160
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:168
 msgid "Set class/id per layout/component"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/email-template-customizer-for-woo.php:123
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/email-template-customizer-for-woo.php:130
 msgid "Settings"
 msgstr ""
 
@@ -948,7 +971,7 @@ msgstr ""
 msgid "Shipping address"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-render.php:532
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-render.php:533
 #: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/i18n.php:29
 msgid "Shipping method"
 msgstr ""
@@ -990,7 +1013,7 @@ msgstr ""
 msgid "Template"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:164
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:152
 msgid "Testing"
 msgstr ""
 
@@ -998,7 +1021,7 @@ msgstr ""
 msgid "Text"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-render.php:945
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-render.php:946
 #: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/templates/email-editor.php:634
 msgid "Thank you for your order"
 msgstr ""
@@ -1013,7 +1036,7 @@ msgid ""
 "subject will be get from original email"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:688
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:703
 msgid ""
 "To display the content of the 3rd plugins (Checkout Field Editor, Flexible "
 "Checkout Fields,...), drag and drop the WC Hook element to the position "
@@ -1024,7 +1047,7 @@ msgstr ""
 msgid "Toggle admin menu"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-render.php:491
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-render.php:492
 #: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/i18n.php:28
 msgid "Total"
 msgstr ""
@@ -1037,7 +1060,7 @@ msgstr ""
 msgid "Translate text"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:450
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:451
 msgid "Type"
 msgstr ""
 
@@ -1078,7 +1101,7 @@ msgstr ""
 msgid "Vertical text"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:690
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:705
 msgid "View detail in document."
 msgstr ""
 
@@ -1189,6 +1212,6 @@ msgstr ""
 msgid "White/Border"
 msgstr ""
 
-#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:365
+#: D:/git/free-version/email-template-customizer-for-woo/email-template-customizer-for-woo/includes/email-builder.php:366
 msgid "WooCommerce Email Customizer test email template"
 msgstr ""

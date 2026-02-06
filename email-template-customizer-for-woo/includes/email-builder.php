@@ -148,18 +148,6 @@ class Email_Builder {
 					'title' => esc_html__( 'Email type', 'viwec-email-template-customizer' ),
 					'func'  => [ $this, 'email_type_box' ]
 				],
-				'rule'       => [
-					'title' => esc_html__( 'Rules', 'viwec-email-template-customizer' ),
-					'func'  => [ $this, 'email_rules_box' ]
-				],
-				'attachment'       => [
-					'title' => esc_html__( 'Attachment files', 'viwec-email-template-customizer' ),
-					'func'  => [ $this, 'email_attachment_box' ]
-				],
-				'class_id'       => [
-					'title' => esc_html__( 'Set class/id per layout/component', 'viwec-email-template-customizer' ),
-					'func'  => [ $this, 'email_attachment_box' ]
-				],
 				'testing'    => [
 					'title' => esc_html__( 'Testing', 'viwec-email-template-customizer' ),
 					'func'  => [ $this, 'email_testing_box' ]
@@ -168,10 +156,22 @@ class Email_Builder {
 					'title' => esc_html__( "Admin's note for this template", 'viwec-email-template-customizer' ),
 					'func'  => [ $this, 'admin_note' ]
 				],
-				'exim_data'  => [
-					'title' => esc_html__( "Data", 'viwec-email-template-customizer' ),
-					'func'  => [ $this, 'exim_data' ]
-				],
+                'rule'       => [
+                        'title' => esc_html__( 'Rules', 'viwec-email-template-customizer' ),
+                        'func'  => [ $this, 'email_rules_box' ]
+                ],
+                'attachment'       => [
+                        'title' => esc_html__( 'Attachment files', 'viwec-email-template-customizer' ),
+                        'func'  => [ $this, 'email_attachment_box' ]
+                ],
+                'class_id'       => [
+                        'title' => esc_html__( 'Set class/id per layout/component', 'viwec-email-template-customizer' ),
+                        'func'  => [ $this, 'email_attachment_box' ]
+                ],
+                'exim_data'  => [
+                        'title' => esc_html__( "Data", 'viwec-email-template-customizer' ),
+                        'func'  => [ $this, 'exim_data' ]
+                ],
 			];
 
 			foreach ( $boxes as $key => $data ) {
@@ -320,6 +320,7 @@ class Email_Builder {
 		$email_render = Email_Render::init();
 
 		$email_render->preview = true;
+        $email_render->preview_send_test = true;
 		$order_id ? $email_render->order( $order_id ) : $email_render->demo_order();
 		$email_render->demo_new_user();
 		$email_render->render( $data );
@@ -521,11 +522,25 @@ class Email_Builder {
 	public function add_filter_dropdown() {
 		if ( get_current_screen()->id === 'edit-viwec_template' ) {
 			$emails = Utils::get_email_ids();
+			$admin_email_type = Utils::admin_email_type();
+			$selected_val = isset( $_GET['viwec_template_filter'] ) ? sanitize_text_field( $_GET['viwec_template_filter'] ) : '';// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 			echo '<select name="viwec_template_filter">';
 			echo "<option value=''>" . esc_html__( 'Filter by type', 'viwec-email-template-customizer' ) . "</option>";
+			echo "<optgroup label=" . esc_html__( 'Admin', 'viwec-email-template-customizer' ) . ">";
 			foreach ( $emails as $key => $name ) {
-				printf( '<option value="%s" >%s</option>', esc_attr( $key ), esc_html( $name ) );
+				if ( in_array( $key, $admin_email_type ) ) {
+					$selected = ( $key === $selected_val ) ? ' selected' : '';
+					echo "<option value='" . esc_attr( $key ) . "' " . esc_attr( $selected ) . ">" . esc_html( $name ) . "</option>";
+					unset($emails[$key]);
+				}
 			}
+			echo '</optgroup>';
+			echo "<optgroup label=" . esc_html__( 'Customer', 'viwec-email-template-customizer' ) . ">";
+			foreach ( $emails as $key => $name ) {
+				$selected = ( $key === $selected_val ) ? ' selected' : '';
+				echo "<option value='" . esc_attr( $key ) . "' " . esc_attr( $selected ) . ">" . esc_html( $name ) . "</option>";
+			}
+			echo '</optgroup>';
 			echo '</select>';
 		}
 	}

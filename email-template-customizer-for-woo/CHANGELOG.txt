@@ -1,3 +1,12 @@
+/**1.2.21 - 2026.01.23***/
+- Updated: VillaTheme support
+
+/**1.2.20 - 2025.11.28***/
+- Updated: VillaTheme support
+
+/**1.2.19 - 2025.10.06***/
+- Updated:  Edit the "Cancelled Order" email for customers
+
 /**1.2.18 - 2025.09.12***/
 - Fixed: Error vulnerable to Cross Site Scripting (XSS)
 

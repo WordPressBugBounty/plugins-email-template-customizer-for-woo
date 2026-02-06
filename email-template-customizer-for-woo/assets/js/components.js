@@ -1594,7 +1594,7 @@ jQuery(document).ready(function ($) {
         type: "html/shipping_address",
         name: i18n['shipping_address'],
         icon: 'shipping-address',
-        html: `<div class="viwec-shipping-address-title viwec-toggle-display"><p class="viwec-shipping-address-title-text" style="font-size: 20px;margin-bottom: 20px"></p></div><div>
+        html: `<div class="viwec-shipping-address-title viwec-toggle-display"><p class="viwec-shipping-address-title-text" style="font-size: 20px;margin-bottom: 20px">Shipping Address</p></div><div>
             John Doe</br>
             Ap #867-859 Sit Rd.</br>
             Azusa, NY 10001</br>

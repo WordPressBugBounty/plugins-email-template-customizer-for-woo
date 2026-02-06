@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Email_Render {
 
 	protected static $instance = null;
-	public $preview;
+	public $preview, $preview_send_test;
 	public $demo;
 	public $sent_to_admin;
 	public $render_data = [];
@@ -182,7 +182,7 @@ class Email_Render {
 			$bg_style = isset( $data['style_container'] ) ? $this->parse_styles( $data['style_container'] ) : '';
 		}
 
-		$this->direction = get_post_meta( $this->template_id, 'viwec_settings_direction', true );
+		$this->direction = get_post_meta( $this->template_id, 'viwec_settings_direction', true ) ?: (is_rtl()? 'rtl':'ltr');
 
 		if ( $this->preview ) {
 			$this->direction = isset( $_POST['direction'] ) ? sanitize_text_field( wp_unslash( $_POST['direction'] ) ) : 'ltr';// phpcs:ignore WordPress.Security.NonceVerification.Missing
@@ -318,7 +318,8 @@ class Email_Render {
 		?>
         </td></tr></tbody></table></td></tr></tbody></table></div>
         <?php
-		if ( class_exists( 'EmTmpl\EMTMPL_Email_Templates_Designer' ) || class_exists( 'EmTmplF\WP_Email_Templates_Designer' ) ) {
+		if ((!$this->preview || $this->preview_send_test) &&
+            (class_exists( 'EmTmpl\EMTMPL_Email_Templates_Designer' ) || class_exists( 'EmTmplF\WP_Email_Templates_Designer' )) ) {
             echo 'ignore_9mail';
 		}
         ?>
@@ -1002,7 +1003,7 @@ class Email_Render {
 
 			$content = ob_get_clean();
 			$content = preg_replace( '/border=[\'\"]\d+[\'\"]/', 'border="0"', $content );
-			$content = '<div id="viwec-transferred-content">' . wp_kses_post( $content ) . '</div>';
+			$content = '<div id="viwec-transferred-content">' .$content . '</div>';
 			$content = $class_email->style_inline( $content );
 			$content = str_replace( [ 'margin-bottom: 40px;', 'border-top-width: 4px;' ], '', $content );
 			echo wp_kses_post( $content );
@@ -1015,7 +1016,7 @@ class Email_Render {
 		if ( $this->other_message_content ) {
 			$content = str_replace( [ 'margin-bottom: 40px;', 'border-top-width: 4px;' ], '', $this->other_message_content );
 			$content = preg_replace( '/border=[\'"]\d+[\'"]/', 'border="0"', $content );
-			echo '<div id="viwec-transferred-content">' . wp_kses( $content, viwec_allowed_html() ) . '</div>';
+			echo '<div id="viwec-transferred-content">' . apply_filters('viwec_get_html_recover_content',wp_kses( $content, viwec_allowed_html() ),$content) . '</div>';
 		}
 	}
 

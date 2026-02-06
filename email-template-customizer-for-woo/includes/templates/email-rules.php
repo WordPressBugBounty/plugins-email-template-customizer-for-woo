@@ -21,11 +21,27 @@ $currency_label = esc_html__( 'Subtotal', 'viwec-email-template-customizer' ) . 
     <div class="viwec-setting-row" data-attr="country">
         <div class="viwec-option-label"><?php esc_html_e( 'Apply to billing countries', 'viwec-email-template-customizer' ) ?></div>
 		<?php viwec_get_pro_version() ?>
+        <div class="viwec-option-label"><?php esc_html_e( 'Not apply to billing countries', 'viwec-email-template-customizer' ) ?></div>
+		<?php viwec_get_pro_version() ?>
     </div>
 
     <div class="viwec-setting-row" data-attr="category">
         <div class="viwec-option-label"><?php esc_html_e( 'Apply to categories', 'viwec-email-template-customizer' ) ?></div>
 		<?php viwec_get_pro_version() ?>
+        <div class="viwec-option-label"><?php esc_html_e( 'Not apply to categories', 'viwec-email-template-customizer' ) ?></div>
+		<?php viwec_get_pro_version() ?>
+
+    </div>
+    <div class="viwec-setting-row" data-attr="products">
+        <div class="viwec-option-label"><?php esc_html_e( 'Apply to products', 'viwec-email-template-customizer' ) ?></div>
+		<?php viwec_get_pro_version() ?>
+        <div class="viwec-option-label"><?php esc_html_e( 'Not apply to products', 'viwec-email-template-customizer' ) ?></div>
+		<?php viwec_get_pro_version() ?>
+
+    </div>
+    <div class="viwec-setting-row" data-attr="payment_methods">
+        <div class="viwec-option-label"><?php esc_html_e( 'Apply to Payments methods', 'viwec-email-template-customizer' ) ?></div>
+        <?php viwec_get_pro_version() ?>
 
     </div>
 
