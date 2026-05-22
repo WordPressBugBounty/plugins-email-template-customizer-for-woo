@@ -494,7 +494,7 @@ jQuery(document).ready(function ($) {
                     url: ajaxurl,
                     type: 'post',
                     dataType: 'json',
-                    data: {action: 'viwec_change_admin_bar_stt'},
+                    data: {action: 'viwec_change_admin_bar_stt', nonce: viWecParams.nonce},
                 });
             });
 

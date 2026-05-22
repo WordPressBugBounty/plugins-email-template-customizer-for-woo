@@ -1380,6 +1380,9 @@ input.form-control, select.form-control, .viwec-col-full.input {
     width: 100%;
     border: 1px solid #bbbbbb;
   }
+  .dashicons, .dashicons-before:before{
+    line-height: 1;
+  }
 
   .viwec-group-input {
     input[type=text] {

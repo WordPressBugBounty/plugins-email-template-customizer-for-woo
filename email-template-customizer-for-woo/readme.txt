@@ -4,8 +4,8 @@ Donate link: http://www.villatheme.com/donate
 Tags: woocommerce, email, email template, email customizer, woocommerce email
 Requires PHP: 7.0
 Requires at least: 5.0
-Tested up to: 6.9
-WC tested up to: 10.4
+Tested up to: 7.0
+WC tested up to: 10.7
 Stable tag: trunk
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -258,6 +258,10 @@ In addition, Email Template Customizer for WooCommerce is integrated with some a
 1. Edit email
 
 == Changelog ==
+/**1.3.0 - 2026.05.22***/
+- Updated: Compatible with WP 7.0 and WC 10.7
+- Updated: Compatible with PixelYourSite
+
 /**1.2.21 - 2026.01.23***/
 - Updated: VillaTheme support
 

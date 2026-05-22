@@ -23,7 +23,7 @@ class Email_Render {
 	public $custom_css;
 	public $check_rendered;
 	protected $direction;
-	protected $template_id;
+	protected $template_id, $mail_content_cache =[];
 	protected $props;
 	protected $order_currency;
 	protected $user;
@@ -169,6 +169,7 @@ class Email_Render {
 
 	public function render( $data ) {
 		$this->check_rendered = true;
+        $this->mail_content_cache =[];
 
 		$bg_style   = '';
 		$width      = 600;
@@ -187,6 +188,7 @@ class Email_Render {
 		if ( $this->preview ) {
 			$this->direction = isset( $_POST['direction'] ) ? sanitize_text_field( wp_unslash( $_POST['direction'] ) ) : 'ltr';// phpcs:ignore WordPress.Security.NonceVerification.Missing
 		}
+        $this->mail_content_cache['width'] = $width;
 
 		$this->email_header( $bg_style, $width, $responsive );
 
@@ -201,6 +203,8 @@ class Email_Render {
 			if ( ! empty( $data['rows'] ) && is_array( $data['rows'] ) ) {
 				foreach ( $data['rows'] as $row ) {
 					if ( ! empty( $row ) && is_array( $row ) ) {
+                        $this->mail_content_cache['render_html_shipping_address'] = '';
+                        $this->mail_content_cache['render_html_billing_address'] = '';
 						$row_outer_style = ! empty( $row['props']['style_outer'] ) ? $this->parse_styles( $row['props']['style_outer'] ) : '';
 						?>
                         <tr>
@@ -296,6 +300,28 @@ class Email_Render {
 											} ?>
                                         </td>
                                     </tr>
+                                    <?php
+                                    if (!empty( $this->mail_content_cache['render_html_shipping_address']) || !empty($this->mail_content_cache['render_html_billing_address'])) {
+                                        $padding = !empty($row['props']['style_outer']['padding'])?$row['props']['style_outer']['padding']:'';
+                                        $padding = array_map('trim',explode('px', $padding));
+                                        $padding_right = floatval($padding[1]??0);
+                                        $padding_left = floatval($padding[3]??0) ?: $padding_right;
+                                        $width = floatval($this->mail_content_cache['width']) - $padding_right - $padding_left;
+                                        echo "<tr><td style='width: ".esc_attr($width)."px'>";
+                                        if ($this->preview){
+                                            villatheme_remove_object_filter( 'woocommerce_email_customer_details', 'WC_Emails', 'customer_details' ,10 );
+                                            villatheme_remove_object_filter( 'woocommerce_email_customer_details', 'WC_Emails', 'email_addresses',20 );
+                                            $email_type = isset($_POST['email_type'])? sanitize_text_field(wp_unslash($_POST['email_type'])) : '';
+                                            do_action( 'woocommerce_email_customer_details', $this->order, in_array($email_type,['cancelled_order','failed_order','new_order']), false, '' );
+                                        }else {
+                                            $args = $this->template_args;
+                                            remove_action( 'woocommerce_email_customer_details', [ $this, 'render_html_billing_address_via_hook' ], 20 );
+                                            remove_action( 'woocommerce_email_customer_details', [ $this, 'render_html_shipping_address_via_hook' ], 20 );
+                                            do_action( 'woocommerce_email_customer_details', $args['order'] ?? '', $args['sent_to_admin'] ?? '', $args['plain_text'] ?? '', $args['email'], $row );
+                                        }
+                                        echo '</td></tr>';
+                                    }
+                                    ?>
                                 </table>
                             </td>
                         </tr>
@@ -360,7 +386,7 @@ class Email_Render {
 		$alt      = ! empty( $props['attrs']['data-alt'] ) ? $props['attrs']['data-alt'] : '';
 		if ( ! empty( $href ) ) {
 			?>
-            <a href="<?php echo esc_attr( $href ) ?>" target="_blank">
+            <a href="<?php echo esc_url( $href ) ?>" target="_blank">
 			<?php
 		}
 		?>
@@ -567,12 +593,19 @@ class Email_Render {
 		}
 
 		if ( $this->preview ) {
+            $this->mail_content_cache['render_html_billing_address'] = 1;
 			$this->render_html_billing_address_via_hook( '', '', '', '', $props );
 		} else {
-			add_action( 'woocommerce_email_customer_details', [ $this, 'render_html_billing_address_via_hook' ], 20, 5 );
-			$args = $this->template_args;
-			do_action( 'woocommerce_email_customer_details', $args['order'], $args['sent_to_admin'], $args['plain_text'], $args['email'], $props );
-			remove_action( 'woocommerce_email_customer_details', [ $this, 'render_html_billing_address_via_hook' ], 20 );
+            if ( empty( $this->template_args )){
+                return;
+            }
+            $args = $this->template_args;
+            $this->mail_content_cache['render_html_billing_address'] = 1;
+            $this->render_html_billing_address_via_hook( $args['order']??'', $args['sent_to_admin']??'', $args['plain_text']??'', $args['email'], $props );
+//            add_action( 'woocommerce_email_customer_details', [ $this, 'render_html_billing_address_via_hook' ], 20, 5 );
+//			$args = $this->template_args;
+//			do_action( 'woocommerce_email_customer_details', $args['order'], $args['sent_to_admin'], $args['plain_text'], $args['email'], $props );
+//			remove_action( 'woocommerce_email_customer_details', [ $this, 'render_html_billing_address_via_hook' ], 20 );
 		}
 
 	}
@@ -605,12 +638,19 @@ class Email_Render {
 		}
 
 		if ( $this->preview ) {
+            $this->mail_content_cache['render_html_shipping_address'] = 1;
 			$this->render_html_shipping_address_via_hook( '', '', '', '', $props );
 		} else {
-			add_action( 'woocommerce_email_customer_details', [ $this, 'render_html_shipping_address_via_hook' ], 20, 5 );
-			$args = $this->template_args;
-			do_action( 'woocommerce_email_customer_details', $args['order'], $args['sent_to_admin'], $args['plain_text'], $args['email'], $props );
-			remove_action( 'woocommerce_email_customer_details', [ $this, 'render_html_shipping_address_via_hook' ], 20 );
+            if ( empty( $this->template_args )  ) {
+                return;
+            }
+            $args = $this->template_args;
+            $this->mail_content_cache['render_html_shipping_address'] = 1;
+            $this->render_html_shipping_address_via_hook( $args['order']??'', $args['sent_to_admin']??'', $args['plain_text']??'', $args['email'],  $props );
+//			add_action( 'woocommerce_email_customer_details', [ $this, 'render_html_shipping_address_via_hook' ], 20, 5 );
+//			$args = $this->template_args;
+//			do_action( 'woocommerce_email_customer_details', $args['order'], $args['sent_to_admin'], $args['plain_text'], $args['email'], $props );
+//			remove_action( 'woocommerce_email_customer_details', [ $this, 'render_html_shipping_address_via_hook' ], 20 );
 		}
 	}
 

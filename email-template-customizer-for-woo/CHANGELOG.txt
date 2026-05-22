@@ -1,3 +1,7 @@
+/**1.3.0 - 2026.05.22***/
+- Updated: Compatible with WP 7.0 and WC 10.7
+- Updated: Compatible with PixelYourSite
+
 /**1.2.21 - 2026.01.23***/
 - Updated: VillaTheme support
 

@@ -121,3 +121,48 @@ function viwec_get_pro_version() {
     </a>
 	<?php
 }
+if ( ! function_exists( 'villatheme_remove_object_filter' ) ) {
+    /**
+     * Remove an object filter.
+     *
+     * @param string $tag Hook name.
+     * @param string $class Class name. Use 'Closure' for anonymous functions.
+     * @param string|void $method Method name. Leave empty for anonymous functions.
+     * @param string|int|void $priority Priority
+     *
+     * @return void
+     */
+    function villatheme_remove_object_filter( $tag, $class, $method = null, $priority = null ) {
+        global $wp_filter;
+        $filters = $wp_filter[ $tag ] ?? '';
+        if ( empty ( $filters ) ) {
+            return;
+        }
+        foreach ( $filters as $p => $filter ) {
+
+            if ( ! is_null( $priority ) && ( (int) $priority !== (int) $p ) ) {
+                continue;
+            }
+            $remove = false;
+            foreach ( $filter as $identifier => $function ) {
+                $function = $function['function'];
+                if (
+                        is_array( $function )
+                        && (
+                                is_a( $function[0], $class )
+                                || ( is_array( $function ) && $function[0] === $class )
+                        )
+                ) {
+                    $remove = ( $method && ( $method === $function[1] ) );
+                } elseif ( $function instanceof Closure && $class === 'Closure' ) {
+                    $remove = true;
+                }
+                if ( $remove ) {
+                    $temp = $wp_filter[ $tag ][ $p ];
+                    unset( $temp[ $identifier ] );
+                    $wp_filter[ $tag ][ $p ] = $temp;
+                }
+            }
+        }
+    }
+}

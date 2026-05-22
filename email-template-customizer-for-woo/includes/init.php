@@ -482,7 +482,7 @@ class Init {
 
 				$params = [
 					'ajaxUrl'             => admin_url( 'admin-ajax.php' ),
-					'nonce'               => wp_create_nonce( 'viwec_nonce' ),
+					'nonce'               => apply_filters('viwec_create_nonce',wp_create_nonce( 'viwec_nonce' )),
 					'product'             => VIWEC_IMAGES . 'product.png',
 					'post'                => VIWEC_IMAGES . 'post.png',
 					'placeholder'         => VIWEC_IMAGES . 'placeholder.jpg',
@@ -552,7 +552,10 @@ class Init {
 					if ( ! empty( $this->cache_products ) ) {
 						$this->cache_products = array_values( array_unique( $this->cache_products ) );
 
-						$products = wc_get_products( [ 'limit' => - 1, 'include' => $this->cache_products ] );
+						$products = wc_get_products( [
+							'limit'   => count( $this->cache_products ),
+							'include' => $this->cache_products,
+						] );
 						if ( ! empty( $products ) ) {
 							foreach ( $products as $p ) {
 								$products_temp[] = [ 'id' => (string) $p->get_id(), 'text' => $p->get_name() ];
