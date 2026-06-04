@@ -289,7 +289,7 @@ class Email_Builder {
         if ( ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) || wp_is_post_revision( $post_id ) || wp_is_post_autosave( $post_id ) ) {
             return;
         }
-		if ( isset( $_POST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'update-post_' . $post_id ) ) {
+		if ( isset( $_POST['_wpnonce'] ) && ! wp_verify_nonce( sanitize_key( wp_unslash( $_POST['_wpnonce'] ) ), 'update-post_' . $post_id ) ) {
 			return;
 		}
 		if ( ! current_user_can( 'edit_post', $post_id ) || ! isset( $_POST['post_status'] ) || ! in_array( wp_unslash( $_POST['post_status'] ), [ 'publish', 'draft' ], true ) ) {
