@@ -1582,6 +1582,9 @@ input.form-control, select.form-control, .viwec-col-full.input {
     .button {
       padding: 8px 16px;
     }
+    .dashicons, .dashicons-before:before{
+      line-height: 1;
+    }
   }
 
   .vi-ui.scrolling.modal {

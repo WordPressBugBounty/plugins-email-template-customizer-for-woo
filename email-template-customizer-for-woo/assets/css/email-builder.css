@@ -1291,6 +1291,9 @@ input.form-control, select.form-control, .viwec-col-full.input {
 .vi-ui.modals .viwec-view-btn-group .button {
   padding: 8px 16px;
 }
+.vi-ui.modals .viwec-view-btn-group .dashicons, .vi-ui.modals .viwec-view-btn-group .dashicons-before:before {
+  line-height: 1;
+}
 .vi-ui.modals .vi-ui.scrolling.modal {
   margin: 3rem auto;
 }

@@ -116,7 +116,7 @@ function viwec_safe_kses_styles( $styles ) {
 
 function viwec_get_pro_version() {
 	?>
-    <a target="_blank" href="https://1.envato.market/BZZv1" class="viwec-get-pro-version vi-ui small button">
+    <a target="_blank" href="https://villatheme.com/extensions/woocommerce-email-template-customizer/" class="viwec-get-pro-version vi-ui small button">
 		<?php esc_html_e( 'Unlock this feature', 'viwec-email-template-customizer' ); ?>
     </a>
 	<?php

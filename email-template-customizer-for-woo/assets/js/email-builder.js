@@ -513,7 +513,7 @@ jQuery(document).ready(function ($) {
                             let classes = component.classes || '',
                                 unLock = classes.includes('viwec-pro-version'),
                                 dragAble = unLock ? '' : `viwec-${group}-draggable`,
-                                unlockNotice = unLock ? "<div class='viwec-unlock-notice'><a target='_blank' href='https://1.envato.market/BZZv1'>Unlock this feature</a></div>" : '',
+                                unlockNotice = unLock ? "<div class='viwec-unlock-notice'><a target='_blank' href='https://villatheme.com/extensions/woocommerce-email-template-customizer/'>Unlock this feature</a></div>" : '',
                                 lockIcon = unLock ? "<div class='dashicons dashicons-lock'></div>" : '',
                                 info = component.info || '';
 

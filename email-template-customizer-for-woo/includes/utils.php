@@ -555,7 +555,7 @@ class Utils {
 				$shortcodes['{order_tax}'] = $tax;
 			}
 
-			if ( property_exists( $object, 'object' ) && is_a( $object->object, 'WP_User' ) ) {
+			if ( !empty($object->object) && is_a( $object->object, 'WP_User' ) ) {
 				$pw    = $object->user_pass ?? '';
 				$as_pw = strlen( $pw ) > 3 ? substr_replace( $pw, str_repeat( "*", strlen( $pw ) - 3 ), 2, strlen( $pw ) - 3 ) : $pw;
 

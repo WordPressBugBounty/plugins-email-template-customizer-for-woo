@@ -9,12 +9,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Email_Trigger {
 
 	protected static $instance = null;
-	protected $template_id;
 	protected $object;
 	protected $use_default_temp = false;
 	protected $class_email;
 	protected $heading;
-	protected $unique = [];
+	protected $unique = [],$template_data=[];
 	protected $clear_css;
 	protected $disable_email_template;
 	public $plain_search = array(
@@ -60,7 +59,7 @@ class Email_Trigger {
 		add_filter( 'retrieve_password_message', array( $this, 'replace_wp_reset_password_email' ), $priority_retrieve_password_message, 4 );
 
 		add_filter( 'woocommerce_email_styles', array( $this, 'remove_style' ), 99 );
-		add_filter( 'woocommerce_email_styles', array( $this, 'custom_css' ), 99999 );
+		add_filter( 'woocommerce_email_styles', array( $this, 'custom_css' ), 99999,2 );
 
 		add_filter( 'woocommerce_order_item_thumbnail', [ $this, 'item_thumbnail_start' ], PHP_INT_MAX );
 		add_action( 'woocommerce_order_item_meta_end', [ $this, 'item_thumbnail_end' ], PHP_INT_MAX );
@@ -104,33 +103,52 @@ class Email_Trigger {
 		add_filter( 'woocommerce_email_recipient_customer_invoice_pending', array( $this, 'trigger_recipient' ), 10, 3 );
 		add_filter( 'woocommerce_email_subject_customer_invoice_paid', array( $this, 'replace_subject' ), 10, 3 );
 	}
+    public function get_template_id($type, $order='') {
+        if (!isset($this->template_data['disable'][$type])) {
+            if (!isset($this->template_data['disable'])){
+                $this->template_data['disable'] = [];
+            }
+            $status_options = get_option( 'viwec_emails_status', [] );
+            $this->template_data['disable'][$type] = ! empty( $status_options[ $type ] ) && $status_options[ $type ] === 'disable';
+        }
+        if (!empty($this->template_data['disable'][$type])) {
+            return 'disabled';
+        }
+        if (!isset($this->template_data['template_id'])){
+            $this->template_data['template_id'] = array();
+        }
+        if ($order && is_a( $order, 'WC_Order' )){
+            $order_id = $order->get_id();
+            if (!isset($this->template_data['template_id'][$type.'-'.$order_id])) {
+                $this->template_data['template_id'][$type.'-'.$order_id] = $this->get_template_id_has_order( $type, $order );
+            }
+            $result = $this->template_data['template_id'][$type.'-'.$order_id];
+        }else{
+            if (!isset($this->template_data['template_id'][$type])){
+                $this->template_data['template_id'][$type] = $this->get_template_id_no_order( $type );
+            }
+            $result = $this->template_data['template_id'][$type];
+        }
+        return $result;
+    }
 
 	public function trigger_recipient( $recipient, $object, $class_email ) {
-		$this->template_id = '';
-		if ( ! $object ) {
+		if ( ! $object || empty($class_email->id)) {
 			return $recipient;
 		}
-
-		$status_options = get_option( 'viwec_emails_status', [] );
-		if ( ! empty( $status_options[ $class_email->id ] ) && $status_options[ $class_email->id ] === 'disable' ) {
+        $this->reset_template_id([]);
+        $template_id = $this->get_template_id( $class_email->id,$object );
+		if ( $template_id === 'disabled' ) {
 			$this->disable_email_template = true;
-
 			return $recipient;
 		}
-
-		if ( is_a( $object, 'WC_Order' ) ) {
-			$this->template_id = $this->get_template_id_has_order( $class_email->id, $object );
-		} else {
-			$this->template_id = $this->get_template_id_no_order( $class_email->id );
-		}
-
-		if ( ! $this->template_id ) {
+		if ( ! $template_id) {
 			$this->use_default_temp = $this->get_default_template();
 			$this->remove_header_footer_hook( $this->use_default_temp );
 			add_filter( 'woocommerce_email_order_items_args', [ $this, 'show_image' ] );
 		}
 
-		$this->clear_css   = $this->template_id || $this->use_default_temp ? true : false;
+		$this->clear_css   = ($template_id || $this->use_default_temp) ? true : false;
 		$this->object      = $object;
 		$this->class_email = $class_email;
 
@@ -150,9 +168,15 @@ class Email_Trigger {
 	}
 
 	public function replace_subject( $subject, $object ) {
-		if ( $this->template_id ) {
-			$_subject = get_post( $this->template_id )->post_title;
-			$subject  = $_subject ? $_subject : $subject;
+        $current_id = str_replace('woocommerce_email_subject_', '', current_filter());
+        $template_id = $this->get_template_id( $current_id ==='customer_invoice_paid'? 'customer_invoice' : $current_id, $object );
+		if ( $template_id && $template_id !=='disabled' ) {
+			$template = get_post( $template_id );
+            if (!$template){
+                return $subject;
+            }
+			$_subject = $template->post_title;
+			$subject  = $_subject ?: $subject;
 			$subject  = Utils::replace_shortcode( $subject, [], $object );
 			$wc_symbols = get_woocommerce_currency_symbols();
 			$wc_symbol ='';
@@ -183,7 +207,7 @@ class Email_Trigger {
 	}
 
 	public function replace_template_path( $located, $template_name, $args, $template_path, $default_path ) {
-		if ( ! $this->template_id ) {
+		if ( empty($this->template_data)) {
 			return $located;
 		}
 
@@ -218,28 +242,35 @@ class Email_Trigger {
 		}
 
 		if ( isset( $args['email'] ) && ! empty( $args['email']->id ) ) {
-			if ( $args['plain_text'] ) {
+            $this->unique[] = $args['email']->id;
+			if ( !empty($args['plain_text']) ) {
 				return $located;
 			}
-			if ( $this->template_id ) {
-				$this->unique[] = $args['email']->id;
+            $template_id = $this->get_template_id( $args['email']->id, $args['order']??'' );
+			if ( $template_id && $template_id !=='disabled' ) {
 				$located        = VIWEC_TEMPLATES . 'email-template.php';
 			}
 		}
-
 		return $located;
 	}
 
 	public function load_template( $args ) {
-		if ( ! $this->template_id ) {
+        if (empty($args['email'])){
+            return;
+        }
+        $template_id = $this->get_template_id( $args['email']->id ??'', $args['order']??'' );
+        if ( !$template_id || $template_id ==='disabled' ) {
+            $template_id = $this->get_default_template();
+		}
+        if ( !$template_id ) {
 			return;
 		}
 
-		$email_render = Email_Render::init( [ 'template_id' => $this->template_id ] );
+		$email_render = Email_Render::init( [ 'template_id' => $template_id ] );
 		$email_render->set_object( $args['email'] );
 		$email_render->template_args = $args;
 
-		$data = get_post_meta( $this->template_id, 'viwec_email_structure', true );
+		$data = get_post_meta( $template_id, 'viwec_email_structure', true );
 		$data = json_decode( Init::html_entity_decode( $data ), true );
 		$email_render->render( $data );
 	}
@@ -269,7 +300,6 @@ class Email_Trigger {
 		];
 
 		$posts = get_posts( $args );
-
 		$filter_ids = [];
 
 		foreach ( $posts as $post ) {
@@ -341,6 +371,9 @@ class Email_Trigger {
 	}
 
 	public function get_default_template() {
+        if (isset($this->template_data['default_template'])) {
+            return $this->template_data['default_template'];
+        }
 		$id   = '';
 		$args = [
 			'posts_per_page' => - 1,
@@ -355,18 +388,18 @@ class Email_Trigger {
 			$ids = wp_list_pluck( $posts, 'ID' );
 			$id  = current( $ids );
 		}
-
+        $this->template_data['default_template'] = $id;
 		return $id;
 	}
 
 	public function replace_default_to_wp_email( $email) {
-		$this->template_id = $this->get_default_template();
-		if ( $this->template_id ) {
+		$template_id = $this->get_default_template();
+        if ( $template_id &&  get_post( $template_id ) ) {
 			$email_render = Email_Render::init();
 			$email_render->other_message_content = wpautop($email['message']);
 			$email_render->recover_heading  = str_replace( '[%s]','', $email['subject'] );
 			$email_render->use_default_template  = true;
-			$data = get_post_meta( $this->template_id, 'viwec_email_structure', true );
+			$data = get_post_meta( $template_id, 'viwec_email_structure', true );
 			$data = json_decode( Init::html_entity_decode( $data ), true );
 			ob_start();
 			$email_render->render( $data );
@@ -377,9 +410,8 @@ class Email_Trigger {
 		return $email;
 	}
 	public function replace_wp_new_user_email( $wp_new_user_notification_email, $user, $blogname ) {
-		$this->template_id = $this->get_template_id_no_order( 'customer_new_account' );
-
-		if ( $this->template_id ) {
+        $template_id = $this->get_template_id('customer_new_account');
+		if ( $template_id && get_post( $template_id )) {
 
 			$register_data = [];
 			if ( isset( $_POST['action'] ) && $_POST['action'] == 'uael_register_user' && isset( $_POST['data'] ) ) {// phpcs:ignore WordPress.Security.NonceVerification.Missing
@@ -409,16 +441,15 @@ class Email_Trigger {
 
 			$user->register_data = $register_data;
 
-			$subject = get_post( $this->template_id )->post_title;
+			$subject = get_post( $template_id )->post_title;
 			if ( $subject ) {
 				$wp_new_user_notification_email['subject'] = Utils::replace_shortcode( $subject, '', $user );
 			}
 
 			$email_render = Email_Render::init();
-//			$email_render = new Email_Render();
 			$email_render->set_user( $user );
 
-			$data = get_post_meta( $this->template_id, 'viwec_email_structure', true );
+			$data = get_post_meta( $template_id, 'viwec_email_structure', true );
 			$data = json_decode( Init::html_entity_decode( $data ), true );
 			ob_start();
 			$email_render->render( $data );
@@ -434,9 +465,9 @@ class Email_Trigger {
 		return $wp_new_user_notification_email;
 	}
 	public function replace_wp_reset_password_title( $title, $user_login, $user_data ) {
-		$this->template_id = $this->get_template_id_no_order( 'customer_reset_password' );
-		if ( $this->template_id ) {
-			$subject = get_post( $this->template_id )->post_title;
+        $template_id = $this->get_template_id('customer_reset_password');
+        if ( $template_id && $template_id !=='disabled' && get_post( $template_id ) ) {
+			$subject = get_post( $template_id )->post_title;
 			if ( $subject ) {
 				$shortcodes                 = Utils::default_shortcode_for_replace();
 				$shortcodes['{user_login}'] = $user_login;
@@ -448,7 +479,8 @@ class Email_Trigger {
 		return $title;
 	}
 	public function replace_wp_reset_password_email( $message, $key, $user_login, $user_data ) {
-		if ( $this->template_id ) {
+        $template_id = $this->get_template_id('customer_reset_password');
+        if ( $template_id && $template_id !=='disabled' && get_post( $template_id ) ) {
 			$locale    = get_user_locale( $user_data );
 			$reset_url = network_site_url( "wp-login.php?action=rp&key=$key&login=" . rawurlencode( $user_login ), 'login' ) . '&wp_lang=' . $locale;
 
@@ -460,7 +492,7 @@ class Email_Trigger {
 			$email_render = Email_Render::init();
 			$email_render->set_user( $user_data );
 
-			$data = get_post_meta( $this->template_id, 'viwec_email_structure', true );
+			$data = get_post_meta( $template_id, 'viwec_email_structure', true );
 			$data = json_decode( Init::html_entity_decode( $data ), true );
 			ob_start();
 			$email_render->render( $data );
@@ -481,9 +513,13 @@ class Email_Trigger {
 		return $this->clear_css ? '#viwec{}' : $style;
 	}
 
-	public function custom_css( $style ) {
-		if ( $this->use_default_temp || $this->template_id ) {
-			$id    = $this->template_id ? $this->template_id : $this->use_default_temp;
+	public function custom_css( $style, \WC_Email $email) {
+        $template_id = $this->get_template_id($email->id, $email->object);
+        if ((!$template_id || $template_id === 'disabled') && $this->use_default_temp === false){
+            $this->use_default_temp = $this->get_default_template();
+        }
+		if ( $this->use_default_temp || ($template_id && $template_id !== 'disabled') ) {
+			$id    = $template_id ?: $this->use_default_temp;
 			$style .= get_post_meta( $id, 'viwec_custom_css', true );
 		}
 
@@ -491,7 +527,11 @@ class Email_Trigger {
 	}
 
 	public function use_default_template_email( $args, $class_email ) {
-		if ( $this->use_default_temp && ! $this->template_id ) {
+        $template_id = $this->get_template_id($class_email->id, $class_email->object);
+        if ($this->use_default_temp === false){
+            $this->use_default_temp = $this->get_default_template();
+        }
+		if ( $this->use_default_temp && (!$template_id || $template_id === 'disabled') ) {
 			$email_render = Email_Render::init();
 			if ( ! $email_render->check_rendered ) {
 				$email_render->set_object( $class_email );
@@ -533,12 +573,12 @@ class Email_Trigger {
 	}
 
 	public function reset_template_id( $wp_mail ) {
-		if ( $this->use_default_temp || $this->template_id ) {
+		if ($this->use_default_temp || !empty($this->template_data) ) {
 			$email_render                 = Email_Render::init();
 			$email_render->check_rendered = false;
 		}
-		$this->use_default_temp       = '';
-		$this->template_id            = '';
+        $this->template_data = [];
+		$this->use_default_temp       = false;
 		$this->disable_email_template = '';
 		$this->unique                 = [];
 
@@ -557,7 +597,11 @@ class Email_Trigger {
 		$this->remove_header_footer_hook( $this->use_default_temp );
 	}
 
-	public function add_padding_for_addition_content( $value, $_this, $_value, $key ) {
+	public function add_padding_for_addition_content( $value, \WC_Email $email, $_value, $key ) {
+        if ($this->use_default_temp === false){
+            $template_id = $this->get_template_id($email->id, $email->object);
+            $this->use_default_temp = $template_id && $template_id !=='disabled' ?'': $this->get_default_template();
+        }
 		if ( $this->use_default_temp ) {
 			$value = $key == 'additional_content' ? "<div style='padding-top: 20px;'>{$value}</div>" : $value;
 		}

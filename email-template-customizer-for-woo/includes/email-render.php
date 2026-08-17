@@ -967,14 +967,14 @@ class Email_Render {
 			switch ( $hook ) {
 				case '':
 				case 'woocommerce_email_before_order_table':
-					do_action( 'woocommerce_email_before_order_table', $args['order'], $args['sent_to_admin'], $args['plain_text'], $args['email'] );
+					do_action( 'woocommerce_email_before_order_table', $args['order']??'', $args['sent_to_admin']??'', $args['plain_text']??'', $args['email'] ??'');
 					break;
 				case 'woocommerce_email_after_order_table':
 //					remove_action( 'woocommerce_email_after_order_table', [ \WC_Subscriptions_Order::class, 'add_sub_info_email' ], 15 );
-					do_action( 'woocommerce_email_after_order_table', $args['order'], $args['sent_to_admin'], $args['plain_text'], $args['email'] );
+					do_action( 'woocommerce_email_after_order_table', $args['order']??'', $args['sent_to_admin']??'', $args['plain_text']??'', $args['email'] ??'');
 					break;
 				case 'woocommerce_email_order_meta':
-					do_action( 'woocommerce_email_order_meta', $args['order'], $args['sent_to_admin'], $args['plain_text'], $args['email'] );
+					do_action( 'woocommerce_email_order_meta', $args['order']??'', $args['sent_to_admin']??'', $args['plain_text']??'', $args['email'] ??'');
 					break;
 			}
 			echo "<div>";
