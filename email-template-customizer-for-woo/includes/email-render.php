@@ -66,7 +66,9 @@ class Email_Render {
 			$this->order          = $object;
 			$this->order_currency = $this->order->get_currency();
 		} elseif ( is_a( $object, 'WP_User' ) ) {
-			$this->user = $email;
+			$this->order          = null;
+			$this->order_currency = null;
+			$this->user           = $email;
 		}
 	}
 
@@ -405,7 +407,7 @@ class Email_Render {
 	public function render_html_text( $props ) {
 		$content = isset( $props['content']['text'] ) ? $props['content']['text'] : '';
 		$content = $this->replace_shortcode( $content );
-		echo wp_kses( do_shortcode( $content ), viwec_allowed_html() );
+		echo wp_kses( $content, viwec_allowed_html() );
 	}
 
 	public function render_html_order_detail( $props ) {
@@ -750,10 +752,10 @@ class Email_Render {
             <tr>
                 <td class='viwec-mobile-button-padding' align='center' valign='middle' role='presentation'
                     height="<?php echo esc_attr( $height ) ?>" style='<?php echo esc_attr( $style ) ?>;'>
-                    <a href='<?php echo esc_url( do_shortcode( $url ) ) ?>' target='_blank'
+                    <a href='<?php echo esc_url( $url ) ?>' target='_blank'
                        style='<?php echo esc_attr( implode( ';', $a_style ) ) ?>'>
                           <span style='color: <?php echo esc_attr( $text_color ) ?>'>
-                              <?php echo wp_kses( do_shortcode( $text ), viwec_allowed_html() ) ?>
+                              <?php echo wp_kses( $text, viwec_allowed_html() ) ?>
                           </span>
                     </a>
                 </td>

@@ -172,7 +172,8 @@ class Utils {
 					'customer_note',
 					'customer_reset_password',
 					'customer_new_account',
-					'customer_new_account_activation'
+					'customer_new_account_activation',
+					'customer_verify_email'
 				];
 				$accept_emails = apply_filters( 'viwec_accept_email_type', $accept_emails );
 
@@ -237,6 +238,13 @@ class Utils {
 			'{payment_url}'           => wc_get_endpoint_url( 'order-pay', 2158, wc_get_checkout_url() ) . '?pay_for_order=true&key=wc_order_6D6P8tQ0N',
 			'{set_password_url}'      => wc_get_endpoint_url( 'lost-password', '?action=newaccount&key=N52psnY51Inm0yE3OdxL&login=johndoe', wc_get_page_permalink( 'myaccount' ) ),
 			'{reset_password_url}'    => wc_get_endpoint_url( 'lost-password', '?key=N52psnY51Inm0yE3OdxL', wc_get_page_permalink( 'myaccount' ) ),
+			'{verify_url}'            => add_query_arg(
+				[
+					'wc_verify_email_key'  => 'sample',
+					'wc_verify_email_user' => '1',
+				],
+				$myaccount_url
+			),
 			'{site_title}'            => get_bloginfo( 'name' ),
 			'{shipping_method}'       => esc_html__( 'Flat rate', 'viwec-email-template-customizer' ),
 			'{shop_url}'              => wc_get_endpoint_url( 'shop' ),
@@ -297,6 +305,7 @@ class Utils {
 		$emails = [
 			'default'                           => [ 'html/coupon', 'html/recover_heading', 'html/recover_content' ],
 			'customer_new_account'              => [ 'html/coupon', ],
+			'customer_verify_email'             => [ 'html/coupon', ],
 			'customer_reset_password'           => [ 'html/coupon', ],
 			'new_order'                         => $has_order_elements,
 			'cancelled_order'                   => $has_order_elements,
@@ -332,6 +341,7 @@ class Utils {
 		$r = [
 			'default'                 => [ 'min_order', 'max_order', 'category', 'country' ],
 			'customer_new_account'    => [ 'min_order', 'max_order', 'category' ],
+			'customer_verify_email'   => [ 'min_order', 'max_order', 'category' ],
 			'customer_reset_password' => [ 'min_order', 'max_order', 'category', 'country' ]
 		];
 
@@ -497,9 +507,29 @@ class Utils {
 			'{user_email}'         => '',
 			'{set_password_url}'   => '',
 			'{reset_password_url}' => '',
+			'{verify_url}'         => '',
 			'{coupon_expire_date}' => '',
 			'{current_year}'       => date_i18n( 'Y', current_time( 'U' ) ),
 		];
+	}
+
+	/**
+	 * Encode shortcode brackets in replacement data so do_shortcode() cannot parse them.
+	 *
+	 * @param mixed $value Placeholder value.
+	 *
+	 * @return mixed
+	 */
+	private static function neutralize_shortcode_brackets( $value ) {
+		if ( ! is_string( $value ) || '' === $value ) {
+			return $value;
+		}
+
+		if ( false === strpos( $value, '[' ) && false === strpos( $value, ']' ) ) {
+			return $value;
+		}
+
+		return str_replace( [ '[', ']' ], [ '&#91;', '&#93;' ], $value );
 	}
 
 	public static function replace_shortcode( $html, $args, $object = '', $preview = false ) {
@@ -563,11 +593,23 @@ class Utils {
 				$shortcodes['{user_password}']          = $pw;
 				$shortcodes['{user_password_asterisk}'] = $as_pw;
 				$shortcodes['{user_email}']             = $object->user_email ?? '';
+				if ( empty( $shortcodes['{user_email}'] ) && ! empty( $object->object->user_email ) ) {
+					$shortcodes['{user_email}'] = $object->object->user_email;
+				}
+				if ( ! empty( $object->verify_url ) ) {
+					$shortcodes['{verify_url}'] = (string) $object->verify_url;
+				}
 				$shortcodes['{set_password_url}']       = $object->set_password_url ?? '';
 				$shortcodes['{reset_password_url}']     = add_query_arg( [ 'key' => $object->reset_key ?? '', 'id' => $object->user_id ?? '' ],
 					wc_get_endpoint_url( 'lost-password', '', wc_get_page_permalink( 'myaccount' ) ) );
 				if ( isset( $object->object->ID ) ) {
 					$user_id = $object->object->ID;
+					if ( empty( $shortcodes['{first_name}'] ) ) {
+						$shortcodes['{first_name}'] = get_user_meta( $user_id, 'first_name', true );
+					}
+					if ( empty( $shortcodes['{last_name}'] ) ) {
+						$shortcodes['{last_name}'] = get_user_meta( $user_id, 'last_name', true );
+					}
 					/*Get Dokan verification_key*/
 					$verification_link = '';
 					if ( function_exists( 'dokan_get_option' ) ) {
@@ -626,6 +668,15 @@ class Utils {
 			$shortcodes['{user_login}']    = 'johndoe';
 			$shortcodes['{user_password}'] = 'KG&Q#ToW&kLq0owvLWq4Ck';
 			$shortcodes['{user_email}']    = 'johndoe@domain.com';
+			if ( empty( $shortcodes['{verify_url}'] ) ) {
+				$shortcodes['{verify_url}'] = add_query_arg(
+					[
+						'wc_verify_email_key'  => 'sample',
+						'wc_verify_email_user' => '1',
+					],
+					wc_get_page_permalink( 'myaccount' )
+				);
+			}
 		}
 
 		$custom_shortcode = $preview ? apply_filters( 'viwec_register_preview_shortcode', [], $object ) : apply_filters( 'viwec_register_replace_shortcode', [], $object, $args );
@@ -634,6 +685,14 @@ class Utils {
 			foreach ( $custom_shortcode as $sc ) {
 				$shortcodes = array_merge( $sc, $shortcodes );
 			}
+		}
+
+		if ( is_string( $html ) && false !== strpos( $html, '[' ) ) {
+			$html = do_shortcode( $html );
+		}
+
+		foreach ( $shortcodes as $token => $value ) {
+			$shortcodes[ $token ] = self::neutralize_shortcode_brackets( $value );
 		}
 
 		return str_replace( array_keys( $shortcodes ), array_values( $shortcodes ), $html );

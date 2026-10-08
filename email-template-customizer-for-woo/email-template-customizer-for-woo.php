@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: Email Template Customizer for WooCommerce
+ * Plugin Name: Mailonix - Email Template Customizer for WooCommerce
  * Plugin URI: https://villatheme.com/extensions/woocommerce-email-template-customizer/
  * Description: Customize your WooCommerce emails effortlessly. Drag and drop elements, edit layouts, and match your store's design without coding knowledge.
- * Version: 1.3.3
+ * Version: 1.3.5
  * Author: VillaTheme
  * Author URI: https://villatheme.com
  * License:           GPL v2 or later
@@ -12,10 +12,10 @@
  * Domain Path: /languages
  * Copyright 2019 - 2026 VillaTheme.com. All rights reserved.
  * Requires at least: 5.0
- * Tested up to: 7.0
+ * Tested up to: 7.1
  * WC requires at least: 7.0
- * WC tested up to: 11.0
- * Requires PHP: 7.0
+ * WC tested up to: 11.2
+ * Requires PHP: 7.4
  * Requires Plugins: woocommerce
  **/
 
@@ -37,8 +37,8 @@ if ( is_plugin_active( 'woocommerce-email-template-customizer/woocommerce-email-
 if ( is_plugin_active( 'mailonix-email-template-customizer/mailonix-email-template-customizer.php' ) ) {
 	return;
 }
-define( 'VIWEC_VER', '1.3.3' );
-define( 'VIWEC_NAME', 'Email Template Customizer for WooCommerce' );
+define( 'VIWEC_VER', '1.3.5' );
+define( 'VIWEC_NAME', 'Mailonix - Email Template Customizer for WooCommerce' );
 
 $plugin_url = plugin_dir_url( __FILE__ );
 
@@ -57,7 +57,7 @@ if ( ! class_exists( 'Woo_Email_Template_Customizer' ) ) {
 		public $err_message;
 		public $wp_version_require = '5.0';
 		public $wc_version_require = '7.0';
-		public $php_version_require = '7.0';
+		public $php_version_require = '7.4';
 
 		public function __construct() {
 

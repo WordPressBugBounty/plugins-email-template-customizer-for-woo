@@ -50,7 +50,7 @@ if ( ! class_exists( 'VIWEC_Render_Email_Template' ) ) {
 			$post    = get_post( $this->temp_id );
 			if ( $post ) {
 				$subject = $post->post_title;
-				$subject = Utils::replace_shortcode( $subject, '', $this->order );
+				$subject = htmlspecialchars_decode( Utils::replace_shortcode( $subject, '', $this->order ) );
 			}
 
 			return $subject;

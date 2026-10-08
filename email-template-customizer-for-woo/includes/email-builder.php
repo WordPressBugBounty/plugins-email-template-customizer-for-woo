@@ -328,7 +328,6 @@ class Email_Builder {
 		$email_render = Email_Render::init();
 
 		$email_render->preview = true;
-        $email_render->preview_send_test = true;
 		$order_id ? $email_render->order( $order_id ) : $email_render->demo_order();
 		$email_render->demo_new_user();
 		$email_render->render( $data );
@@ -362,6 +361,7 @@ class Email_Builder {
 
 		$email_render          = Email_Render::init();
 		$email_render->preview = true;
+        $email_render->preview_send_test = true;
 		$order_id ? $email_render->order( $order_id ) : $email_render->demo_order();
 		$email_render->demo_new_user();
 

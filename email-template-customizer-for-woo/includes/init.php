@@ -424,6 +424,7 @@ class Init {
 	public function class_init() {
 		Utils::init();
 		Email_Builder::init();
+		System_Status::init();
 		Email_Trigger::init();
 		Compatible::init();
 		include_once VIWEC_DIR . 'compatible' . DIRECTORY_SEPARATOR . 'email-template-customizer.php';
@@ -595,14 +596,15 @@ class Init {
 				break;
 
 			case 'viwec_template_page_viwec_template_block':
-				$css = '.viwec-preview-pro-feature-wrap{position: relative;}';
-				$css .= '.viwec-preview-pro-feature-wrap img{max-width: 100%;}';
-				$css .= '.viwec-preview-pro-button a:hover{background: #fff;font-size: 40px;color: #69a580;opacity: .85;}';
-				$css .= '.viwec-preview-pro-feature-wrap a, .viwec-preview-pro-feature-wrap .viwec-preview-pro-button{position: absolute;width: 100%;height: 100%;left: 0;top: 0;border: none;z-index: 10;}';
-				$css .= '.viwec-preview-pro-feature-wrap a{text-decoration: none;display: flex;font-size: 0;background: transparent;justify-content: center;align-items: center;text-transform: uppercase;font-weight: bold;}';
-				wp_register_style('viwec_template_block', false);
-                wp_enqueue_style('viwec_template_block');
-                wp_add_inline_style('viwec_template_block', $css);
+			case 'viwec_template_page_viwec_template_report':
+				$css  = '.viwec-preview-pro-feature-wrap{position:relative;text-align:center}';
+				$css .= '.viwec-preview-pro-feature-wrap img{max-width:100%;}';
+				$css .= '.viwec-preview-pro-feature-wrap .viwec-preview-pro-button{position:absolute;width:100%;height:100%;left:0;top:0;z-index:10;display:flex;justify-content:center;align-items:center;}';
+				$css .= '.viwec-preview-pro-feature-wrap .viwec-preview-pro-button a.viwec-get-pro-version{position:static;font-size:32px;opacity:0.35;text-decoration:none;background:transparent;color:#1d2327;text-transform:uppercase;font-weight:bold;border:none;}';
+				$css .= '.viwec-preview-pro-feature-wrap:hover .viwec-preview-pro-button a.viwec-get-pro-version{font-size:32px;opacity:1;background:transparent;}';
+				wp_register_style( 'viwec_template_block', false );
+				wp_enqueue_style( 'viwec_template_block' );
+				wp_add_inline_style( 'viwec_template_block', $css );
 				break;
 			case 'edit-viwec_template':
 				$styles     = [ 'manage-template' ];
@@ -685,14 +687,23 @@ class Init {
 		    'viwec_template_block',
 		    [ $this, 'pro_page' ]
 	    );
+	    add_submenu_page(
+		    'edit.php?post_type=viwec_template',
+		    esc_html__( 'Report', 'viwec-email-template-customizer' ),
+		    esc_html__( 'Report', 'viwec-email-template-customizer' ),
+		    'manage_options',
+		    'viwec_template_report',
+		    [ $this, 'pro_page' ]
+	    );
     }
     public function pro_page(){
-	    $page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) :'';
-	    $img = 'preview-'.str_replace('viwec_template_','', $page);
+	    $page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+	    $img  = 'preview-' . str_replace( 'viwec_template_', '', $page );
+	    $ext  = ( 'viwec_template_report' === $page ) ? 'jpg' : 'webp';
 	    ?>
         <div class="wrap">
             <div class="viwec-preview-pro-feature-wrap">
-                <img src="<?php echo esc_url(VIWEC_IMAGES.$img.'.webp') ?>" alt="<?php echo esc_attr($img) ?>">
+                <img src="<?php echo esc_url( VIWEC_IMAGES . $img . '.' . $ext ); ?>" alt="<?php echo esc_attr( $img ); ?>">
                 <div class="viwec-preview-pro-button">
 				    <?php viwec_get_pro_version(); ?>
                 </div>

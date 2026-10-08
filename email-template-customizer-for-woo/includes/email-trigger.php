@@ -197,7 +197,7 @@ class Email_Trigger {
 				$subject = str_replace($wc_symbol, '{viwec_wc_symbol_tmp}',$subject);
 			}
 			$subject  = preg_replace( $this->plain_search, $this->plain_replace, wp_strip_all_tags( $subject ) );
-			$subject  = htmlspecialchars_decode( do_shortcode( $subject ) );
+			$subject  = htmlspecialchars_decode( $subject );
 			if ($wc_symbol){
 				$subject = str_replace('{viwec_wc_symbol_tmp}', $wc_symbol,$subject);
 			}
@@ -443,7 +443,7 @@ class Email_Trigger {
 
 			$subject = get_post( $template_id )->post_title;
 			if ( $subject ) {
-				$wp_new_user_notification_email['subject'] = Utils::replace_shortcode( $subject, '', $user );
+				$wp_new_user_notification_email['subject'] = htmlspecialchars_decode( Utils::replace_shortcode( $subject, '', $user ) );
 			}
 
 			$email_render = Email_Render::init();
