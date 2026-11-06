@@ -120,15 +120,15 @@ class Init {
 					'twi-cyan-white'   => esc_html__( 'Color - White', 'viwec-email-template-customizer' ),
 					'twi-white-black'  => esc_html__( 'Black - White', 'viwec-email-template-customizer' ),
 					'twi-white-cyan'   => esc_html__( 'White - Color', 'viwec-email-template-customizer' ),
-					'twi-black-new'        => esc_html__( 'Black New', 'viwec-email-template-customize' ),
-					'twi-white-new'        => esc_html__( 'White New', 'viwec-email-template-customize' ),
-					'twi-cyan-new'         => esc_html__( 'Color New', 'viwec-email-template-customize' ),
-					'twi-white-border-new' => esc_html__( 'White border New', 'viwec-email-template-customize' ),
-					'twi-black-border-new' => esc_html__( 'Black border New', 'viwec-email-template-customize' ),
-					'twi-cyan-border-new'  => esc_html__( 'Color border New', 'viwec-email-template-customize' ),
-					'twi-cyan-white-new'   => esc_html__( 'Color - White New', 'viwec-email-template-customize' ),
-					'twi-white-black-new'  => esc_html__( 'Black - White New', 'viwec-email-template-customize' ),
-					'twi-white-cyan-new'   => esc_html__( 'White - Color New', 'viwec-email-template-customize' ),
+					'twi-black-new'        => esc_html__('Black New', 'viwec-email-template-customizer'),
+					'twi-white-new'        => esc_html__('White New', 'viwec-email-template-customizer'),
+					'twi-cyan-new'         => esc_html__('Color New', 'viwec-email-template-customizer'),
+					'twi-white-border-new' => esc_html__('White border New', 'viwec-email-template-customizer'),
+					'twi-black-border-new' => esc_html__('Black border New', 'viwec-email-template-customizer'),
+					'twi-cyan-border-new'  => esc_html__('Color border New', 'viwec-email-template-customizer'),
+					'twi-cyan-white-new'   => esc_html__('Color - White New', 'viwec-email-template-customizer'),
+					'twi-white-black-new'  => esc_html__('Black - White New', 'viwec-email-template-customizer'),
+					'twi-white-cyan-new'   => esc_html__('White - Color New', 'viwec-email-template-customizer'),
 				],
 
 				'instagram' => [
@@ -299,19 +299,19 @@ class Init {
 						'twi-cyan-white'   => esc_html__( 'Color - White', 'viwec-email-template-customizer' ),
 						'twi-white-black'  => esc_html__( 'Black - White', 'viwec-email-template-customizer' ),
 						'twi-white-cyan'   => esc_html__( 'White - Color', 'viwec-email-template-customizer' ),
-						'twi-black-new'        => esc_html__( 'Black New', 'viwec-email-template-customize' ),
-						'twi-white-new'        => esc_html__( 'White New', 'viwec-email-template-customize' ),
-						'twi-cyan-new'         => esc_html__( 'Color New', 'viwec-email-template-customize' ),
-						'twi-white-border-new' => esc_html__( 'White border New', 'viwec-email-template-customize' ),
-						'twi-black-border-new' => esc_html__( 'Black border New', 'viwec-email-template-customize' ),
-						'twi-cyan-border-new'  => esc_html__( 'Color border New', 'viwec-email-template-customize' ),
-						'twi-cyan-white-new'   => esc_html__( 'Color - White New', 'viwec-email-template-customize' ),
-						'twi-white-black-new'  => esc_html__( 'Black - White New', 'viwec-email-template-customize' ),
-						'twi-white-cyan-new'   => esc_html__( 'White - Color New', 'viwec-email-template-customize' ),
+						'twi-black-new'        => esc_html__('Black New', 'viwec-email-template-customizer'),
+						'twi-white-new'        => esc_html__('White New', 'viwec-email-template-customizer'),
+						'twi-cyan-new'         => esc_html__('Color New', 'viwec-email-template-customizer'),
+						'twi-white-border-new' => esc_html__('White border New', 'viwec-email-template-customizer'),
+						'twi-black-border-new' => esc_html__('Black border New', 'viwec-email-template-customizer'),
+						'twi-cyan-border-new'  => esc_html__('Color border New', 'viwec-email-template-customizer'),
+						'twi-cyan-white-new'   => esc_html__('Color - White New', 'viwec-email-template-customizer'),
+						'twi-white-black-new'  => esc_html__('Black - White New', 'viwec-email-template-customizer'),
+						'twi-white-cyan-new'   => esc_html__('White - Color New', 'viwec-email-template-customizer'),
 					],
 
 					'instagram' => [
-						''                 => esc_html__( 'Disable', 'viwec-email-template-customizer' ),
+						''                 => esc_html__('Disable', 'viwec-email-template-customizer'),
 						'ins-black'        => esc_html__( 'Black', 'viwec-email-template-customizer' ),
 						'ins-white'        => esc_html__( 'White', 'viwec-email-template-customizer' ),
 						'ins-color'        => esc_html__( 'Color', 'viwec-email-template-customizer' ),
@@ -459,7 +459,11 @@ class Init {
 
 	public function admin_enqueue() {
 		global $post;
-		switch ( get_current_screen()->id ) {
+		$current_screen = get_current_screen();
+		if ( ! $current_screen ) {
+			return;
+		}
+		switch ( $current_screen->id ) {
 			case 'viwec_template':
 				$scripts_lib = [ 'tab', 'accordion', 'select2', 'dimmer', 'transition', 'modal' ];
 				$scripts     = [ 'inputs', 'email-builder', 'properties', 'components' ];

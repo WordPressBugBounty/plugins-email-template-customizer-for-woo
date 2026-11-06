@@ -189,10 +189,14 @@ class Utils {
 					}
 				}
 
-				$email_ids['customer_partially_refunded_order'] = $email_ids['customer_refunded_order'] . ' (' . esc_html__( 'partial', 'viwec-email-template-customizer' ) . ')';
-				$email_ids['customer_refunded_order']           = $email_ids['customer_refunded_order'] . ' (' . esc_html__( 'full', 'viwec-email-template-customizer' ) . ')';
-				$email_ids['customer_invoice_pending']          = $email_ids['customer_invoice'] . ' (' . esc_html__( 'pending', 'viwec-email-template-customizer' ) . ')';
-				$email_ids['customer_invoice']                  = $email_ids['customer_invoice'] . ' (' . esc_html__( 'paid', 'viwec-email-template-customizer' ) . ')';
+				if ( isset( $email_ids['customer_refunded_order'] ) ) {
+					$email_ids['customer_partially_refunded_order'] = $email_ids['customer_refunded_order'] . ' (' . esc_html__( 'partial', 'viwec-email-template-customizer' ) . ')';
+					$email_ids['customer_refunded_order']           = $email_ids['customer_refunded_order'] . ' (' . esc_html__( 'full', 'viwec-email-template-customizer' ) . ')';
+				}
+				if ( isset( $email_ids['customer_invoice'] ) ) {
+					$email_ids['customer_invoice_pending'] = $email_ids['customer_invoice'] . ' (' . esc_html__( 'pending', 'viwec-email-template-customizer' ) . ')';
+					$email_ids['customer_invoice']         = $email_ids['customer_invoice'] . ' (' . esc_html__( 'paid', 'viwec-email-template-customizer' ) . ')';
+				}
 			}
 
 			asort( $email_ids );
@@ -556,8 +560,9 @@ class Utils {
 				$shortcodes['{first_name}']           = $object->get_billing_first_name();
 				$shortcodes['{last_name}']            = $object->get_billing_last_name();
 				$shortcodes['{user_email}']           = $object->get_billing_email();
-				$shortcodes['{order_date_time}']           = $object->get_date_created()->date_i18n( $date_fm.' '.wc_time_format());
-				$shortcodes['{order_date}']           = $object->get_date_created()->date_i18n( $date_fm);
+				$created_date                          = $object->get_date_created();
+				$shortcodes['{order_date_time}']       = $created_date ? $created_date->date_i18n( $date_fm . ' ' . wc_time_format() ) : '';
+				$shortcodes['{order_date}']            = $created_date ? $created_date->date_i18n( $date_fm ) : '';
 				$shortcodes['{order_subtotal}']       = $object->get_subtotal_to_display();
 				$shortcodes['{order_total}']          = $object->get_formatted_order_total();
 				$shortcodes['{payment_method}']       = $payment_method;
@@ -687,15 +692,18 @@ class Utils {
 			}
 		}
 
-		if ( is_string( $html ) && false !== strpos( $html, '[' ) ) {
-			$html = do_shortcode( $html );
-		}
 
 		foreach ( $shortcodes as $token => $value ) {
 			$shortcodes[ $token ] = self::neutralize_shortcode_brackets( $value );
 		}
 
-		return str_replace( array_keys( $shortcodes ), array_values( $shortcodes ), $html );
+		$html = str_replace( array_keys( $shortcodes ), array_values( $shortcodes ), $html );
+
+		if ( is_string( $html ) && false !== strpos( $html, '[' ) ) {
+			$html = do_shortcode( $html );
+		}
+
+		return $html;
 	}
 
 

@@ -60,8 +60,11 @@ class Email_Render {
 	}
 
 	public function set_object( $email ) {
+		if ( ! is_object( $email ) || ! isset( $email->id ) ) {
+			return;
+		}
 		$this->email_id = $email->id;
-		$object         = $email->object;
+		$object         = isset( $email->object ) ? $email->object : null;
 		if ( is_a( $object, 'WC_Order' ) ) {
 			$this->order          = $object;
 			$this->order_currency = $this->order->get_currency();
@@ -170,6 +173,9 @@ class Email_Render {
 	}
 
 	public function render( $data ) {
+		if ( ! is_array( $data ) ) {
+			return;
+		}
 		$this->check_rendered = true;
         $this->mail_content_cache =[];
 

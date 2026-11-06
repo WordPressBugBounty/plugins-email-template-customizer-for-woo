@@ -29,13 +29,26 @@ foreach ( $items as $item_id => $item ) {
 	}
 
 	$product = $item->get_product();
-	$sku     = $purchase_note = '';
+	$sku     = $purchase_note = $img_url = '';
+	$p_url   = '#';
 
-	$sku           = $product->viwec_product_sku ?? ($product &&  method_exists( $product, 'get_sku' ) ? $product->get_sku() : '' );
-	$purchase_note = $product->viwec_purchase_note ?? ($product &&  method_exists( $product, 'get_purchase_note' ) ? $product->get_purchase_note() : '' );
-	if ( ! $remove_product_link ) {
-		$p_url = $product->viwec_product_permalink ?? ($product &&  method_exists( $product, 'get_purchase_note' ) ? $product->get_permalink() : '' );
+	if ( is_object( $product ) ) {
+		$sku           = $product->viwec_product_sku ?? ( method_exists( $product, 'get_sku' ) ? $product->get_sku() : '' );
+		$purchase_note = $product->viwec_purchase_note ?? ( method_exists( $product, 'get_purchase_note' ) ? $product->get_purchase_note() : '' );
+		if ( ! $remove_product_link ) {
+			$p_url = $product->viwec_product_permalink ?? ( method_exists( $product, 'get_permalink' ) ? $product->get_permalink() : '' );
+		}
+		if ( $img_width ) {
+			if ( isset( $product->viwec_product_img_url ) ) {
+				$img_url = $product->viwec_product_img_url;
+			} else {
+				$img_url = method_exists( $product, 'get_image_id' ) ? wp_get_attachment_image_url( $product->get_image_id(), 'woocommerce_thumbnail' ) : wc_placeholder_img_src();
+			}
+		}
+	} elseif ( $img_width ) {
+		$img_url = wc_placeholder_img_src();
 	}
+	$img_url = $img_width ? apply_filters( 'viwec_order_item_thumbnail_url', $img_url, $product, $item ) : '';
 	if ( ! $item_id_start ) {
 		$item_id_start = $item_id;
 	}
@@ -43,14 +56,6 @@ foreach ( $items as $item_id => $item ) {
 	$tmp_item_distance = '';
 	if ( $item_id_start != $item_id ) {
 		$tmp_item_distance = 'width: 100%;' . $items_distance;
-	}
-	if ( $img_width ) {
-		if ( isset( $product->viwec_product_img_url ) ) {
-			$img_url = $product->viwec_product_img_url;
-		} else {
-			$img_url = $product && method_exists( $product, 'get_image_id' ) ? wp_get_attachment_image_url( $product->get_image_id(), 'woocommerce_thumbnail' ) : wc_placeholder_img_src();
-		}
-		$img_url = apply_filters( 'viwec_order_item_thumbnail_url', $img_url, $product, $item );
 	}
 	if ( $tmp_item_distance ) {
 		?>

@@ -34,7 +34,7 @@ foreach ( $items as $item_id => $item ) {
 		$sku           = $product->viwec_product_sku ?? ( $product && method_exists( $product, 'get_sku' ) ? $product->get_sku() : '' );
 		$purchase_note = $product->viwec_purchase_note ?? ( $product && method_exists( $product, 'get_purchase_note' ) ? $product->get_purchase_note() : '' );
 		if ( ! $remove_product_link ) {
-			$p_url = $product->viwec_product_permalink ?? ($product &&  method_exists( $product, 'get_purchase_note' ) ? $product->get_permalink() : '' );
+			$p_url = $product->viwec_product_permalink ?? ( method_exists( $product, 'get_permalink' ) ? $product->get_permalink() : '' );
 		}
 		if ( $img_width ) {
 			if ( isset( $product->viwec_product_img_url ) ) {

@@ -4,7 +4,7 @@ Donate link: http://www.villatheme.com/donate
 Tags: woocommerce, email, email template, email customizer, woocommerce email
 Requires PHP: 7.4
 WC requires at least: 7.0
-Requires at least: 5.0
+Requires at least: 6.2
 Tested up to: 7.1
 WC tested up to: 11.2
 Stable tag: trunk
@@ -259,6 +259,10 @@ In addition, Email Template Customizer for WooCommerce is integrated with some a
 1. Edit email
 
 == Changelog ==
+2026.11.06 - version 1.3.6
+- Fixed: Incorrect text domain in translation function calls
+- Updated: VillaTheme support
+
 2026.10.08 - version 1.3.5
 - Added: Sample template and {verify_url} shortcode for the WooCommerce Confirm email address email (customer_verify_email)
 - Added: System Status admin page with support report email to support@villatheme.com

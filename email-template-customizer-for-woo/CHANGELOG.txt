@@ -1,5 +1,9 @@
 *** Mailonix - Email Template Customizer for WooCommerce Changelog ***
 
+2026.11.06 - version 1.3.6
+- Fixed: Incorrect text domain in translation function calls
+- Updated: VillaTheme support
+
 2026.10.08 - version 1.3.5
 - Added: Sample template and {verify_url} shortcode for the WooCommerce Confirm email address email (customer_verify_email)
 - Added: System Status admin page with support report email to support@villatheme.com

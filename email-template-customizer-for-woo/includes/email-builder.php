@@ -48,14 +48,16 @@ class Email_Builder {
 	}
 
 	public function remove_meta_boxes() {
-		if ( get_current_screen()->id == 'viwec_template' ) {
+		$screen = get_current_screen();
+		if ( $screen && $screen->id == 'viwec_template' ) {
 			global $wp_meta_boxes;
 			$wp_meta_boxes = [];
 		}
 	}
 
 	public function remove_action() {
-		if ( get_current_screen()->id == 'viwec_template' ) {
+		$screen = get_current_screen();
+		if ( $screen && $screen->id == 'viwec_template' ) {
 			remove_all_actions( 'admin_notices' );
 		}
 	}
@@ -251,7 +253,7 @@ class Email_Builder {
 		$statuses = wc_get_order_statuses();
 		if ( ! empty( $statuses ) && is_array( $statuses ) ) {
 			foreach ( $statuses as $status => $name ) {
-				$arg    = [ 'numberposts' => 1, 'status' => $status ];
+				$arg    = [ 'limit' => 1, 'status' => $status, 'orderby' => 'date', 'order' => 'DESC' ];
 				$orders = wc_get_orders( $arg );
 				if ( ! empty( $orders ) ) {
 					$_orders[] = current( $orders );
@@ -324,6 +326,9 @@ class Email_Builder {
 			wp_die( -1, 403 );
 		}
 		$data         = isset( $_POST['data'] ) ? json_decode( stripslashes( html_entity_decode( sanitize_text_field( htmlentities( $_POST['data'] ) ) ) ), true ) : '';
+		if ( ! is_array( $data ) ) {
+			$data = array();
+		}
 		$order_id     = isset( $_POST['order_id'] ) ? absint( $_POST['order_id'] ) : '';
 		$email_render = Email_Render::init();
 
@@ -744,8 +749,11 @@ class Email_Builder {
 				$post_id = $post->ID;
 				$old     = get_post_meta( $post_id, 'viwec_email_structure', true );
 				$data    = json_decode( html_entity_decode( $old ), true );
+				if ( ! is_array( $data ) || empty( $data['rows'] ) || ! is_array( $data['rows'] ) ) {
+					continue;
+				}
 
-				foreach ( (array)$data['rows'] as $row_key => $row ) {
+				foreach ( $data['rows'] as $row_key => $row ) {
 					if ( ! empty( $row['cols'] ) ) {
 						foreach ( $row['cols'] as $col_key => $cols ) {
 							if ( ! empty( $cols['elements'] ) ) {

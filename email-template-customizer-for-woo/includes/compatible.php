@@ -15,6 +15,8 @@ class Compatible {
 		add_filter( 'viwec_register_replace_shortcode', [ $this, 'woocommerce_correios' ], 10, 3 );
 		add_filter( 'woocommerce_api_create_order', array( $this, 'legacy_orders_update' ), 200, 2 );
 		add_filter( 'woocommerce_api_edit_order', array( $this, 'legacy_orders_update' ), 200, 2 );
+		add_action( 'woocommerce_rest_insert_shop_order_object', array( $this, 'rest_orders_update' ), 200, 3 );
+		add_action( 'woocommerce_rest_insert_order_object', array( $this, 'rest_orders_update' ), 200, 3 );
 		add_filter( 'viwec_register_email_type', array( $this, 'register_email_type' ) );
 		add_filter( 'viwec_live_edit_shortcodes', array( $this, 'register_render_preview_shortcode' ), 20 );
 		add_filter( 'viwec_register_preview_shortcode', array( $this, 'register_render_preview_shortcode' ), 20 );
@@ -61,6 +63,16 @@ class Compatible {
 		}
 	}
 
+	public function rest_orders_update( $order, $request = null, $creating = false ) {
+		if ( ! is_object( $request ) || ! method_exists( $request, 'get_param' ) ) {
+			return;
+		}
+		$tracking = $request->get_param( 'correios_tracking_code' );
+		if ( null !== $tracking && '' !== $tracking ) {
+			$this->correios_tracking_code = sanitize_text_field( (string) $tracking );
+		}
+	}
+
 	public function woocommerce_correios( $shortcodes, $object, $args ) {
 		if ( empty( $args ) ) {
 			return $shortcodes;
@@ -78,7 +90,7 @@ class Compatible {
 
 //			$tracking_codes = $args['email']->get_tracking_codes( $tracking_codes );
 
-			$_tracking_code = implode( $tracking_codes );
+			$_tracking_code = is_array( $tracking_codes ) ? implode( '', $tracking_codes ) : (string) $tracking_codes;
 
 			$shortcodes['correios_tracking_code'] = [ '{correios_tracking_code}' => $_tracking_code ];
 		}

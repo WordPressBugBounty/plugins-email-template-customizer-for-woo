@@ -68,7 +68,7 @@ class Email_Trigger {
 		add_filter( 'woocommerce_mail_callback_params', array( $this, 'reset_template_id' ), PHP_INT_MAX );
 
 //		Email with wc_mail
-		add_action( 'woocommerce_email_header', array( $this, 'send_email_via_wc_mailer' ), 1 );
+		add_action( 'woocommerce_email_header', array( $this, 'send_email_via_wc_mailer' ), 1, 2 );
 		add_filter( 'woocommerce_email_get_option', [ $this, 'add_padding_for_addition_content' ], 10, 4 );
 
 		add_filter( 'wp_mail', [ $this, 'minify_email_content' ] );
@@ -169,6 +169,9 @@ class Email_Trigger {
 
 	public function replace_subject( $subject, $object ) {
         $current_id = str_replace('woocommerce_email_subject_', '', current_filter());
+		if ( $current_id === 'customer_refunded_order' && $this->class_email && ! empty( $this->class_email->id ) ) {
+			$current_id = $this->class_email->id;
+		}
         $template_id = $this->get_template_id( $current_id ==='customer_invoice_paid'? 'customer_invoice' : $current_id, $object );
 		if ( $template_id && $template_id !=='disabled' ) {
 			$template = get_post( $template_id );
@@ -219,7 +222,7 @@ class Email_Trigger {
 			return VIWEC_TEMPLATES . 'empty-file.php';
 		}
 
-		if ( ! empty( $args['email']->id ) && in_array( $args['email']->id, $this->unique ) ) {
+		if ( isset( $args['email'] ) && is_object( $args['email'] ) && ! empty( $args['email']->id ) && in_array( $args['email']->id, $this->unique ) ) {
 			return $located;
 		}
 
@@ -585,8 +588,8 @@ class Email_Trigger {
 		return $wp_mail;
 	}
 
-	public function send_email_via_wc_mailer( $heading ) {
-		if (!empty($_REQUEST['preview_woocommerce_mail'])){
+	public function send_email_via_wc_mailer( $heading, $email = null ) {
+		if ( ! empty( $_REQUEST['preview_woocommerce_mail'] ) ) {
 			$this->disable_email_template = true;
 		}
 		if ( $this->disable_email_template || empty( $email ) ) {
